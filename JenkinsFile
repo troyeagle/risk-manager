@@ -17,6 +17,6 @@ bat "docker cp target/risk-manager.war my:/usr/local/tomcat/webapps"
 
 }
 stage('results') {
-archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
 }
 }
