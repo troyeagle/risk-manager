@@ -13,7 +13,7 @@ stage('deploy') {
 bat "docker stop my"
 bat "docker rm my"
 bat "docker run --name my -p 11111:8080 -d tomcat"
-bat "docker cp target/risk-manager-0.1-SNAPSHOT.jar my:/usr/local/tomcat/webapps"
+bat "docker cp target/risk-manager.war my:/usr/local/tomcat/webapps"
 
 }
 stage('results') {
