@@ -1,7 +1,6 @@
 package com.padeoe.dao;
 
 import com.padeoe.pojo.User;
-import com.padeoe.pojo.User;
 
 public interface IUserDao {
     int deleteByPrimaryKey(Integer id);
