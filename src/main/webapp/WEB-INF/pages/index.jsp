@@ -393,7 +393,7 @@
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">查看通知</span>
-                                <span class="pull-right">=></i></span>
+                                <span class="pull-right">=></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -435,7 +435,7 @@
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">查看适中风险警报</span>
-                                <span class="pull-right">=></i></span>
+                                <span class="pull-right">=></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -456,7 +456,7 @@
                         <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">查看严重风险警报</span>
-                                <span class="pull-right">=></i></span>
+                                <span class="pull-right">=></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
