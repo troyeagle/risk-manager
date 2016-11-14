@@ -6,6 +6,7 @@
   </head>
   
   <body>
-    ${user.userName}
+    <p>${user.id}</p>
+    <p>${user.name}</p>
   </body>
 </html>
