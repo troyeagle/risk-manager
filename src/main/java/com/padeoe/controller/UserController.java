@@ -48,9 +48,15 @@ public class UserController {
 
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
+		String name = request.getParameter("username");
+		String password = request.getParameter("password");
+		String Authority = request.getParameter("Authority");
+		User temp_user = new User();
+		temp_user.setPassword(password);
+		temp_user.setUserName(name);
+		temp_user.setAuthority(Authority);
+
+		userService.saveUser(temp_user);
 		return "showUser";
 	}
 }
