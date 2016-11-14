@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Service("riskService")
 public class RiskServiceImpl implements IRiskService{
-    @Resource
     private static AtomicInteger id = new AtomicInteger();
     private static Map<Integer, Risk> riskMap = new HashMap<>();
     @Override
