@@ -41,7 +41,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="/user/login" method="post">
+                        <form role="form" action="/user/register" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="用户名" name="username" type="username" autofocus>
@@ -49,13 +49,13 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="密码" name="password" type="password" value="">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
+                                <select name="Authority" id="select_k1" class="xla_k">
+                                    <option value="用户">用户</option>
+                                    <option value="管理员">管理员</option>
+                                </select>
                                 </div>
-                                <input type="submit" value="登录" class="btn btn-lg btn-success btn-block">
-                                <a href="register.jsp">注册新用户</a>
+                                <input type="submit" value="注册" class="btn btn-lg btn-success btn-block">
+                                <a href="login.jsp">登录</a>
                             </fieldset>
                         </form>
                     </div>
