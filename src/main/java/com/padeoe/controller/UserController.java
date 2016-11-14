@@ -49,7 +49,7 @@ public class UserController {
 		return return_value;
 	}
 
-	@RequestMapping("/register")
+	@RequestMapping(value = "/register")
 	public String register(HttpServletRequest request,Model model){
 		String name = request.getParameter("username");
 		String return_value = "index";
