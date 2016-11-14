@@ -17,6 +17,9 @@ import com.padeoe.pojo.User;
 public class UserController {
 	@Resource
 	private IUserService userService;
+	private int username_length = 30;
+	private int password_maxlength = 20;
+	private int password_minlength = 3;
 
 	@RequestMapping("/showUser")
 	public String toIndex(HttpServletRequest request,Model model){
@@ -49,14 +52,26 @@ public class UserController {
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request,Model model){
 		String name = request.getParameter("username");
+		String return_value = "index";
+		if(name.equals("")||name.length()>username_length||name == null){
+			model.addAttribute("error", "用户名名称不符合规范");
+			return "register";
+		}
+
 		String password = request.getParameter("password");
+		if(password.equals("")||password.length()>password_maxlength||password == null||password.length()<password_minlength){
+			model.addAttribute("error", "用户名密码不符合规范");
+			return "register";
+		}
+
 		String Authority = request.getParameter("Authority");
+
 		User temp_user = new User();
 		temp_user.setPassword(password);
 		temp_user.setUserName(name);
 		temp_user.setAuthority(Authority);
 
 		userService.saveUser(temp_user);
-		return "showUser";
+		return return_value;
 	}
 }
