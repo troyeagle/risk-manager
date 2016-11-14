@@ -9,6 +9,10 @@ public class User {
 
     private Integer age;
 
+    private Risk[] risklist;
+
+    private String authority;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +43,13 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String Authority) {
+        this.authority = authority;
     }
 }

@@ -1,7 +1,7 @@
 package com.padeoe.controller;
 
 import com.padeoe.pojo.User;
-import com.padeoe.service.IUserService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by zafara on 2016/11/13.
  */
-    @RequestMapping("/riskcontroll")
+@Controller
+    @RequestMapping("/risk")
 public class RiskController {
     private static int upper_limit = 100;
    private static String risk_content = ""; //风险内容

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.padeoe.dao.IUserDao;
 import com.padeoe.pojo.User;
-import com.padeoe.service.IUserService;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService {

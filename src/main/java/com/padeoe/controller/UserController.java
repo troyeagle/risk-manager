@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.padeoe.pojo.User;
-import com.padeoe.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
