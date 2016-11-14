@@ -26,7 +26,7 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -34,7 +34,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public Integer getAge() {
@@ -45,11 +45,19 @@ public class User {
         this.age = age;
     }
 
+    public Risk[] getRisklist() {
+        return risklist;
+    }
+
+    public void setRisklist(Risk[] risklist) {
+        this.risklist = risklist;
+    }
+
     public String getAuthority() {
         return authority;
     }
 
-    public void setAuthority(String Authority) {
+    public void setAuthority(String authority) {
         this.authority = authority;
     }
 }
