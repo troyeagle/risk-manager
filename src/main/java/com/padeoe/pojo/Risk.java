@@ -17,11 +17,52 @@ public class Risk {
 
     private User follower[]; //跟踪者
 
+
     public String getRisk_content() {
         return risk_content;
     }
 
     public void setRisk_content(String risk_content) {
         this.risk_content = risk_content;
+    }
+
+    public String getPossibility() {
+        return possibility;
+    }
+
+    public void setPossibility(String possibility) {
+        this.possibility = possibility;
+    }
+
+    public String getInfluce_level() {
+        return influce_level;
+    }
+
+    public void setInfluce_level(String influce_level) {
+        this.influce_level = influce_level;
+    }
+
+    public String getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(String threshold) {
+        this.threshold = threshold;
+    }
+
+    public User getCommiter() {
+        return Commiter;
+    }
+
+    public void setCommiter(User commiter) {
+        Commiter = commiter;
+    }
+
+    public User[] getFollower() {
+        return follower;
+    }
+
+    public void setFollower(User[] follower) {
+        this.follower = follower;
     }
 }

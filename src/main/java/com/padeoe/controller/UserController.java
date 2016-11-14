@@ -49,6 +49,11 @@ public class UserController {
 		return return_value;
 	}
 
+	@RequestMapping("/register_page")
+	public String register_page(HttpServletRequest request,Model model){
+		return "register";
+	}
+
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request,Model model){
 		String name = request.getParameter("username");
