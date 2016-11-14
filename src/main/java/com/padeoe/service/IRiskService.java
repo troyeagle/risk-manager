@@ -5,8 +5,8 @@ import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.User;
 
 public interface IRiskService {
-	public User getRiskById(int userId);
-	public User getRiskByUser(User user);
+	public Risk getRiskById(int userId);
+	public Risk[] getRiskByUser(User user);
 	public void saveRisk(Risk risk);
 	public void deleteRisk(Risk risk);
 	public void changeRisk(Risk risk);

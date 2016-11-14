@@ -6,6 +6,9 @@ import com.padeoe.service.IRiskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by zafara on 2016/11/14.
@@ -13,14 +16,17 @@ import javax.annotation.Resource;
 @Service("riskService")
 public class RiskServiceImpl implements IRiskService{
     @Resource
-
+    private static AtomicInteger id = new AtomicInteger();
+    private static Map<Integer, Risk> riskMap = new HashMap<>();
     @Override
-    public User getRiskById(int userId) {
-        return null;
+    public Risk getRiskById(int userId) {
+        return riskMap.get(userId);
     }
 
     @Override
-    public User getRiskByUser(User user) {
+    public Risk[] getRiskByUser(User user) {
+        Risk[] risks;
+
         return null;
     }
 
