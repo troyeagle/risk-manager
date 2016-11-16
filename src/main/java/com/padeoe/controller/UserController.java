@@ -15,7 +15,6 @@ import java.util.List;
  * 管理用户登录，用户注册
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
     @Resource
     private IUserService userService;
@@ -34,8 +33,11 @@ public class UserController {
     }
 
     @RequestMapping("/login_page")
-    public String login_page() {
-        return "login";
+    public String login_page(HttpServletRequest request, Model model, HttpSession session) {
+        if(session.getAttribute("user")!=null){
+            return "index";
+        }
+        return "redirect:login";
     }
 
     @RequestMapping("/login")
@@ -116,6 +118,12 @@ public class UserController {
         }
 
 
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, Model model, HttpSession session) {
+        session.removeAttribute("user");
+        return "login_page";
     }
 
 
