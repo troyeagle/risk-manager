@@ -1,50 +1,80 @@
 package com.padeoe.pojo;
 
 /**
- * Created by zafara on 2016/11/14.
+ * Risk类定义了风险的基本模板，仅仅包含Risk的自身属性，除id外，Risk的区别由别的所有字段来唯一确定
+ * @author padeoe
+ * Date: 2016/11/16
  */
 public class Risk {
+    /**
+     * 风险id，由数据库生成，是唯一的。两个{@link Risk}对象如果id不同，则其余字段一定至少有一个字段不同。
+     * 就是说，除了id之外，别的字段不可能完全相同，这一点将由后台负责确保
+     */
+    private String riskId;
 
-    private Integer id;
+    /**
+     * 风险简述,不同{@link Risk}对象的风险简述可能相同
+     */
+    private  String riskBrief;
 
-    private String riskContent = ""; //风险内容
+    /**
+     * 风险详述,不同{@link Risk}对象的风险详述可能相同
+     */
+    private  String riskDetail;
 
-    private Integer possibility = 2; //可能性 1 低，2普通，3高
+    /**
+     * 风险可能性
+     */
+    private  String possibility;
 
-    private Integer influenceLevel = 2; //影响程度 1 较轻，2普通，3严重
+    /**
+     * 风险影响程度
+     */
+    private  String influence;
 
-    private String threshold = ""; //阈值
+    /**
+     * 风险阈值
+     */
+    private  String threshold;
 
-    public Integer getId() {
-        return id;
+    public String getRiskId() {
+        return riskId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRiskId(String riskId) {
+        this.riskId = riskId;
     }
 
-    public String getRiskContent() {
-        return riskContent;
+    public String getRiskBrief() {
+        return riskBrief;
     }
 
-    public void setRiskContent(String riskContent) {
-        this.riskContent = riskContent;
+    public void setRiskBrief(String riskBrief) {
+        this.riskBrief = riskBrief;
     }
 
-    public Integer getPossibility() {
+    public String getRiskDetail() {
+        return riskDetail;
+    }
+
+    public void setRiskDetail(String riskDetail) {
+        this.riskDetail = riskDetail;
+    }
+
+    public String getPossibility() {
         return possibility;
     }
 
-    public void setPossibility(Integer possibility) {
+    public void setPossibility(String possibility) {
         this.possibility = possibility;
     }
 
-    public Integer getInfluenceLevel() {
-        return influenceLevel;
+    public String getInfluence() {
+        return influence;
     }
 
-    public void setInfluenceLevel(Integer influenceLevel) {
-        this.influenceLevel = influenceLevel;
+    public void setInfluence(String influence) {
+        this.influence = influence;
     }
 
     public String getThreshold() {
@@ -54,5 +84,4 @@ public class Risk {
     public void setThreshold(String threshold) {
         this.threshold = threshold;
     }
-
 }
