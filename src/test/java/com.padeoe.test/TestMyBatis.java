@@ -1,16 +1,15 @@
 package com.padeoe.test;
 
-import javax.annotation.Resource;
-
+import com.padeoe.pojo.Risk;
+import com.padeoe.service.IRiskService;
+import com.padeoe.service.IUserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alibaba.fastjson.JSON;
-import com.padeoe.pojo.User;
-import com.padeoe.service.IUserService;
+import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
@@ -21,6 +20,9 @@ public class TestMyBatis {
     @Resource
     private IUserService userService = null;
 
+    @Resource
+    private IRiskService riskService = null;
+
 //  @Before
 //  public void before() {
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -29,9 +31,11 @@ public class TestMyBatis {
 
     @Test
     public void test1() {
-        User user = userService.getUserById(1);
-        // System.out.println(user.getUserName());
-        // logger.info("值："+user.getUserName());
-        logger.info(JSON.toJSONString(user));
+        Risk risk = new Risk();
+        risk.setInfluenceLevel(1);
+        risk.setPossibility(2);
+        risk.setRiskContent("不知道是什么问题");
+        risk.setThreshold("无解");
+        riskService.saveRisk(risk);
     }
 }

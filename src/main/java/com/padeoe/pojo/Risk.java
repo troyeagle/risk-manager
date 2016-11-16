@@ -11,9 +11,17 @@ public class Risk {
 
     private Integer possibility = 2; //可能性 1 低，2普通，3高
 
-    private Integer influceLevel = 2; //影响程度 1 较轻，2普通，3严重
+    private Integer influenceLevel = 2; //影响程度 1 较轻，2普通，3严重
 
     private String threshold = ""; //阈值
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getRiskContent() {
         return riskContent;
@@ -31,12 +39,12 @@ public class Risk {
         this.possibility = possibility;
     }
 
-    public Integer getInfluceLevel() {
-        return influceLevel;
+    public Integer getInfluenceLevel() {
+        return influenceLevel;
     }
 
-    public void setInfluceLevel(Integer influceLevel) {
-        this.influceLevel = influceLevel;
+    public void setInfluenceLevel(Integer influenceLevel) {
+        this.influenceLevel = influenceLevel;
     }
 
     public String getThreshold() {

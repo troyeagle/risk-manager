@@ -1,5 +1,6 @@
 package com.padeoe.service.impl;
 
+import com.padeoe.dao.IRiskDao;
 import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.User;
 import com.padeoe.service.IRiskService;
@@ -15,6 +16,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Service("riskService")
 public class RiskServiceImpl implements IRiskService{
+    @Resource
+    private IRiskDao riskDao;
+
     private static AtomicInteger id = new AtomicInteger();
     private static Map<Integer, Risk> riskMap = new HashMap<>();
     @Override
@@ -31,12 +35,11 @@ public class RiskServiceImpl implements IRiskService{
 
     @Override
     public void saveRisk(Risk risk) {
-
+        riskDao.insert(risk);
     }
 
     @Override
     public void deleteRisk(Risk risk) {
-
     }
 
     @Override

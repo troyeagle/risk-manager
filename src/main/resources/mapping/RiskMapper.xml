@@ -16,29 +16,42 @@
         from risk_t
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.Risk" >
+        select
+        <include refid="Base_Column_List" />
+        from risk_t
+        <where>
+            <if test="userName != null" >
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="authority != null" >
+                authority = #{authority,jdbcType=INTEGER},
+            </if>
+        </where>
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from risk_t
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.padeoe.pojo.Risk" useGeneratedKeys="true" keyProperty="id">
         insert into risk_t (id, possibility, influence_level, threshold)
-        values (#{id,jdbcType=INTEGER}, #{possibility,jdbcType=VARCHAR}, #{influence_level,jdbcType=INTEGER},
+        values (#{id,jdbcType=INTEGER}, #{possibility,jdbcType=VARCHAR}, #{influenceLevel,jdbcType=INTEGER},
         #{threshold,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.padeoe.pojo.Risk" useGeneratedKeys="true" keyProperty="id">
         insert into risk_t
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                id,
-            </if>
             <if test="possibility != null" >
-                possibility,
+                possibility = #{possibility,jdbcType=VARCHAR},
             </if>
             <if test="threshold != null" >
-                influence_level,
+                threshold = #{threshold,jdbcType=VARCHAR},
             </if>
             <if test="authority != null" >
-                authority,
+                influence_level = #{influenceLevel,jdbcType=INTEGER},
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -52,7 +65,7 @@
                 #{threshold,jdbcType=VARCHAR},
             </if>
             <if test="authority != null" >
-                #{influence_level,jdbcType=INTEGER},
+                #{influenceLevel,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -75,7 +88,7 @@
         update risk_t
         set possibility = #{possibility,jdbcType=VARCHAR},
         threshold = #{threshold,jdbcType=VARCHAR},
-        influence_level = #{authority,jdbcType=INTEGER}
+        influence_level = #{influenceLevel,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
