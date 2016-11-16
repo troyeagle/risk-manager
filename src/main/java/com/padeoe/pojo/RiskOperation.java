@@ -12,6 +12,11 @@ public class RiskOperation {
     String riskId;
 
     /**
+     * 风险的创建者
+     */
+    String creator;
+
+    /**
      * 该风险的追踪负责人，唯一对应了一个{@link User}对象
      */
     String username;

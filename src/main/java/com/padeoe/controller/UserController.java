@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -36,21 +37,27 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request, Model model, HttpSession session) {
-/*        User login_user = null;
-        String return_value = "login";
-        login_user = userService.getUserByName(request.getParameter("username"));
-        if (login_user != null) {
-            if (login_user.getPassword().equals(request.getParameter("password"))) {
-                session.setAttribute("Id", login_user.getId());
-                return_value = "index";
-            } else {
-                model.addAttribute("error", "密码输入错误");
-            }
-        } else {
-            model.addAttribute("error", "未找到对应用户名");
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        if(username==null||password==null){
+            model.addAttribute("error", "用户名或密码未填写");
+            return "login";
         }
-        return return_value;*/
-        return "index";
+        else{
+            User user=new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            List<User> users=userService.getUserByCondition(user);
+            if(users!=null&&users.size()==1){
+                user=users.get(0);
+                session.setAttribute("user",user);
+                return "index";
+            }
+            else{
+                model.addAttribute("error", "用户名密码错误");
+                return "login";
+            }
+        }
     }
 
     @RequestMapping("/register_page")
