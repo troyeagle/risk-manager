@@ -401,12 +401,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="riskDetail"></textarea>
-                                    <p class="help-block" >详细描述风险，方便理解</p>
-                                </div>
-
-                                <div class="form-group">
                                     <label>追踪者</label>
                                     <input class="form-control" name="username" type="text">
                                     <p class="help-block" >进行追踪的用户</p>
