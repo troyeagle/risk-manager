@@ -7,5 +7,5 @@ public interface IUserService {
 
     public User getUserByName(String UserName);
 
-    public void saveUser(User user);
+    public int saveUser(User user);
 }
