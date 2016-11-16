@@ -11,8 +11,23 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class indexController {
+    @RequestMapping("/")
+    public String homepage(HttpServletRequest request, Model model) {
+        return "login";
+    }
+
     @RequestMapping("/index_page")
-    public String index(HttpServletRequest request, Model model) {
+    public String index_page(HttpServletRequest request, Model model) {
         return "index";
+    }
+
+    @RequestMapping("/riskmanage_page")
+    public String riskmanage_page(HttpServletRequest request, Model model) {
+        return "riskmanage";
+    }
+
+    @RequestMapping("/addrisk_page")
+    public String addrisk_page(HttpServletRequest request, Model model) {
+        return "addrisk";
     }
 }

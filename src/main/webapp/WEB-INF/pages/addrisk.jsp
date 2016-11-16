@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统</title>
+    <title>风险管理系统-增加风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -375,162 +375,59 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">最新风险通知</h1>
+                    <h1 class="page-header">添加风险</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>通知</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看通知</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>轻微风险警报</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看轻微风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>适中风险警报</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看适中风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>严重风险警报！</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看严重风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
 
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            项目表
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        操作
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">添加项目</a>
-                                        </li>
-                                        <!--
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                        -->
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="col-lg-2">
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>项目编号</th>
-                                                    <th>项目名称</th>
-                                                    <th>项目描述</th>
-                                                    <th>追踪风险数量</th>
-                                                    <th>详细页面</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>windows 9</td>
-                                                    <td>制作超一流的系统，以及制作超二流的系统，还有制作超三流的系统</td>
-                                                    <td>12</td>
-                                                    <td> <a href="">详细</a> </td>
-                                                </tr>
+                        <div class="col-lg-8">
+                            <br>
+                            <form role="form">
+                                <div class="form-group">
+                                    <label>风险简述</label>
+                                    <input class="form-control" name="risk_content" type="text">
+                                    <p class="help-block" >简洁描述风险，方便检索</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>风险详细描述</label>
+                                    <textarea class="form-control" rows="3" name="risk_content_detail"></textarea>
+                                    <p class="help-block" >详细描述风险，方便理解</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>阈值</label>
+                                    <input class="form-control" name="threshold" type="text">
+                                    <p class="help-block" >风险成为问题的阈值</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="possibility">
+                                        <option>低</option>
+                                        <option>中</option>
+                                        <option>高</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="influce_level">
+                                        <option>低</option>
+                                        <option>中</option>
+                                        <option>高</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>跟随者ID</label>
+                                    <input class="form-control" name="risk_content" type="text">
+                                    <p class="help-block" >用分号隔开不同跟随者</p>
+                                </div>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
+                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
+                            </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -538,80 +435,6 @@
 
                 </div>
                 <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-                </div>
-                <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
         </div>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>风险管理系统-注册</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%=application.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">注册</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="<%=application.getContextPath()%>/user/register" method="post">
@@ -60,7 +60,7 @@
                             </fieldset>
                         </form>
                     </div>
-                    <p style="color: red">${requestScope.error}</p>
+                    <p style="color: red; text-align: center">${requestScope.error}</p>
                 </div>
             </div>
         </div>
