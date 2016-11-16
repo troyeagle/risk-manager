@@ -35,9 +35,9 @@ public class UserController {
     @RequestMapping("/login_page")
     public String login_page(HttpServletRequest request, Model model, HttpSession session) {
         if(session.getAttribute("user")!=null){
-            return "index";
+            return "redirect:index_page";
         }
-        return "redirect:login";
+        return "login";
     }
 
     @RequestMapping("/login")
@@ -56,7 +56,7 @@ public class UserController {
             if(users!=null&&users.size()==1){
                 user=users.get(0);
                 session.setAttribute("user",user);
-                return "index";
+                return "redirect:index_page";
             }
             else{
                 model.addAttribute("error", "用户名密码错误");
@@ -112,7 +112,7 @@ public class UserController {
                         u.setAuthority(1);
                     userService.saveUser(u);
                     session.setAttribute("user",u);
-                    return "index";
+                    return "redirect:index_page";
                 }
             }
         }
@@ -123,7 +123,7 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, Model model, HttpSession session) {
         session.removeAttribute("user");
-        return "login";
+        return "redirect:login_page";
     }
 
 
