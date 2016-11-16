@@ -24,18 +24,12 @@ public class UserServiceImpl implements IUserService {
 		*/
 		return userDao.selectByPrimaryKey(userId);
 	}
-
-	public User getUserByCondition(User user) {
-		List<User> result = userDao.selectByCondition(user);
-		if(result.size()>0) return result.get(0);
-		else return new User();
-	}
 	@Override
-	public User getUserByName(String userName){
-		User user = new User();
-		user.setUserName(userName);
-		return getUserByCondition(user);
+	public List<User> getUserByCondition(User user) {
+		List<User> result = userDao.selectByCondition(user);
+		return result;
 	}
+
 	@Override
 	public int saveUser(User user){
 		return userDao.insert(user);
