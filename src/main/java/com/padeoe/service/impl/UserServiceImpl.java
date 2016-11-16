@@ -16,13 +16,13 @@ public class UserServiceImpl implements IUserService {
     //	private static AtomicInteger id = new AtomicInteger();
 //	private static Map<Integer, User> userMap = new HashMap<>();
     @Override
-    public User getUserById(int userId) {
+    public User getUserByName(String username) {
 		/*
 		// TODO Auto-generated method stub
 		// 为了糊弄加入静态变量
 		return this.userDao.selectByPrimaryKey(userId);
 		*/
-        return userDao.selectByPrimaryKey(userId);
+        return userDao.selectByPrimaryKey(username);
     }
     @Override
     public List<User> getUserByCondition(User user) {
@@ -31,7 +31,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public int saveUser(User user){
-        return userDao.insert(user);
+    public void saveUser(User user){
+        if(getUserByName(user.getUsername())!=null)
+            throw new RuntimeException("用户名已存在");
+        userDao.insert(user);
     }
 }

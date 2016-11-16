@@ -8,7 +8,6 @@ package com.padeoe.pojo;
  */
 public class User {
 
-    private Integer id;
     /**
      * 用户名，是唯一的，根据用户名区别用户
      * 长度在{@link com.padeoe.controller.UserController#MIN_USERNAME_LENGTH}和 {@link com.padeoe.controller.UserController#MAX_USERNAME_LENGTH}之间
@@ -23,14 +22,6 @@ public class User {
      * 用户权限
      */
     private Integer authority;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

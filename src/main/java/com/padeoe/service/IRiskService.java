@@ -8,11 +8,16 @@ import java.util.List;
 public interface IRiskService {
     public Risk getRiskById(int riskId);
 
+    /**
+     * 返回riskId
+     * @param risk
+     * @return
+     */
     public Integer saveRisk(Risk risk);
 
-    public Integer deleteRiskById(Integer id);
+    public void deleteRiskById(Integer id);
 
-    public Integer updateRisk(Risk risk);
+    public void updateRisk(Risk risk);
 
     public List<Risk> searchRisk(Risk risk);
 }

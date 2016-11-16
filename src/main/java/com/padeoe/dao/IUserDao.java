@@ -7,13 +7,13 @@ import java.util.List;
 
 @Component
 public interface IUserDao {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String username);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Integer id);
+    User selectByPrimaryKey(String username);
 
     List<User> selectByCondition(User query);
 

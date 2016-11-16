@@ -27,8 +27,8 @@ public class UserController {
 
     @RequestMapping("/showUser")
     public String toIndex(HttpServletRequest request, Model model) {
-        int userId = Integer.parseInt(request.getParameter("id"));
-        User user = this.userService.getUserById(userId);
+        String username = request.getParameter("username");
+        User user = this.userService.getUserByName(username);
         model.addAttribute("user", user);
         return "showUser";
     }
