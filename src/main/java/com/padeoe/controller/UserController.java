@@ -94,7 +94,10 @@ public class UserController {
                     User u = new User();
                     u.setUsername(name);
                     u.setPassword(password);
-                    u.setAuthority(authority);
+                    if(authority.equals("管理员"))
+                        u.setAuthority(0);
+                    else if(authority.equals("用户"))
+                        u.setAuthority(1);
                     userService.saveUser(u);
                     return "index";
                 }
