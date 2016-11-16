@@ -92,7 +92,7 @@ public class UserController {
                     return "register";
                 } else {
                     userService.saveUser(new User(name, password, authority));
-                    return "login_page";
+                    return "login";
                 }
             }
         }
