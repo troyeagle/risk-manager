@@ -35,4 +35,14 @@ public class indexController {
     public String addrisk_op(HttpServletRequest request, Model model) {
         return "addrisk_op";
     }
+
+    @RequestMapping("/addrisk_op_advantage_page")
+    public String addrisk_op_advantage(HttpServletRequest request, Model model) {
+        return "addrisk_op_advantage";
+    }
+
+    @RequestMapping("/project_page")
+    public String project(HttpServletRequest request, Model model) {
+        return "project";
+    }
 }

@@ -283,6 +283,9 @@
                         <li>
                             <a href="riskmanage_page">风险管理</a>
                         </li>
+                        <li>
+                            <a href="projectmanage_page">项目管理</a>
+                        </li>
                         <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -380,7 +383,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">RA名字 管理</h1>
+                    <h1 class="page-header">风险库管理</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -402,7 +405,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/addrisk_page">添加风险</a>
+                                        <li><a href="/addrisk_page">添加风险模板</a>
                                         </li>
                                         <!--
                                         <li class="divider"></li>

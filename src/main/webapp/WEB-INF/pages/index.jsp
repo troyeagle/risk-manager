@@ -284,7 +284,7 @@
                             }
                          %>
                         <li>
-                            <a href="project_page">项目管理</a>
+                            <a href="projectmanage_page">项目管理</a>
                         </li>
                         <!--
                         <li>
