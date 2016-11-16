@@ -17,10 +17,7 @@ import java.util.List;
  * Created by zafara on 2016/11/13.
  */
 @Controller
-    @RequestMapping("/risk")
 public class RiskController {
-
-
 /*    public static List<RiskItem> riskItemList=new ArrayList<>();
     static {
         riskItemList.add(new RiskItem("riskBrief","风险简介"));
@@ -87,12 +84,23 @@ public class RiskController {
             model.addAttribute("error", "完全相同的风险已经添加过了");
              return "addrisk_page";
         }
-        return "";
+        return "riskmanage_page";
     }
 
     @RequestMapping("/addrisk_page")
     public String addRiskPage(HttpServletRequest request, Model model){
+      //  iRiskService.getRiskById();
         return "addrisk";
+    }
+
+    @RequestMapping("/riskmanage_page")
+    public String riskmanage_page(HttpServletRequest request, Model model) {
+        return "riskmanage";
+    }
+
+    @RequestMapping("/riskmanage")
+    public String riskmanage(HttpServletRequest request, Model model) {
+        return "riskmanage";
     }
 
 

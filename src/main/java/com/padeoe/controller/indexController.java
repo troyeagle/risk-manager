@@ -21,15 +21,6 @@ public class indexController {
         return "index";
     }
 
-    @RequestMapping("/riskmanage_page")
-    public String riskmanage_page(HttpServletRequest request, Model model) {
-        return "riskmanage";
-    }
-
-    @RequestMapping("/addrisk_page")
-    public String addrisk_page(HttpServletRequest request, Model model) {
-        return "addrisk";
-    }
 
     @RequestMapping("/addrisk_op_page")
     public String addrisk_op(HttpServletRequest request, Model model) {

@@ -15,7 +15,6 @@ import java.util.List;
  * 管理用户登录，用户注册
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
     @Resource
     private IUserService userService;
