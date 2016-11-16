@@ -37,7 +37,7 @@ public class UserController {
         if(session.getAttribute("user")!=null){
             return "index";
         }
-        return "login";
+        return "redirect:login";
     }
 
     @RequestMapping("/login")
