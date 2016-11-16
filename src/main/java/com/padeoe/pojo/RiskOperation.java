@@ -36,4 +36,11 @@ public class RiskOperation {
      */
     String date;
 
+    public String getCreator() {
+        return creator;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }

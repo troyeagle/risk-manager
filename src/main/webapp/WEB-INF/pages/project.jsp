@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.Risk" %>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.RiskOperation" %>
 
 <head>
 
@@ -265,7 +266,7 @@
                        </li>
                        -->
                        <li class="divider"></li>
-                       <li><a href="/user/logout"> 登出</a>
+                       <li><a href="/logout"> 登出</a>
                        </li>
                    </ul>
                    <!-- /.dropdown-user -->
@@ -430,9 +431,12 @@
                                                 <tr>
                                                     <th>风险编号</th>
                                                     <th>风险简述</th>
+                                                    <th>风险详述</th>
                                                     <th>可能性</th>
                                                     <th>影响程度</th>
                                                     <th>阈值</th>
+                                                    <th>提交者</th>
+                                                    <th>跟踪者</th>
                                                     <th>修改</th>
                                                 </tr>
                                                 </thead>
@@ -444,20 +448,27 @@
                                                     <td>低</td>
                                                     <td>高</td>
                                                     <td>100</td>
+                                                    <td>舒克</td>
+                                                    <td>贝吉塔</td>
                                                     <td> <a href="">修改</a> </td>
                                                 </tr>
 
                                                 <%
-                                                    /*
+                                                    int i = 0;
+                                                    List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                                          out.println("<tr>");
-                                                        out.println("<td>"+ "编号"+"</td>");
-                                                        out.println("<td>"+ risk.getRisk_content() +"</td>");
+                                                        out.println("<td>"+ risk.getId()+"</td>");
+                                                        out.println("<td>"+ risk.getRiskBrief() +"</td>");
+                                                        out.println("<td>"+ risk.getRiskDetail() +"</td>");
                                                         out.println("<td>"+ risk.getPossibility() +"</td>");
-                                                        out.println("<td>"+ risk.getInfluce_level() +"</td>");
+                                                        out.println("<td>"+ risk.getInfluence() +"</td>");
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getCreator() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getUsername() +"</td>");
                                                         out.println("<td> <a href=\"\">修改</a> </td>");
                                                         out.println("</tr>");
+                                                        i++;
                                                     }
                                                     */
                                                 %>
