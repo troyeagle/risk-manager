@@ -10,20 +10,27 @@ public class Project {
 
     private Risk[] risklists;
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescriptoin(){
+    public String getDescriptoin() {
         return descriptoin;
     }
 
-    public void setDescriptoin(){
+    public void setDescriptoin(String descriptoin) {
         this.descriptoin = descriptoin;
     }
 
+    public Risk[] getRisklists() {
+        return risklists;
+    }
+
+    public void setRisklists(Risk[] risklists) {
+        this.risklists = risklists;
+    }
 }
