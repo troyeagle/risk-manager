@@ -404,8 +404,6 @@
                                     <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="/addrisk_page">添加风险</a>
                                         </li>
-                                        <li><a href="/addriskadvance_page">导入风险</a>
-                                        </li>
                                         <!--
                                         <li class="divider"></li>
                                         <li><a href="#">Separated link</a>

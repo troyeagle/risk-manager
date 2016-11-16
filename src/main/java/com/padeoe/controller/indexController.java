@@ -31,8 +31,8 @@ public class indexController {
         return "addrisk";
     }
 
-    @RequestMapping("/addriskadvance_page")
-    public String addriskadvance_page(HttpServletRequest request, Model model) {
-        return "addriskadvance";
+    @RequestMapping("/addrisk_op_page")
+    public String addrisk_op(HttpServletRequest request, Model model) {
+        return "addrisk_op";
     }
 }

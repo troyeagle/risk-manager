@@ -387,23 +387,44 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
 
-
                         <div class="col-lg-12">
+                            <form action=" ">
+                                <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-default">提交查询时间</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    起始时间：<input type="datetime-local" name="startdate">
+                                </div>
+                                <div class="col-lg-4">
+                                    结束时间：<input type="datetime-local" name="enddate">
+                                </div>
+                            </form>
+
+
+                                <br>
                             <table>
                                 <thead>
                                 <tr>
                                     <th>风险编号</th>
                                     <th>风险简述</th>
-                                    <th>风险详述</th>
                                     <th>可能性</th>
                                     <th>影响程度</th>
                                     <th>阈值</th>
-                                    <th>提交者</th>
-                                    <th>追踪者</th>
                                     <th>修改</th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>服务器崩溃</td>
+                                    <td>低</td>
+                                    <td>高</td>
+                                    <td>100</td>
+                                    <td> <a href="">修改</a> </td>
+                                </tr>
+                                </tbody>
                             </table>
+
                             <br>
 
                         </div>
@@ -438,7 +459,13 @@
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
 
-<script src="/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('table').dataTable();
+        });
+    </script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
 
 </body>
 
