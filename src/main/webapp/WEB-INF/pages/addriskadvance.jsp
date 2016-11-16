@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-RA管理</title>
+    <title>风险管理系统-增加风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,8 @@
 
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -292,7 +294,7 @@
                             <!-- /.nav-second-level
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -310,7 +312,7 @@
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="">Typography</a>
                                 </li>
                                 <li>
                                     <a href="icons.html"> Icons</a>
@@ -375,85 +377,60 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">RA名字 管理</h1>
+                    <h1 class="page-header">添加风险</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            风险表
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        操作
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">添加风险</a>
-                                        </li>
-                                        <li><a href="#">导入风险</a>
-                                        </li>
-                                        <!--
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                        -->
-                                    </ul>
-                                </div>
-                            </div>
+                        <div class="col-lg-2">
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>风险编号</th>
-                                                    <th>风险简述</th>
-                                                    <th>风险详述</th>
-                                                    <th>可能性</th>
-                                                    <th>影响程度</th>
-                                                    <th>阈值</th>
-                                                    <th>提交者</th>
-                                                    <th>追踪者</th>
-                                                    <th>修改</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>服务器崩溃</td>
-                                                    <td>工作人员将服务器内所有硬盘偷走跑路</td>
-                                                    <td>低</td>
-                                                    <td>高</td>
-                                                    <td>100</td>
-                                                    <td>YUS</td>
-                                                    <td>SHO</td>
-                                                    <td> <a href="">修改</a> </td>
-                                                </tr>
+                        <div class="col-lg-8">
+                            <br>
+                            <form role="form" action="/risk/addRiskBL">
+                                <p style="color: red; text-align: center">${requestScope.error}</p>
+                                <div class="form-group">
+                                    <label>风险简述</label>
+                                    <input class="form-control" name="risk_content" type="text">
+                                    <p class="help-block" >简洁描述风险，方便检索</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>风险详细描述</label>
+                                    <textarea class="form-control" rows="3" name="risk_content_detail"></textarea>
+                                    <p class="help-block" >详细描述风险，方便理解</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>阈值</label>
+                                    <input class="form-control" name="threshold" type="text">
+                                    <p class="help-block" >风险成为问题的阈值</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="possibility">
+                                        <option>低</option>
+                                        <option>中</option>
+                                        <option>高</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="influce_level">
+                                        <option>低</option>
+                                        <option>中</option>
+                                        <option>高</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>跟随者ID</label>
+                                    <input class="form-control" name="risk_content" type="text">
+                                    <p class="help-block" >用分号隔开不同跟随者</p>
+                                </div>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
+                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
+                            </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -485,6 +462,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
+
+<script src="/js/dataTables.bootstrap.min.js"></script>
 
 </body>
 
