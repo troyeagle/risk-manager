@@ -7,11 +7,20 @@ public class User {
 
     private String password;
 
+    private String authority;
+
     private Integer age;
 
     private Risk[] risklist;
 
-    private String authority;
+    public User(String userName, String password, String authority) {
+        this.userName = userName;
+        this.password = password;
+        this.authority = authority;
+    }
+
+    public User() {
+    }
 
     public Integer getId() {
         return id;

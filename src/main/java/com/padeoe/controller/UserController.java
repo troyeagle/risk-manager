@@ -15,71 +15,90 @@ import com.padeoe.pojo.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	@Resource
-	private IUserService userService;
-	private int username_length = 30;
-	private int password_maxlength = 20;
-	private int password_minlength = 3;
+    @Resource
+    private IUserService userService;
+    private static final int MAX_USERNAME_LENGTH = 15;
+    private static final int MIN_USERNAME_LENGTH = 6;
+    private static final int MAX_PASSWORD_LENGTH = 24;
+    private static final int MIN_PASSWORD_LENGTH = 6;
 
-	@RequestMapping("/showUser")
-	public String toIndex(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		User user = this.userService.getUserById(userId);
-		model.addAttribute("user", user);
-		return "showUser";
-	}
-	@RequestMapping("/login_page")
-	public String login_page(){
-		return "login";
-	}
-	@RequestMapping("/login")
-	public String login(HttpServletRequest request, Model model, HttpSession session){
-		User login_user = null;
-		String return_value = "login";
-		login_user = userService.getUserByName(request.getParameter("username"));
-		if(login_user != null){
-			if(login_user.getPassword().equals(request.getParameter("password"))){
-				session.setAttribute("Id",login_user.getId());
-				return_value = "index";
-			}
-			else{
-				model.addAttribute("error", "密码输入错误");
-			}
-		}
-		else{
-			model.addAttribute("error", "未找到对应用户名");
-		}
-		return return_value;
-	}
+    @RequestMapping("/showUser")
+    public String toIndex(HttpServletRequest request, Model model) {
+        int userId = Integer.parseInt(request.getParameter("id"));
+        User user = this.userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "showUser";
+    }
 
-	@RequestMapping("/register_page")
-	public String register_page(){
-		return "register";
-	}
+    @RequestMapping("/login_page")
+    public String login_page() {
+        return "login";
+    }
 
-	@RequestMapping("/register")
-	public String register(HttpServletRequest request,Model model){
-		String name = request.getParameter("username");
-		String return_value = "index";
-		if(name.equals("")||name.length()>username_length||name == null){
-			model.addAttribute("error", "用户名名称不符合规范");
-			return "register";
-		}
+    @RequestMapping("/login")
+    public String login(HttpServletRequest request, Model model, HttpSession session) {
+        User login_user = null;
+        String return_value = "login";
+        login_user = userService.getUserByName(request.getParameter("username"));
+        if (login_user != null) {
+            if (login_user.getPassword().equals(request.getParameter("password"))) {
+                session.setAttribute("Id", login_user.getId());
+                return_value = "index";
+            } else {
+                model.addAttribute("error", "密码输入错误");
+            }
+        } else {
+            model.addAttribute("error", "未找到对应用户名");
+        }
+        return return_value;
+    }
 
-		String password = request.getParameter("password");
-		if(password.equals("")||password.length()>password_maxlength||password == null||password.length()<password_minlength){
-			model.addAttribute("error", "用户名密码不符合规范");
-			return "register";
-		}
+    @RequestMapping("/register_page")
+    public String register_page() {
+        return "register";
+    }
 
-		String Authority = request.getParameter("Authority");
+    @RequestMapping("/register")
+    public String register(HttpServletRequest request, Model model) {
+        String name = request.getParameter("username");
+        if (name == null) {
+            model.addAttribute("error", "用户名名称不符合规范");
+            return "register";
+        } else {
+            if (name.length() < MIN_USERNAME_LENGTH) {
+                model.addAttribute("error", "用户名太短，至少" + MIN_USERNAME_LENGTH + "个字符");
+                return "register";
+            }
+            if (name.length() > MAX_USERNAME_LENGTH) {
+                model.addAttribute("error", "用户名太长，最多" + MAX_USERNAME_LENGTH + "个字符");
+                return "register";
+            }
+            String password = request.getParameter("password");
+            if (password == null) {
+                model.addAttribute("error", "未输入密码");
+                return "register";
+            } else {
+                if (password.length() < MIN_PASSWORD_LENGTH) {
+                    model.addAttribute("error", "密码太短，至少" + MIN_USERNAME_LENGTH + "个字符");
+                    return "register";
+                }
+                if (password.length() > MAX_PASSWORD_LENGTH) {
+                    model.addAttribute("error", "密码太长，最多" + MAX_USERNAME_LENGTH + "个字符");
+                    return "register";
+                }
+                String authority = request.getParameter("Authority");
+                if (authority == null) {
+                    model.addAttribute("error", "未设置权限信息");
+                    return "register";
+                } else {
+                    userService.saveUser(new User(name, password, authority));
+                    return "login_page";
+                }
+            }
+        }
 
-		User temp_user = new User();
-		temp_user.setPassword(password);
-		temp_user.setUserName(name);
-		temp_user.setAuthority(Authority);
 
-		userService.saveUser(temp_user);
-		return return_value;
-	}
+    }
+
+
 }
