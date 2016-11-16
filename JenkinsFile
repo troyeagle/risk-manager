@@ -10,9 +10,6 @@ def mvnHome = tool 'M3'
 bat "${mvnHome}/bin/mvn -B clean package"
 }
 stage('deploy') {
-bat "docker stop my"
-bat "docker rm my"
-bat "docker run --name my -p 11111:8080 -d tomcat"
 bat "docker cp target/ROOT.war my:/usr/local/tomcat/webapps"
 
 }
