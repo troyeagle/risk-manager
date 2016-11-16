@@ -401,9 +401,9 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">添加风险</a>
+                                        <li><a href="/addrisk_page">添加风险</a>
                                         </li>
-                                        <li><a href="#">导入风险</a>
+                                        <li><a href="/addriskadvance_page">导入风险</a>
                                         </li>
                                         <!--
                                         <li class="divider"></li>
@@ -446,6 +446,12 @@
                                                     <td>SHO</td>
                                                     <td> <a href="">修改</a> </td>
                                                 </tr>
+                                                <%
+                                                    System.out.println("<tr>");
+                                                    for (String str : (List<String>)request.getAttribute("list")) {
+                                                        System.out.println(str);
+                                                    }
+                                                %>
                                                 </tbody>
                                             </table>
                                         </div>

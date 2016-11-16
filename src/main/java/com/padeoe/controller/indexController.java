@@ -30,4 +30,9 @@ public class indexController {
     public String addrisk_page(HttpServletRequest request, Model model) {
         return "addrisk";
     }
+
+    @RequestMapping("/addriskadvance_page")
+    public String addriskadvance_page(HttpServletRequest request, Model model) {
+        return "addrisk";
+    }
 }

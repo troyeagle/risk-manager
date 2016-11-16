@@ -49,13 +49,14 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="密码" name="password" type="password" value="">
                                 </div>
-                                <div>
-                                <select name="Authority" id="select_k1" class="xla_k">
+                                <div class="form-group">
+                                    权限：
+                                <select name="Authority" id="select_k1" name="Authority" class="xla_k">
                                     <option value="用户">用户</option>
                                     <option value="管理员">管理员</option>
                                 </select>
                                 </div>
-                                <input type="submit" value="注册" class="btn btn-lg btn-success btn-block">
+                                <input type="submit" value="注册"  class="btn btn-lg btn-success btn-block">
                                 <a href="/user/login_page">登录</a>
                             </fieldset>
                         </form>
