@@ -42,7 +42,7 @@ public class TestMyBatis {
         System.out.println(id);
         System.out.println(riskService.getRiskById(id));
         System.out.println(riskService.searchRisk(risk));
-        System.out.println(riskService.updateRisk(risk));
+        riskService.updateRisk(risk);
         riskService.deleteRiskById(id);
     }
 

@@ -19,5 +19,10 @@ public interface IRiskService {
 
     public void updateRisk(Risk risk);
 
+    /**
+     *
+     * @param risk 将搜索的条件输入risk中，各个条件为并集。
+     * @return
+     */
     public List<Risk> searchRisk(Risk risk);
 }
