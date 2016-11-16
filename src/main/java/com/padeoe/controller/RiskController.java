@@ -1,5 +1,6 @@
 package com.padeoe.controller;
 
+import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.User;
 import com.padeoe.service.IRiskService;
 import com.padeoe.service.IUserService;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zafara on 2016/11/13.
@@ -16,101 +19,82 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
     @RequestMapping("/risk")
 public class RiskController {
+
+
+/*    public static List<RiskItem> riskItemList=new ArrayList<>();
+    static {
+        riskItemList.add(new RiskItem("riskBrief","风险简介"));
+        riskItemList.add(new RiskItem("riskDetail","风险详情"));
+        riskItemList.add(new RiskItem("possibility","风险可能性"));
+        riskItemList.add(new RiskItem("influence","影响等级"));
+        riskItemList.add(new RiskItem("threshold","触发阈值"));
+    }*/
     @Resource
     private IRiskService iRiskService;
-    private static int upper_limit = 100;
-   private static String risk_content = ""; //风险内容
-    private static String possibility = ""; //可能性
-    private static String influce_level = ""; //影响程度
-    private static String threshold = ""; //阈值
-    private static String committer = ""; //提交者
-    private static String follower = ""; //跟踪者
-
 
     // 加风险
-    @RequestMapping("/addRisk")
-    public String addRisk(HttpServletRequest request, Model model){
-        String returnvalue = "addrisk test";
-        //权限控制？
-        return returnvalue;
-    }
-
     @RequestMapping("/addRiskBL")
-    public String addRiskBL(HttpServletRequest request, Model model){
-        String returnvalue = "addRiskBL test";
-        boolean putInDatabase = true;
-        //对数据有效性的后台检定
+    public String addRisk(HttpServletRequest request, Model model){
+        Risk risk=new Risk();
+/*        for(int i=0;i<riskItemList.size();i++){
+            String itemInput=request.getParameter(riskItemList.get(i).riskEnglishName);
+            if(itemInput==null){
+                model.addAttribute("error", riskItemList.get(i).riskEnglishName+"未填写");
+                return "addrisk_page";
+            }
+        }*/
 
-        risk_content = request.getParameter("risk_content");
-        if(risk_content.equals("")||risk_content.equals(null)||risk_content.length()>upper_limit){
-            returnvalue = "风险<内容>属性输入有误";
-            putInDatabase = false;
+        String riskBrief=request.getParameter("riskBrief");
+        String riskDetail =request.getParameter("riskDetail");
+        String possibility=request.getParameter("possibility");
+        String influence=request.getParameter("influence");
+        String threshold=request.getParameter("threshold");
+        if(riskBrief==null){
+            model.addAttribute("error", "风险简介未填写");
+            return "addrisk_page";
         }
-
-        possibility = request.getParameter("possibility");;  //只有高中低，选择？
-        if(possibility.equals("高")||possibility.equals("中")||possibility.equals("低")){
-
+        if(riskDetail==null){
+            model.addAttribute("error", "风险详情未填写");
+            return "addrisk_page";
         }
-        else{
-            returnvalue = "风险<可能性>属性输入有误";
-            putInDatabase = false;
+        if(possibility==null){
+            model.addAttribute("error", "风险可能性未填写");
+            return "addrisk_page";
         }
-
-        influce_level = request.getParameter("influce_level");;
-        if(influce_level.equals("高")||possibility.equals("中")||possibility.equals("低")){
-
+        if(influence==null){
+            model.addAttribute("error", "影响等级未填写");
+            return "addrisk_page";
         }
-        else{
-            returnvalue = "风险<影响程度>属性输入有误";
-            putInDatabase = false;
+        if(threshold==null){
+            model.addAttribute("error", "触发阈值未填写");
+            return "addrisk_page";
         }
-
-        threshold = request.getParameter("threshold");;
-        if(threshold.equals("")||threshold.equals(null)||threshold.length()>upper_limit){
-            returnvalue = "风险<阈值>属性输入有误";
-            putInDatabase = false;
+        if(!(influence.equals("高")||influence.equals("中")||influence.equals("低"))){
+            model.addAttribute("error", "影响等级填写错误");
+            return "addrisk_page";
         }
-
-        committer = request.getParameter("id");
-
-        follower = request.getParameter("follower");
-        if(follower.equals("")||follower.equals(null)||follower.length()>upper_limit){
-            returnvalue = "风险<跟踪者>属性输入有误";
-            putInDatabase = false;
+        if(!(threshold.equals("高")||threshold.equals("中")||threshold.equals("低"))){
+            model.addAttribute("error", "触发阈值填写错误");
+            return "addrisk_page";
         }
-
-        //数据加入到数据库中的操作
-        if(putInDatabase != false){
-
+        risk.setPossibility(Risk.getLevel(possibility));
+        risk.setRiskDetail(riskDetail);
+        risk.setRiskBrief(riskBrief);
+        risk.setRiskDetail(riskDetail);
+        risk.setInfluence(Risk.getLevel(influence));
+        List<Risk>risks= iRiskService.searchRisk(risk);
+        if(risks!=null){
+            model.addAttribute("error", "完全相同的风险已经添加过了");
+             return "addrisk_page";
         }
-        return returnvalue;
+        return "";
     }
 
-    // 删风险
-    @RequestMapping("/deleteRisk")
-    public String deleteRisk(HttpServletRequest request, Model model){
-        String returnvalue = "deleteRisk test";
-        // 权限控制？
-
-        return returnvalue;
+    @RequestMapping("/addrisk_page")
+    public String addRiskPage(HttpServletRequest request, Model model){
+        return "addrisk";
     }
 
-    @RequestMapping("/deleteRiskBL")
-    public String deleteRiskBL(HttpServletRequest request, Model model){
-        String returnvalue = "deleteRiskBL test";
-        //对数据有效性的后台检定
-
-        // 查找删除risk
-        return returnvalue;
-    }
-
-    // 改风险
-    @RequestMapping("/changeRisk")
-    public String changeRisk(HttpServletRequest request, Model model){
-        String returnvalue = "changeRisk test";
-        // 权限控制？
-        return returnvalue;
-    }
 
     @RequestMapping("/changeRiskBL")
     public String changeRiskBL(HttpServletRequest request, Model model){
@@ -121,25 +105,16 @@ public class RiskController {
         return returnvalue;
     }
 
-    // 查风险
-    @RequestMapping("/searchRisk")
-    public String searchRisk(HttpServletRequest request, Model model){
-        String returnvalue = "searchRisk test";
-        //权限控制
-        return returnvalue;
-    }
 
-    @RequestMapping("/searchRiskBL")
-    public String searchRiskBL(HttpServletRequest request, Model model){
-        String returnvalue = "searchRiskBL test";
-        //对数据有效性的后台检定
-
-        // 修改risk
-        return returnvalue;
-    }
-
-    protected String getUserNameWithID(String userId){
-
-        return null;
-    }
 }
+
+/*
+class RiskItem{
+    String riskEnglishName;
+    String riskChineseName;
+
+    public RiskItem(String riskEnglishName, String riskChineseName) {
+        this.riskEnglishName = riskEnglishName;
+        this.riskChineseName = riskChineseName;
+    }
+}*/
