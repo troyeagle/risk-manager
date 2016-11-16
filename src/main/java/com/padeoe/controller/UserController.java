@@ -123,7 +123,7 @@ public class UserController {
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, Model model, HttpSession session) {
         session.removeAttribute("user");
-        return "login_page";
+        return "login";
     }
 
 
