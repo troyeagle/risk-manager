@@ -33,6 +33,6 @@ public class indexController {
 
     @RequestMapping("/addriskadvance_page")
     public String addriskadvance_page(HttpServletRequest request, Model model) {
-        return "addrisk";
+        return "addriskadvance";
     }
 }
