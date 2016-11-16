@@ -282,6 +282,9 @@
                         <li>
                             <a href="riskmanage_page">风险管理</a>
                         </li>
+                        <li>
+                            <a href="project_page">项目管理</a>
+                        </li>
                         <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -379,7 +382,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">RA名字 管理</h1>
+                    <h1 class="page-header">风险管理</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -429,8 +432,6 @@
                                                     <th>可能性</th>
                                                     <th>影响程度</th>
                                                     <th>阈值</th>
-                                                    <th>提交者</th>
-                                                    <th>追踪者</th>
                                                     <th>修改</th>
                                                 </tr>
                                                 </thead>
@@ -442,8 +443,6 @@
                                                     <td>低</td>
                                                     <td>高</td>
                                                     <td>100</td>
-                                                    <td>YUS</td>
-                                                    <td>SHO</td>
                                                     <td> <a href="">修改</a> </td>
                                                 </tr>
                                                 <%

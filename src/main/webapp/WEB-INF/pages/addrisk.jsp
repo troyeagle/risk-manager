@@ -279,6 +279,9 @@
                         <li>
                             <a href="riskmanage_page">风险管理</a>
                         </li>
+                        <li>
+                            <a href="project_page">项目管理</a>
+                        </li>
                         <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -421,11 +424,6 @@
                                         <option>中</option>
                                         <option>高</option>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>跟随者ID</label>
-                                    <input class="form-control" name="risk_content" type="text">
-                                    <p class="help-block" >用分号隔开不同跟随者</p>
                                 </div>
 
                                 <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
