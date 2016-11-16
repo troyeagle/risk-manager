@@ -29,7 +29,7 @@ public class TestMyBatis {
 //      userService = (IUserService) ac.getBean("userService");
 //  }
 
-//    @Test
+    @Test
     public void test1() {
         Risk risk = new Risk();
         risk.setInfluence(1);
@@ -42,21 +42,17 @@ public class TestMyBatis {
         System.out.println(id);
         System.out.println(riskService.getRiskById(id));
         System.out.println(riskService.searchRisk(risk));
-        System.out.println(riskService.updateRisk(risk));
-        System.out.println(riskService.deleteRiskById(id));
-
+        riskService.updateRisk(risk);
+        riskService.deleteRiskById(id);
     }
 
-    @Test
+//    @Test
     public void test2() {
         User user = new User();
-        user.setUsername("what");
+        user.setUsername("wht");
         user.setPassword("fucn");
         user.setAuthority(1);
         userService.saveUser(user);
-        Integer id = user.getId();
-        System.out.println(id);
-        System.out.println(userService.getUserById(id));
         System.out.println(userService.getUserByCondition(user).size());
     }
 }

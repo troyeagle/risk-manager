@@ -29,19 +29,19 @@ public class RiskServiceImpl implements IRiskService{
 
     @Override
     public Integer saveRisk(Risk risk) {
-        return riskDao.insert(risk);
+        riskDao.insert(risk);
+        return risk.getId();
     }
 
     @Override
-    public Integer deleteRiskById(Integer id) {
+    public void deleteRiskById(Integer id) {
         riskDao.deleteByPrimaryKey(id);
-        return 0;
 
     }
 
     @Override
-    public Integer updateRisk(Risk risk) {
-        return riskDao.updateByPrimaryKeySelective(risk);
+    public void updateRisk(Risk risk) {
+        riskDao.updateByPrimaryKeySelective(risk);
     }
 
     @Override

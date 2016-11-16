@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 管理用户登录，用户注册
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -24,8 +27,8 @@ public class UserController {
 
     @RequestMapping("/showUser")
     public String toIndex(HttpServletRequest request, Model model) {
-        int userId = Integer.parseInt(request.getParameter("id"));
-        User user = this.userService.getUserById(userId);
+        String username = request.getParameter("username");
+        User user = this.userService.getUserByName(username);
         model.addAttribute("user", user);
         return "showUser";
     }

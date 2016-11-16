@@ -5,9 +5,14 @@ import com.padeoe.pojo.User;
 import java.util.List;
 
 public interface IUserService {
-    public User getUserById(int userId);
+    public User getUserByName(String username);
 
-    public int saveUser(User user);
+    public void saveUser(User user);
 
+    /**
+     *
+     * @param condition 将搜索的条件输入User中，各个条件为并集。
+     * @return
+     */
     public List<User> getUserByCondition(User condition);
 }
