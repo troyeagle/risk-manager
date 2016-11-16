@@ -41,7 +41,7 @@
                         <h3 class="panel-title">注册</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="<%=application.getContextPath()%>/user/register" method="post">
+                        <form role="form" action="/user/register" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="用户名" name="username" type="username" autofocus>

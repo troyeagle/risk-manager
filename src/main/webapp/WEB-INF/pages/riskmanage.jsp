@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.padeoe.pojo.Risk" %>
 
 <head>
 
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-RA管理</title>
+    <title>风险管理系统-风险管理</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -282,9 +283,6 @@
                         <li>
                             <a href="riskmanage_page">风险管理</a>
                         </li>
-                        <li>
-                            <a href="project_page">项目管理</a>
-                        </li>
                         <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -382,7 +380,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">风险管理</h1>
+                    <h1 class="page-header">RA名字 管理</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -428,7 +426,6 @@
                                                 <tr>
                                                     <th>风险编号</th>
                                                     <th>风险简述</th>
-                                                    <th>风险详述</th>
                                                     <th>可能性</th>
                                                     <th>影响程度</th>
                                                     <th>阈值</th>
@@ -445,12 +442,22 @@
                                                     <td>100</td>
                                                     <td> <a href="">修改</a> </td>
                                                 </tr>
+
                                                 <%
-                                                    System.out.println("<tr>");
-                                                    for (String str : (List<String>)request.getAttribute("list")) {
-                                                        System.out.println(str);
+                                                    /*
+                                                    for (Risk risk : (List<Risk>)request.getAttribute("list")) {
+                                                         out.println("<tr>");
+                                                        out.println("<td>"+ "编号"+"</td>");
+                                                        out.println("<td>"+ risk.getRisk_content() +"</td>");
+                                                        out.println("<td>"+ risk.getPossibility() +"</td>");
+                                                        out.println("<td>"+ risk.getInfluce_level() +"</td>");
+                                                        out.println("<td>"+ risk.getThreshold() +"</td>");
+                                                        out.println("<td> <a href=\"\">修改</a> </td>");
+                                                        out.println("</tr>");
                                                     }
+                                                    */
                                                 %>
+
                                                 </tbody>
                                             </table>
                                         </div>
