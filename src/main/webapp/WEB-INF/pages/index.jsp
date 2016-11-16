@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.padeoe.pojo.User" %>
 
 <head>
 
@@ -250,6 +251,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
                         用户
+                        <%out.print(((User)session.getAttribute("user")).getUserName());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -275,9 +277,13 @@
                         <li>
                             <a href="index_page">主页</a>
                         </li>
-                        <li>
-                            <a href="riskmanage_page">风险管理</a>
-                        </li>
+                        <%
+                            if(((User)session.getAttribute("user")).getAuthority().equals("管理员")) {
+                                out.print("<li>");
+                                out.print("<a href=\"riskmanage_page\">风险管理</a>");
+                                out.print("</li>");
+                            }
+                         %>
                         <li>
                             <a href="project_page">项目管理</a>
                         </li>
