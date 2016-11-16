@@ -5,41 +5,38 @@ package com.padeoe.pojo;
  */
 public class Risk {
 
-    private  String risk_content = ""; //风险内容
+    private Integer id;
 
-    private  String possibility = ""; //可能性
+    private String riskContent = ""; //风险内容
 
-    private  String influce_level = ""; //影响程度
+    private Integer possibility = 2; //可能性 1 低，2普通，3高
 
-    private  String threshold = ""; //阈值
+    private Integer influceLevel = 2; //影响程度 1 较轻，2普通，3严重
 
-    private User Commiter; //提交者
+    private String threshold = ""; //阈值
 
-    private User follower[]; //跟踪者
-
-
-    public String getRisk_content() {
-        return risk_content;
+    public String getRiskContent() {
+        return riskContent;
     }
 
-    public void setRisk_content(String risk_content) {
-        this.risk_content = risk_content;
+    public void setRiskContent(String riskContent) {
+        this.riskContent = riskContent;
     }
 
-    public String getPossibility() {
+    public Integer getPossibility() {
         return possibility;
     }
 
-    public void setPossibility(String possibility) {
+    public void setPossibility(Integer possibility) {
         this.possibility = possibility;
     }
 
-    public String getInfluce_level() {
-        return influce_level;
+    public Integer getInfluceLevel() {
+        return influceLevel;
     }
 
-    public void setInfluce_level(String influce_level) {
-        this.influce_level = influce_level;
+    public void setInfluceLevel(Integer influceLevel) {
+        this.influceLevel = influceLevel;
     }
 
     public String getThreshold() {
@@ -50,19 +47,4 @@ public class Risk {
         this.threshold = threshold;
     }
 
-    public User getCommiter() {
-        return Commiter;
-    }
-
-    public void setCommiter(User commiter) {
-        Commiter = commiter;
-    }
-
-    public User[] getFollower() {
-        return follower;
-    }
-
-    public void setFollower(User[] follower) {
-        this.follower = follower;
-    }
 }

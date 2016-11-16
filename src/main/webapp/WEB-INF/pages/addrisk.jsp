@@ -396,7 +396,7 @@
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
                                 <div class="form-group">
                                     <label>风险简述</label>
-                                    <input class="form-control" name="risk_content" type="text">
+                                    <input class="form-control" name="riskContent" type="text">
                                     <p class="help-block" >简洁描述风险，方便检索</p>
                                 </div>
                                 <!--
@@ -421,7 +421,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Selects</label>
-                                    <select class="form-control" name="influce_level">
+                                    <select class="form-control" name="influceLevel">
                                         <option>低</option>
                                         <option>中</option>
                                         <option>高</option>
