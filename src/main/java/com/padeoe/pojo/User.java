@@ -22,7 +22,7 @@ public class User {
     /**
      * 用户权限
      */
-    private String authority;
+    private Integer authority;
 
     public Integer getId() {
         return id;
@@ -48,11 +48,11 @@ public class User {
         this.password = password;
     }
 
-    public String getAuthority() {
+    public Integer getAuthority() {
         return authority;
     }
 
-    public void setAuthority(String authority) {
+    public void setAuthority(Integer authority) {
         this.authority = authority;
     }
 }
