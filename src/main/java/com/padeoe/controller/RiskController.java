@@ -1,10 +1,13 @@
 package com.padeoe.controller;
 
 import com.padeoe.pojo.User;
+import com.padeoe.service.IRiskService;
+import com.padeoe.service.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
     @RequestMapping("/risk")
 public class RiskController {
+    @Resource
+    private IRiskService iRiskService;
     private static int upper_limit = 100;
    private static String risk_content = ""; //风险内容
     private static String possibility = ""; //可能性

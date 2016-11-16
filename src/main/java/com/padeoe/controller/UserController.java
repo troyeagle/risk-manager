@@ -28,7 +28,10 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "showUser";
 	}
-
+	@RequestMapping("/login_page")
+	public String login_page(){
+		return "login";
+	}
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model model, HttpSession session){
 		User login_user = null;
@@ -50,7 +53,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/register_page")
-	public String register_page(HttpServletRequest request,Model model){
+	public String register_page(){
 		return "register";
 	}
 
