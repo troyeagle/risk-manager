@@ -449,9 +449,9 @@
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                                          out.println("<tr>");
                                                         out.println("<td>"+ "编号"+"</td>");
-                                                        out.println("<td>"+ risk.getRisk_content() +"</td>");
+                                                        out.println("<td>"+ risk.setRiskBrief() +"</td>");
                                                         out.println("<td>"+ risk.getPossibility() +"</td>");
-                                                        out.println("<td>"+ risk.getInfluce_level() +"</td>");
+                                                        out.println("<td>"+ risk.getInfluence() +"</td>");
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
                                                         out.println("<td> <a href=\"\">修改</a> </td>");
                                                         out.println("</tr>");

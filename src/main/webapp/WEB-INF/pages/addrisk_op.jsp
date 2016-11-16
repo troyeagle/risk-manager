@@ -392,40 +392,24 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form" action="/risk/addRiskBL">
+                            <form role="form" action="调用的方法">
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
                                 <div class="form-group">
-                                    <label>风险简述</label>
-                                    <input class="form-control" name="riskContent" type="text">
-                                    <p class="help-block" >简洁描述风险，方便检索</p>
+                                    <label>风险模板ID</label>
+                                    <input class="form-control" name="id" type="text">
+                                    <p class="help-block" >要使用的风险模板</p>
                                 </div>
-                                <!--
+
                                 <div class="form-group">
                                     <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="risk_content_detail"></textarea>
+                                    <textarea class="form-control" rows="3" name="riskDetail"></textarea>
                                     <p class="help-block" >详细描述风险，方便理解</p>
                                 </div>
-                                -->
+
                                 <div class="form-group">
-                                    <label>阈值</label>
-                                    <input class="form-control" name="threshold" type="text">
-                                    <p class="help-block" >风险成为问题的阈值</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="possibility">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="influceLevel">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
+                                    <label>追踪者</label>
+                                    <input class="form-control" name="username" type="text">
+                                    <p class="help-block" >进行追踪的用户</p>
                                 </div>
 
                                 <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
