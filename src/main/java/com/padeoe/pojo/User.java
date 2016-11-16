@@ -1,5 +1,7 @@
 package com.padeoe.pojo;
 
+import java.util.List;
+
 public class User {
     private Integer id;
 
@@ -7,20 +9,9 @@ public class User {
 
     private String password;
 
-    private String authority;
+    private Integer authority;
 
-    private Integer age;
-
-    private Risk[] risklist;
-
-    public User(String userName, String password, String authority) {
-        this.userName = userName;
-        this.password = password;
-        this.authority = authority;
-    }
-
-    public User() {
-    }
+    private List<Risk> riskList;
 
     public Integer getId() {
         return id;
@@ -46,27 +37,19 @@ public class User {
         this.password = password;
     }
 
-    public Integer getAge() {
-        return age;
+    public List<Risk> getRiskList() {
+        return riskList;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setRiskList(List<Risk> riskList) {
+        this.riskList = riskList;
     }
 
-    public Risk[] getRisklist() {
-        return risklist;
-    }
-
-    public void setRisklist(Risk[] risklist) {
-        this.risklist = risklist;
-    }
-
-    public String getAuthority() {
+    public Integer getAuthority() {
         return authority;
     }
 
-    public void setAuthority(String authority) {
+    public void setAuthority(Integer authority) {
         this.authority = authority;
     }
 }
