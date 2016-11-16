@@ -48,31 +48,31 @@ public class RiskController {
         String threshold=request.getParameter("threshold");
         if(riskBrief==null){
             model.addAttribute("error", "风险简介未填写");
-            return "addrisk_page";
+            return "addrisk";
         }
         if(riskDetail==null){
             model.addAttribute("error", "风险详情未填写");
-            return "addrisk_page";
+            return "addrisk";
         }
         if(possibility==null){
             model.addAttribute("error", "风险可能性未填写");
-            return "addrisk_page";
+            return "addrisk";
         }
         if(influence==null){
             model.addAttribute("error", "影响等级未填写");
-            return "addrisk_page";
+            return "addrisk";
         }
         if(threshold==null){
             model.addAttribute("error", "触发阈值未填写");
-            return "addrisk_page";
+            return "addrisk";
         }
         if(!(influence.equals("高")||influence.equals("中")||influence.equals("低"))){
             model.addAttribute("error", "影响等级填写错误");
-            return "addrisk_page";
+            return "addrisk";
         }
-        if(!(threshold.equals("高")||threshold.equals("中")||threshold.equals("低"))){
-            model.addAttribute("error", "触发阈值填写错误");
-            return "addrisk_page";
+        if(!(possibility.equals("高")||possibility.equals("中")||possibility.equals("低"))){
+            model.addAttribute("error", "可能性填写错误");
+            return "addrisk";
         }
         risk.setPossibility(Risk.getLevel(possibility));
         risk.setRiskDetail(riskDetail);
@@ -80,11 +80,12 @@ public class RiskController {
         risk.setRiskDetail(riskDetail);
         risk.setInfluence(Risk.getLevel(influence));
         List<Risk>risks= iRiskService.searchRisk(risk);
-        if(risks!=null){
+        if(risks!=null&&risks.size()!=0){
             model.addAttribute("error", "完全相同的风险已经添加过了");
-             return "addrisk_page";
+             return "addrisk";
         }
-        return "riskmanage_page";
+        iRiskService.saveRisk(risk);
+        return "ridirect:riskmanage_page";
     }
 
     @RequestMapping("/addrisk_page")
