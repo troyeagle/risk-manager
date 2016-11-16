@@ -260,7 +260,7 @@
                        </li>
                        -->
                        <li class="divider"></li>
-                       <li><a href="login.jsp"> 登出</a>
+                       <li><a href="/user/logout"> 登出</a>
                        </li>
                    </ul>
                    <!-- /.dropdown-user -->
@@ -277,7 +277,7 @@
                             <a href="index_page">主页</a>
                         </li>
                         <%
-                            if(((User)session.getAttribute("user")).getAuthority().equals("管理员")) {
+                            if(((User)session.getAttribute("user")).getAuthority()==0) {
                                 out.print("<li>");
                                 out.print("<a href=\"riskmanage_page\">风险管理</a>");
                                 out.print("</li>");
@@ -524,7 +524,7 @@
                                                     <td>windows 9</td>
                                                     <td>制作超一流的系统，以及制作超二流的系统，还有制作超三流的系统</td>
                                                     <td>12</td>
-                                                    <td> <a href="">详细</a> </td>
+                                                    <td> <a href="/project_page">详细</a> </td>
                                                 </tr>
 
                                             </tbody>

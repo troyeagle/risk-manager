@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.padeoe.pojo.User" %>
 
 <head>
 
@@ -251,7 +252,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户
+                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -261,7 +262,7 @@
                        </li>
                        -->
                        <li class="divider"></li>
-                       <li><a href="login.jsp"> 登出</a>
+                       <li><a href="/user/logout"> 登出</a>
                        </li>
                    </ul>
                    <!-- /.dropdown-user -->
