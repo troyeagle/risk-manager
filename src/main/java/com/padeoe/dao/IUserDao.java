@@ -1,9 +1,11 @@
 package com.padeoe.dao;
 
 import com.padeoe.pojo.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public interface IUserDao {
     int deleteByPrimaryKey(Integer id);
 

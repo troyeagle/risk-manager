@@ -10,7 +10,7 @@ public class Risk {
      * 风险id，由数据库生成，是唯一的。两个{@link Risk}对象如果id不同，则其余字段一定至少有一个字段不同。
      * 就是说，除了id之外，别的字段不可能完全相同，这一点将由后台负责确保
      */
-    private String id;
+    private Integer id;
 
     /**
      * 风险简述,不同{@link Risk}对象的风险简述可能相同
@@ -37,11 +37,11 @@ public class Risk {
      */
     private String threshold;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -36,11 +36,13 @@ public class TestMyBatis {
         risk.setRiskBrief("不知道是什么问题");
         risk.setThreshold("无解");
 
-        Integer id = riskService.saveRisk(risk);
-        riskService.getRiskById(id);
-        riskService.searchRisk(risk);
-        riskService.updateRisk(risk);
-        riskService.deleteRiskById(id);
+        Integer count = riskService.saveRisk(risk);
+        Integer id = risk.getId();
+        System.out.println(id);
+        System.out.println(riskService.getRiskById(id));
+        System.out.println(riskService.searchRisk(risk));
+        System.out.println(riskService.updateRisk(risk));
+        System.out.println(riskService.deleteRiskById(id));
 
     }
 }
