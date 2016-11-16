@@ -454,6 +454,7 @@
                                                 </tr>
 
                                                 <%
+                                                    /*
                                                     int i = 0;
                                                     List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
@@ -470,7 +471,7 @@
                                                         out.println("</tr>");
                                                         i++;
                                                     }
-                                                    */
+                                                   */
                                                 %>
 
                                                 </tbody>
