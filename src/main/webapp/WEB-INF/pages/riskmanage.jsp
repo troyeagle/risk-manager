@@ -427,10 +427,12 @@
                                                 <tr>
                                                     <th>风险编号</th>
                                                     <th>风险简述</th>
+                                                    <th>风险详述</th>
                                                     <th>可能性</th>
                                                     <th>影响程度</th>
                                                     <th>阈值</th>
                                                     <th>修改</th>
+                                                    <th>删除</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -442,6 +444,7 @@
                                                     <td>高</td>
                                                     <td>100</td>
                                                     <td> <a href="">修改</a> </td>
+                                                    <td> <a href="">删除</a> </td>
                                                 </tr>
 
                                                 <%
@@ -450,6 +453,7 @@
                                                          out.println("<tr>");
                                                         out.println("<td>"+ "编号"+"</td>");
                                                         out.println("<td>"+ risk.setRiskBrief() +"</td>");
+                                                        out.println("<td>"+ risk.getRiskDetail() +"</td>");
                                                         out.println("<td>"+ risk.getPossibility() +"</td>");
                                                         out.println("<td>"+ risk.getInfluence() +"</td>");
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");

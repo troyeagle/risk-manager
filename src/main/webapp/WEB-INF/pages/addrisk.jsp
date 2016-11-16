@@ -399,13 +399,13 @@
                                     <input class="form-control" name="riskBrief" type="text">
                                     <p class="help-block" >简洁描述风险，方便检索</p>
                                 </div>
-                                <!--
+
                                 <div class="form-group">
                                     <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="risk_content_detail"></textarea>
+                                    <textarea class="form-control" rows="3" name="riskDetail"></textarea>
                                     <p class="help-block" >详细描述风险，方便理解</p>
                                 </div>
-                                -->
+
                                 <div class="form-group">
                                     <label>阈值</label>
                                     <input class="form-control" name="threshold" type="text">
