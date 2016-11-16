@@ -1,16 +1,15 @@
 package com.padeoe.controller;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.padeoe.pojo.User;
 import com.padeoe.service.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.padeoe.pojo.User;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -37,10 +36,12 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request, Model model, HttpSession session) {
-        User login_user = null;
+        User login_user = new User();
         String return_value = "login";
-        login_user = userService.getUserByName(request.getParameter("username"));
-        if (login_user != null) {
+        login_user.setUserName(request.getParameter("username"));
+        List<User> userList = userService.getUserByCondition(login_user);
+        if (userList.size()>0) {
+            login_user = userList.get(0);
             if (login_user.getPassword().equals(request.getParameter("password"))) {
                 session.setAttribute("Id", login_user.getId());
                 return_value = "index";
@@ -91,7 +92,11 @@ public class UserController {
                     model.addAttribute("error", "未设置权限信息");
                     return "register";
                 } else {
-                    userService.saveUser(new User(name, password, authority));
+                    User u = new User();
+                    u.setUserName(name);
+
+                    u.setPassword(password);
+                    userService.saveUser(u);
                     return "login";
                 }
             }
