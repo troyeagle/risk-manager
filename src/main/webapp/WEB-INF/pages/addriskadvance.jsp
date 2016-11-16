@@ -386,51 +386,26 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="col-lg-2">
-                        </div>
-                        <div class="col-lg-8">
-                            <br>
-                            <form role="form" action="/risk/addRiskBL">
-                                <p style="color: red; text-align: center">${requestScope.error}</p>
-                                <div class="form-group">
-                                    <label>风险简述</label>
-                                    <input class="form-control" name="risk_content" type="text">
-                                    <p class="help-block" >简洁描述风险，方便检索</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="risk_content_detail"></textarea>
-                                    <p class="help-block" >详细描述风险，方便理解</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>阈值</label>
-                                    <input class="form-control" name="threshold" type="text">
-                                    <p class="help-block" >风险成为问题的阈值</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="possibility">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="influce_level">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>跟随者ID</label>
-                                    <input class="form-control" name="risk_content" type="text">
-                                    <p class="help-block" >用分号隔开不同跟随者</p>
-                                </div>
 
-                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
-                            </form>
+
+                        <div class="col-lg-12">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>风险编号</th>
+                                    <th>风险简述</th>
+                                    <th>风险详述</th>
+                                    <th>可能性</th>
+                                    <th>影响程度</th>
+                                    <th>阈值</th>
+                                    <th>提交者</th>
+                                    <th>追踪者</th>
+                                    <th>修改</th>
+                                </tr>
+                                </thead>
+                            </table>
+                            <br>
+
                         </div>
                         <!-- /.panel-body -->
                     </div>

@@ -57,7 +57,7 @@
                                 </div>
                                 -->
                                 <input type="submit" value="登录" class="btn btn-lg btn-success btn-block">
-                                <a href="/user/register">注册新用户</a>
+                                <a href="/user/register_page">注册新用户</a>
                             </fieldset>
                         </form>
                     </div>

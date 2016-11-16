@@ -25,6 +25,10 @@
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -410,13 +414,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
                                                 <tr>
                                                     <th>风险编号</th>
                                                     <th>风险简述</th>
@@ -428,8 +433,8 @@
                                                     <th>追踪者</th>
                                                     <th>修改</th>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
+                                                </thead>
+                                                <tbody>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>服务器崩溃</td>
@@ -441,21 +446,19 @@
                                                     <td>SHO</td>
                                                     <td> <a href="">修改</a> </td>
                                                 </tr>
-
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
                                     </div>
-                                    <!-- /.table-responsive -->
+                                    <!-- /.panel-body -->
                                 </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
+                                <!-- /.panel -->
                             </div>
-                            <!-- /.row -->
+                            <!-- /.col-lg-12 -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel-heading -->
+
                     </div>
                     <!-- /.panel -->
 
@@ -486,6 +489,15 @@
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
 
+    <!-- Page-Level Plugin Scripts - Tables -->
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/jquery.dataTables.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
 </body>
 
 </html>

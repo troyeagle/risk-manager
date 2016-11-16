@@ -56,7 +56,7 @@
                                 </select>
                                 </div>
                                 <input type="submit" value="注册" class="btn btn-lg btn-success btn-block">
-                                <a href="login">登录</a>
+                                <a href="/user/login_page">登录</a>
                             </fieldset>
                         </form>
                     </div>
