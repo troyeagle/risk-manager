@@ -69,7 +69,7 @@ public class UserController {
     }
 
     @RequestMapping("/register")
-    public String register(HttpServletRequest request, Model model) {
+    public String register(HttpServletRequest request, Model model, HttpSession session) {
         String name = request.getParameter("username");
         if (name == null) {
             model.addAttribute("error", "用户名名称不符合规范");
@@ -109,6 +109,7 @@ public class UserController {
                     else if(authority.equals("用户"))
                         u.setAuthority(1);
                     userService.saveUser(u);
+                    session.setAttribute("user",u);
                     return "index";
                 }
             }

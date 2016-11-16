@@ -84,4 +84,29 @@ public class Risk {
     public void setThreshold(String threshold) {
         this.threshold = threshold;
     }
+
+    public static Integer getLevel(String input){
+        switch (input){
+            case "高":
+                return 3;
+            case "中":
+                return 2;
+            case "低":
+                return 1;
+            default:
+                return null;
+        }
+    }
+    public static String getLevel(Integer input){
+        switch (input){
+            case 3:
+                return "高";
+            case 2:
+                return "中";
+            case 1:
+                return "低";
+            default:
+                return null;
+        }
+    }
 }
