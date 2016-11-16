@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
     @Resource
     private IUserService userService;
-    private static final int MAX_USERNAME_LENGTH = 15;
-    private static final int MIN_USERNAME_LENGTH = 6;
-    private static final int MAX_PASSWORD_LENGTH = 24;
-    private static final int MIN_PASSWORD_LENGTH = 6;
+
+    public static final int MAX_USERNAME_LENGTH = 15;
+    public static final int MIN_USERNAME_LENGTH = 6;
+    public static final int MAX_PASSWORD_LENGTH = 24;
+    public static final int MIN_PASSWORD_LENGTH = 6;
 
     @RequestMapping("/showUser")
     public String toIndex(HttpServletRequest request, Model model) {
@@ -36,12 +36,10 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request, Model model, HttpSession session) {
-        User login_user = new User();
+/*        User login_user = null;
         String return_value = "login";
-        login_user.setUserName(request.getParameter("username"));
-        List<User> userList = userService.getUserByCondition(login_user);
-        if (userList.size()>0) {
-            login_user = userList.get(0);
+        login_user = userService.getUserByName(request.getParameter("username"));
+        if (login_user != null) {
             if (login_user.getPassword().equals(request.getParameter("password"))) {
                 session.setAttribute("Id", login_user.getId());
                 return_value = "index";
@@ -51,7 +49,8 @@ public class UserController {
         } else {
             model.addAttribute("error", "未找到对应用户名");
         }
-        return return_value;
+        return return_value;*/
+        return "index";
     }
 
     @RequestMapping("/register_page")
@@ -93,11 +92,14 @@ public class UserController {
                     return "register";
                 } else {
                     User u = new User();
-                    u.setUserName(name);
-
+                    u.setUsername(name);
                     u.setPassword(password);
+                    if(authority.equals("管理员"))
+                        u.setAuthority(0);
+                    else if(authority.equals("用户"))
+                        u.setAuthority(1);
                     userService.saveUser(u);
-                    return "login";
+                    return "index";
                 }
             }
         }

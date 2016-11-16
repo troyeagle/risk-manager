@@ -1,6 +1,7 @@
 package com.padeoe.dao;
 
 import com.padeoe.pojo.Risk;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  *
  * @author troy_diao on 2016/11/16
  */
+@Component
 public interface IRiskDao {
     int deleteByPrimaryKey(Integer id);
 

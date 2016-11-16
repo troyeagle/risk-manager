@@ -2,18 +2,17 @@ package com.padeoe.service;
 
 
 import com.padeoe.pojo.Risk;
-import com.padeoe.pojo.User;
+
+import java.util.List;
 
 public interface IRiskService {
     public Risk getRiskById(int riskId);
 
-    public Risk[] getRiskByUser(User user);
+    public Integer saveRisk(Risk risk);
 
-    public void saveRisk(Risk risk);
+    public Integer deleteRiskById(Integer id);
 
-    public void deleteRisk(Risk risk);
+    public Integer updateRisk(Risk risk);
 
-    public void changeRisk(Risk risk);
-
-    public void searchRisk(Risk risk);
+    public List<Risk> searchRisk(Risk risk);
 }

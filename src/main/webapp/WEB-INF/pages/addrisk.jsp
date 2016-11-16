@@ -421,7 +421,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Selects</label>
-                                    <select class="form-control" name="influceLevel">
+                                    <select class="form-control" name="influenceLevel">
                                         <option>低</option>
                                         <option>中</option>
                                         <option>高</option>

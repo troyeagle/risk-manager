@@ -3,12 +3,12 @@
 <mapper namespace="com.padeoe.dao.IUserDao" >
   <resultMap id="BaseResultMap" type="com.padeoe.pojo.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="authority" property="authority" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, authority
+    id, username, password, authority
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
@@ -16,24 +16,42 @@
     from user_t
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.User" >
+    select
+    <include refid="Base_Column_List" />
+    from user_t
+    <where>
+      <if test="username != null" >
+        AND username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        AND password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="authority != null" >
+        AND authority = #{authority,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user_t
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.padeoe.pojo.User" >
-    insert into user_t (id, user_name, password,
+  <insert id="insert" parameterType="com.padeoe.pojo.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user_t (id, username, password,
     authority)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
     #{authority,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.padeoe.pojo.User" >
+  <insert id="insertSelective" parameterType="com.padeoe.pojo.User" useGeneratedKeys="true" keyProperty="id">
     insert into user_t
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="username != null" >
+        username,
       </if>
       <if test="password != null" >
         password,
@@ -46,8 +64,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
@@ -60,8 +78,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.padeoe.pojo.User" >
     update user_t
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
@@ -74,7 +92,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.padeoe.pojo.User" >
         update user_t
-        set user_name = #{userName,jdbcType=VARCHAR},
+        set username = #{username,jdbcType=VARCHAR},
         password = #{password,jdbcType=VARCHAR},
         authority = #{authority,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}

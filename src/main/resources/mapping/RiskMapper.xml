@@ -4,11 +4,13 @@
     <resultMap id="BaseResultMap" type="com.padeoe.pojo.Risk" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="possibility" property="possibility" jdbcType="INTEGER" />
-        <result column="influence_level" property="influenceLevel" jdbcType="INTEGER" />
+        <result column="influence" property="influence" jdbcType="INTEGER" />
         <result column="threshold" property="threshold" jdbcType="VARCHAR" />
+        <result column="risk_brief" property="riskBrief" jdbcType="VARCHAR" />
+        <result column="risk_detail" property="riskDetail" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, possibility, influence_level, threshold
+        id, possibility, influence, threshold, risk_brief, risk_detail
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
@@ -16,29 +18,54 @@
         from risk_t
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.Risk" >
+        select
+        <include refid="Base_Column_List" />
+        from risk_t
+        <where>
+            <if test="possibility != null" >
+                AND possibility = #{possibility,jdbcType=VARCHAR}
+            </if>
+            <if test="threshold != null" >
+                AND threshold = #{threshold,jdbcType=VARCHAR}
+            </if>
+            <if test="influence != null" >
+                AND influence = #{influence,jdbcType=INTEGER}
+            </if>
+            <if test="riskBrief != null" >
+                AND risk_brief = #{riskBrief,jdbcType=VARCHAR}
+            </if>
+            <if test="riskDetail != null" >
+                AND risk_detail = #{riskDetail,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from risk_t
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.padeoe.pojo.Risk" useGeneratedKeys="true" keyProperty="id">
-        insert into risk_t (id, possibility, influence_level, threshold)
-        values (#{id,jdbcType=INTEGER}, #{possibility,jdbcType=VARCHAR}, #{influence_level,jdbcType=INTEGER},
-        #{threshold,jdbcType=VARCHAR})
+        insert into risk_t (id, possibility, influence, threshold, risk_brief, risk_detail)
+        values (#{id,jdbcType=INTEGER}, #{possibility,jdbcType=VARCHAR}, #{influence,jdbcType=INTEGER},
+        #{threshold,jdbcType=VARCHAR},#{riskBrief,jdbcType=VARCHAR},#{riskDetail,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.padeoe.pojo.Risk" useGeneratedKeys="true" keyProperty="id">
         insert into risk_t
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                id,
-            </if>
             <if test="possibility != null" >
                 possibility,
             </if>
             <if test="threshold != null" >
-                influence_level,
+                threshold,
             </if>
-            <if test="authority != null" >
-                authority,
+            <if test="influence != null" >
+                influence,
+            </if>
+            <if test="riskBrief != null" >
+                risk_brief,
+            </if>
+            <if test="riskDetail != null" >
+                risk_detail,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -51,8 +78,14 @@
             <if test="threshold != null" >
                 #{threshold,jdbcType=VARCHAR},
             </if>
-            <if test="authority != null" >
-                #{influence_level,jdbcType=INTEGER},
+            <if test="influence != null" >
+                #{influence,jdbcType=INTEGER},
+            </if>
+            <if test="riskBrief != null" >
+                #{riskBrief,jdbcType=VARCHAR},
+            </if>
+            <if test="riskDetail != null" >
+                 #{riskDetail,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -65,8 +98,14 @@
             <if test="threshold != null" >
                 threshold = #{threshold,jdbcType=VARCHAR},
             </if>
-            <if test="authority != null" >
-                influence_level = #{influenceLevel,jdbcType=INTEGER},
+            <if test="influence != null" >
+                influence = #{influence,jdbcType=INTEGER},
+            </if>
+            <if test="riskBrief != null" >
+                risk_brief = #{riskBrief,jdbcType=VARCHAR},
+            </if>
+            <if test="riskDetail != null" >
+                risk_detail = #{riskDetail,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -75,7 +114,9 @@
         update risk_t
         set possibility = #{possibility,jdbcType=VARCHAR},
         threshold = #{threshold,jdbcType=VARCHAR},
-        influence_level = #{authority,jdbcType=INTEGER}
+        influence = #{influence,jdbcType=INTEGER}
+        risk_brief = #{riskBrief,jdbcType=VARCHAR},
+        risk_detail = #{riskDetail,jdbcType=VARCHAR},
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
