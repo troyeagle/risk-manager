@@ -6,6 +6,8 @@ package com.padeoe.pojo;
  * Date: 2016/11/16
  */
 public class Project {
+
+    private Integer id;
     /**
      * 项目名称，是唯一区分项目的属性
      */
@@ -14,16 +16,14 @@ public class Project {
     /**
      * 项目描述
      */
-    private String descriptoin;
+    private String description;
 
-    /**
-     * 创建项目
-     * @param name 项目名称
-     * @param descriptoin 项目描述
-     */
-    public Project(String name, String descriptoin) {
-        this.name = name;
-        this.descriptoin = descriptoin;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,11 +34,11 @@ public class Project {
         this.name = name;
     }
 
-    public String getDescriptoin() {
-        return descriptoin;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptoin(String descriptoin) {
-        this.descriptoin = descriptoin;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

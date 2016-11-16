@@ -22,7 +22,6 @@ public class TestMyBatis {
 
     @Resource
     private IRiskService riskService = null;
-
 //  @Before
 //  public void before() {
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -32,10 +31,16 @@ public class TestMyBatis {
     @Test
     public void test1() {
         Risk risk = new Risk();
-        risk.setInfluenceLevel(1);
+        risk.setInfluence(1);
         risk.setPossibility(2);
-        risk.setRiskContent("不知道是什么问题");
+        risk.setRiskBrief("不知道是什么问题");
         risk.setThreshold("无解");
-        riskService.saveRisk(risk);
+
+        Integer id = riskService.saveRisk(risk);
+        riskService.getRiskById(id);
+        riskService.searchRisk(risk);
+        riskService.updateRisk(risk);
+        riskService.deleteRiskById(id);
+
     }
 }

@@ -2,12 +2,12 @@ package com.padeoe.service.impl;
 
 import com.padeoe.dao.IRiskDao;
 import com.padeoe.pojo.Risk;
-import com.padeoe.pojo.User;
 import com.padeoe.service.IRiskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service("riskService")
 public class RiskServiceImpl implements IRiskService{
     @Resource
-    private IRiskDao riskDao;
+    public IRiskDao riskDao;
 
     private static AtomicInteger id = new AtomicInteger();
     private static Map<Integer, Risk> riskMap = new HashMap<>();
@@ -26,30 +26,27 @@ public class RiskServiceImpl implements IRiskService{
         return riskMap.get(userId);
     }
 
-    @Override
-    public Risk[] getRiskByUser(User user) {
-        Risk[] risks;
 
-        return null;
+    @Override
+    public Integer saveRisk(Risk risk) {
+        return riskDao.insert(risk);
     }
 
     @Override
-    public void saveRisk(Risk risk) {
-        riskDao.insert(risk);
-    }
-
-    @Override
-    public void deleteRisk(Risk risk) {
-    }
-
-    @Override
-    public void changeRisk(Risk risk) {
+    public Integer deleteRiskById(Integer id) {
+        riskDao.deleteByPrimaryKey(id);
+        return 0;
 
     }
 
     @Override
-    public void searchRisk(Risk risk) {
+    public Integer updateRisk(Risk risk) {
+        return riskDao.updateByPrimaryKeySelective(risk);
+    }
 
+    @Override
+    public List<Risk> searchRisk(Risk risk) {
+        return riskDao.selectByCondition(risk);
     }
 
 

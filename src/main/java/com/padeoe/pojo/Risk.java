@@ -10,39 +10,39 @@ public class Risk {
      * 风险id，由数据库生成，是唯一的。两个{@link Risk}对象如果id不同，则其余字段一定至少有一个字段不同。
      * 就是说，除了id之外，别的字段不可能完全相同，这一点将由后台负责确保
      */
-    private String riskId;
+    private String id;
 
     /**
      * 风险简述,不同{@link Risk}对象的风险简述可能相同
      */
-    private  String riskBrief;
+    private String riskBrief;
 
     /**
      * 风险详述,不同{@link Risk}对象的风险详述可能相同
      */
-    private  String riskDetail;
+    private String riskDetail;
 
     /**
      * 风险可能性
      */
-    private  String possibility;
+    private Integer possibility;
 
     /**
      * 风险影响程度
      */
-    private  String influence;
+    private Integer influence;
 
     /**
      * 风险阈值
      */
-    private  String threshold;
+    private String threshold;
 
-    public String getRiskId() {
-        return riskId;
+    public String getId() {
+        return id;
     }
 
-    public void setRiskId(String riskId) {
-        this.riskId = riskId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRiskBrief() {
@@ -61,19 +61,19 @@ public class Risk {
         this.riskDetail = riskDetail;
     }
 
-    public String getPossibility() {
+    public Integer getPossibility() {
         return possibility;
     }
 
-    public void setPossibility(String possibility) {
+    public void setPossibility(Integer possibility) {
         this.possibility = possibility;
     }
 
-    public String getInfluence() {
+    public Integer getInfluence() {
         return influence;
     }
 
-    public void setInfluence(String influence) {
+    public void setInfluence(Integer influence) {
         this.influence = influence;
     }
 
