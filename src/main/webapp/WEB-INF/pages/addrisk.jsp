@@ -393,7 +393,7 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form" action="/risk/addRiskBL">
+                            <form role="form" action="/addRiskBL">
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
                                 <div class="form-group">
                                     <label>风险简述</label>
