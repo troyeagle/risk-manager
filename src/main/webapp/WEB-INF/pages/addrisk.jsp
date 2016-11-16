@@ -292,7 +292,7 @@
                             <!-- /.nav-second-level
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -310,7 +310,7 @@
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="">Typography</a>
                                 </li>
                                 <li>
                                     <a href="icons.html"> Icons</a>
@@ -388,7 +388,8 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form">
+                            <form role="form" action="/risk/addRiskBL">
+                                <p style="color: red; text-align: center">${requestScope.error}</p>
                                 <div class="form-group">
                                     <label>风险简述</label>
                                     <input class="form-control" name="risk_content" type="text">
