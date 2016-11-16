@@ -33,7 +33,10 @@ public class UserController {
     }
 
     @RequestMapping("/login_page")
-    public String login_page() {
+    public String login_page(HttpServletRequest request, Model model, HttpSession session) {
+        if(session.getAttribute("user")!=null){
+            return "index";
+        }
         return "login";
     }
 
