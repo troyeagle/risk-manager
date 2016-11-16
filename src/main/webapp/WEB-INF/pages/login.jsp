@@ -41,7 +41,7 @@
                         <h3 class="panel-title">登录</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="/user/login" method="post">
+                        <form role="form" action="/login" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="用户名" name="username" type="username" autofocus>
@@ -57,7 +57,7 @@
                                 </div>
                                 -->
                                 <input type="submit" value="登录" class="btn btn-lg btn-success btn-block">
-                                <a href="/user/register_page">注册新用户</a>
+                                <a href="/register_page">注册新用户</a>
                             </fieldset>
                         </form>
                     </div>
