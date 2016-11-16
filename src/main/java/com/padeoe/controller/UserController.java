@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 管理用户登录，用户注册
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
