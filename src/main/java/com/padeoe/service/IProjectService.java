@@ -2,6 +2,8 @@ package com.padeoe.service;
 
 import com.padeoe.pojo.Project;
 
+import java.util.List;
+
 /**
  * com.padeoe.service.impl
  *
@@ -13,4 +15,6 @@ public interface IProjectService {
     public Project getProjectByName(String name);
 
     public void deleteProject(String name);
+
+    public List<Project> getProjects();
 }
