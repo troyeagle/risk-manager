@@ -37,6 +37,11 @@ public class Risk {
      */
     private String threshold;
 
+    /**
+     * 计数，查询最大时用。
+     */
+    private Integer count;
+
     public Integer getId() {
         return id;
     }
@@ -85,6 +90,14 @@ public class Risk {
         this.threshold = threshold;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     public static Integer getLevel(String input){
         switch (input){
             case "高":
@@ -109,4 +122,5 @@ public class Risk {
                 return null;
         }
     }
+
 }

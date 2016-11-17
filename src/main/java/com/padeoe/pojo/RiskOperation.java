@@ -27,6 +27,12 @@ public class RiskOperation {
     private Integer possibility;
 
     private Integer influence;
+    /**
+     * 非数据库项，查询update time的条件
+     */
+    private Date startTime;
+
+    private Date endTime;
 
     public Integer getId() {
         return id;
@@ -108,4 +114,19 @@ public class RiskOperation {
         this.influence = influence;
     }
 
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 }

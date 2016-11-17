@@ -15,10 +15,10 @@ public interface IRiskOperationService {
     /**
      * 查询一个项目的所有风险条目的最新状态
      */
-    public List<RiskOperation> queryByProjectLatest(int project_id);
+    public List<RiskOperation> queryByProjectLatest(String projectName);
 
     /**
-     * 查询曾经被发现/演变为问题/被解决最多的风险
+     * 查询曾经被发现/演变为问题/被解决最多的风险条目
      */
     public List<Risk> queryByState(int state);
 

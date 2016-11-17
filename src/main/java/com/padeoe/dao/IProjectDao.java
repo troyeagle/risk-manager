@@ -3,8 +3,12 @@ package com.padeoe.dao;
 import com.padeoe.pojo.Project;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface IProjectDao {
+    List<Project> selectAll();
+
     int deleteByPrimaryKey(String name);
 
     int insert(Project record);

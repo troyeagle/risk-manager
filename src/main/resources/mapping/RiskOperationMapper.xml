@@ -13,10 +13,138 @@
     <result column="possibility" jdbcType="INTEGER" property="possibility" />
     <result column="influence" jdbcType="INTEGER" property="influence" />
   </resultMap>
+  <resultMap id="RiskResultMap" type="com.padeoe.pojo.Risk" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="possibility" property="possibility" jdbcType="INTEGER" />
+    <result column="influence" property="influence" jdbcType="INTEGER" />
+    <result column="threshold" property="threshold" jdbcType="VARCHAR" />
+    <result column="risk_brief" property="riskBrief" jdbcType="VARCHAR" />
+    <result column="risk_detail" property="riskDetail" jdbcType="VARCHAR" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, risk_id, creator_name, tracer_name, project_name, state, update_time, description, 
     possibility, influence
   </sql>
+  <sql id="Risk_Column_List" >
+    id, possibility, influence, threshold, risk_brief, risk_detail
+  </sql>
+  <select id="selectByCondition" parameterType="com.padeoe.pojo.RiskOperation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from risk_operation_t
+    <where>
+      <if test="riskId != null">
+        risk_id = #{riskId,jdbcType=INTEGER}
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="tracerName != null">
+        tracer_name = #{tracerName,jdbcType=VARCHAR}
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER}
+      </if>
+      <if test="startTime != null">
+        update_time &gt;= #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null">
+        update_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="possibility != null">
+        possibility = #{possibility,jdbcType=INTEGER}
+      </if>
+      <if test="influence != null">
+        influence = #{influence,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByConditionLatest" parameterType="com.padeoe.pojo.RiskOperation" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from (select * from risk_operation_t
+    <where>
+      <if test="riskId != null">
+        risk_id = #{riskId,jdbcType=INTEGER}
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="tracerName != null">
+        tracer_name = #{tracerName,jdbcType=VARCHAR}
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER}
+      </if>
+      <if test="startTime != null">
+        update_time &gt;= #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null">
+        update_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="possibility != null">
+        possibility = #{possibility,jdbcType=INTEGER}
+      </if>
+      <if test="influence != null">
+        influence = #{influence,jdbcType=INTEGER}
+      </if>
+    </where> order by update_time desc) as A
+    group by A.risk_id,A.project_id
+
+  </select>
+
+  <select id="queryByState" parameterType="java.lang.Integer" resultMap="RiskResultMap">
+    select
+    <include refid="Risk_Column_List" />,count
+    from risk_t
+    inner join
+    (select risk_id as id,count(id) as count from risk_operation_t where state = #{state,jdbcType=INTEGER} group by risk_id) as A on risk_t.id = A.id
+  </select>
+
+  <select id="queryByStateLatest" parameterType="java.lang.Integer" resultMap="RiskResultMap">
+    select
+    <include refid="Risk_Column_List" />,count
+    FROM
+    risk_t
+    INNER JOIN (
+    SELECT
+    risk_id AS id,
+    count(id) AS count
+    FROM
+    ( select * from
+    (
+    SELECT
+    *
+    FROM
+    risk_operation_t
+    WHERE
+    state = 1
+    ORDER BY
+    update_time DESC
+    ) AS B
+    GROUP BY
+    B.risk_id,
+    B.project_name
+
+    ) AS C
+    GROUP BY
+    risk_id
+    ) AS A ON risk_t.id = A.id
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -27,7 +155,7 @@
     delete from risk_operation_t
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.padeoe.pojo.RiskOperation">
+  <insert id="insert" parameterType="com.padeoe.pojo.RiskOperation" useGeneratedKeys="true" keyProperty="id">
     insert into risk_operation_t (id, risk_id, creator_name, 
       tracer_name, project_name, state, 
       update_time, description, possibility, 
@@ -37,7 +165,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{possibility,jdbcType=INTEGER}, 
       #{influence,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.padeoe.pojo.RiskOperation">
+  <insert id="insertSelective" parameterType="com.padeoe.pojo.RiskOperation" useGeneratedKeys="true" keyProperty="id">
     insert into risk_operation_t
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
