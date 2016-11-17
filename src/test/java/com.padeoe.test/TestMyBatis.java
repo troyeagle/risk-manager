@@ -34,7 +34,7 @@ public class TestMyBatis {
 //      userService = (IUserService) ac.getBean("userService");
 //  }
 
-//    @Test
+    @Test
     public void test1() {
         Risk risk = new Risk();
         risk.setInfluence(1);
@@ -44,11 +44,15 @@ public class TestMyBatis {
 
         Integer count = riskService.saveRisk(risk);
         Integer id = risk.getId();
-        System.out.println(id);
-        System.out.println(riskService.getRiskById(id));
-        System.out.println(riskService.searchRisk(risk));
+//        System.out.println(id);
+//        System.out.println(riskService.getRiskById(id));
+//        System.out.println(riskService.searchRisk(risk));
+        risk=riskService.getRiskById(count);
+        System.out.println(risk);
+        risk.setPossibility(3);
         riskService.updateRisk(risk);
-        riskService.deleteRiskById(id);
+        System.out.println(risk);
+  //      riskService.deleteRiskById(id);
     }
 
 //    @Test
