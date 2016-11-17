@@ -406,7 +406,7 @@
 
                                 <div class="form-group">
                                     <label>风险简述</label>
-                                    <input class="form-control" name="iskBrief" type="text" value="<%out.println( risk.getRiskBrief());%>">
+                                    <input class="form-control" name="riskBrief" type="text" value="<%out.println( risk.getRiskBrief());%>">
                                     <p class="help-block" >项目简述</p>
                                 </div>
 
