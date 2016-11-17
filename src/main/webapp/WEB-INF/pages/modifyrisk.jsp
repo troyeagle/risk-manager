@@ -401,7 +401,8 @@
 
                                 <div class="form-group">
                                     <label>风险简述</label>
-                                    <p class="form-control-static"><%out.println( risk.getRiskBrief());%></p>
+                                    <input class="form-control" name="iskBrief" type="text" value="<%out.println( risk.getRiskBrief());%>">
+                                    <p class="help-block" >项目简述</p>
                                 </div>
 
                                 <div class="form-group">
@@ -421,7 +422,7 @@
                                 %>
 
                                 <div class="form-group">
-                                    <label>Selects</label>
+                                    <label>可能性</label>
                                     <select class="form-control" name="possibility">
                                         <option <%if(possibility==1){out.print("selected=\"selected\"");} %> >低</option>
                                         <option <%if(possibility==2){out.print("selected=\"selected\"");} %> >中</option>
@@ -436,7 +437,7 @@
                                 %>
 
                                 <div class="form-group">
-                                    <label>Selects</label>
+                                    <label>影响程度</label>
                                     <select class="form-control" name="influence">
                                         <option <%if(influence==1){out.print("selected=\"selected\"");} %> >低</option>
                                         <option <%if(influence==2){out.print("selected=\"selected\"");} %> >中</option>
