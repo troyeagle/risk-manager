@@ -417,10 +417,7 @@
                                 </div>
 
                                 <%
-                                    int possibility = risk.getPossibility().intValue();
-                                    if(possibility = null){
-                                        possibility = 1;
-                                    }
+                                      int possibility = risk.getPossibility().intValue();
                                 %>
 
                                 <div class="form-group">
@@ -435,9 +432,7 @@
                                 <%
 
                                     int influence = risk.getInfluence().intValue();
-                                    if(influence = null){
-                                        influence = 1;
-                                    }
+
                                 %>
 
                                 <div class="form-group">
