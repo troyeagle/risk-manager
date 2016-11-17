@@ -400,6 +400,11 @@
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
 
                                 <div class="form-group">
+                                    <label>项目ID</label>
+                                    <p class="form-control-static" name="id"><%out.println( risk.getId().intValue());%></p>
+                                </div>
+
+                                <div class="form-group">
                                     <label>风险简述</label>
                                     <input class="form-control" name="iskBrief" type="text" value="<%out.println( risk.getRiskBrief());%>">
                                     <p class="help-block" >项目简述</p>
