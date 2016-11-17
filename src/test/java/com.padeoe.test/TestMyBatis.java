@@ -1,7 +1,9 @@
 package com.padeoe.test;
 
+import com.padeoe.pojo.Project;
 import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.User;
+import com.padeoe.service.IProjectService;
 import com.padeoe.service.IRiskService;
 import com.padeoe.service.IUserService;
 import org.apache.log4j.Logger;
@@ -23,13 +25,16 @@ public class TestMyBatis {
 
     @Resource
     private IRiskService riskService = null;
+
+    @Resource
+    private IProjectService projectService = null;
 //  @Before
 //  public void before() {
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 //      userService = (IUserService) ac.getBean("userService");
 //  }
 
-    @Test
+//    @Test
     public void test1() {
         Risk risk = new Risk();
         risk.setInfluence(1);
@@ -54,5 +59,13 @@ public class TestMyBatis {
         user.setAuthority(1);
         userService.saveUser(user);
         System.out.println(userService.getUserByCondition(user).size());
+    }
+    @Test
+    public void test3(){
+        Project project = new Project();
+        project.setName("p1");
+        project.setDescription("建一个超四流的系统");
+        projectService.saveProject(project);
+        projectService.getProjectByName("p1");
     }
 }

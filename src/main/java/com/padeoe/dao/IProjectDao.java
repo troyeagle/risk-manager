@@ -1,7 +1,9 @@
 package com.padeoe.dao;
 
 import com.padeoe.pojo.Project;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface IProjectDao {
     int deleteByPrimaryKey(String name);
 
