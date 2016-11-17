@@ -381,7 +381,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">添加风险</h1>
+                    <h1 class="page-header">修改风险</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -418,6 +418,9 @@
 
                                 <%
                                     int possibility = risk.getPossibility().intValue();
+                                    if(possibility = null){
+                                        possibility = 1;
+                                    }
                                 %>
 
                                 <div class="form-group">
@@ -430,7 +433,11 @@
                                 </div>
 
                                 <%
+
                                     int influence = risk.getInfluence().intValue();
+                                    if(influence = null){
+                                        influence = 1;
+                                    }
                                 %>
 
                                 <div class="form-group">
