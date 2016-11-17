@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险关系</title>
+    <title>风险管理系统-增加风险关系高级版</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +26,7 @@
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -380,7 +381,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">添加具体风险</h1>
+                    <h1 class="page-header">添加风险</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -389,26 +390,47 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="col-lg-2">
-                        </div>
-                        <div class="col-lg-8">
-                            <br>
-                            <form role="form" action="调用的方法">
-                                <p style="color: red; text-align: center">${requestScope.error}</p>
-                                <div class="form-group">
-                                    <label>风险模板ID</label>
-                                    <input class="form-control" name="id" type="text">
-                                    <p class="help-block" >要使用的风险模板</p>
-                                </div>
 
-                                <div class="form-group">
-                                    <label>追踪者</label>
-                                    <input class="form-control" name="username" type="text">
-                                    <p class="help-block" >进行追踪的用户</p>
+                        <div class="col-lg-12">
+                            <form action=" ">
+                                <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-default">提交查询时间</button>
                                 </div>
-
-                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
+                                <div class="col-lg-4">
+                                    起始时间：<input type="datetime-local" name="startdate">
+                                </div>
+                                <div class="col-lg-4">
+                                    结束时间：<input type="datetime-local" name="enddate">
+                                </div>
                             </form>
+
+
+                                <br>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>风险编号</th>
+                                    <th>风险简述</th>
+                                    <th>可能性</th>
+                                    <th>影响程度</th>
+                                    <th>阈值</th>
+                                    <th>修改</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>服务器崩溃</td>
+                                    <td>低</td>
+                                    <td>高</td>
+                                    <td>100</td>
+                                    <td> <a href="">修改</a> </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <br>
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -440,6 +462,14 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('table').dataTable();
+        });
+    </script>
+
+<script src="/js/jquery.dataTables.min.js"></script>
 
 </body>
 

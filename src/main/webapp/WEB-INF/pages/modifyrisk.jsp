@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.Risk" %>
 
 <head>
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险关系高级版</title>
+    <title>风险管理系统-修改风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +27,6 @@
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -252,7 +252,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<% //out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -282,7 +282,7 @@
                             <a href="riskmanage_page">风险管理</a>
                         </li>
                         <li>
-                            <a href="projectmanage_page">项目管理</a>
+                            <a href="project_page">项目管理</a>
                         </li>
                         <!--
                         <li>
@@ -387,50 +387,63 @@
             </div>
             <!-- /.row -->
 
+            <%Risk risk = (Risk)request.getAttribute("risk");%>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-
-                        <div class="col-lg-12">
-                            <form action=" ">
-                                <div class="col-lg-2">
-                                    <button type="submit" class="btn btn-default">提交查询时间</button>
-                                </div>
-                                <div class="col-lg-4">
-                                    起始时间：<input type="datetime-local" name="startdate">
-                                </div>
-                                <div class="col-lg-4">
-                                    结束时间：<input type="datetime-local" name="enddate">
-                                </div>
-                            </form>
-
-
-                                <br>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>风险编号</th>
-                                    <th>风险简述</th>
-                                    <th>可能性</th>
-                                    <th>影响程度</th>
-                                    <th>阈值</th>
-                                    <th>修改</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>服务器崩溃</td>
-                                    <td>低</td>
-                                    <td>高</td>
-                                    <td>100</td>
-                                    <td> <a href="">修改</a> </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-8">
                             <br>
+                            <form role="form" action="/modifyRiskBL">
+                                <p style="color: red; text-align: center">${requestScope.error}</p>
 
+                                <div class="form-group">
+                                    <label>风险简述</label>
+                                    <p class="form-control-static"><%out.println( risk.getRiskBrief());%></p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>风险详细描述</label>
+                                    <textarea class="form-control" rows="3" name="riskDetail"><%=risk.getRiskDetail()%></textarea>
+                                    <p class="help-block" >详细描述风险，方便理解</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>阈值</label>
+                                    <input class="form-control" name="threshold" type="text" value="<%=risk.getThreshold()%>">
+                                    <p class="help-block" >风险成为问题的阈值</p>
+                                </div>
+
+                                <%
+                                    int possibility = risk.getPossibility().intValue();
+                                %>
+
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="possibility">
+                                        <option <%if(possibility==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(possibility==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(possibility==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <%
+                                    int influence = risk.getInfluence().intValue();
+                                %>
+
+                                <div class="form-group">
+                                    <label>Selects</label>
+                                    <select class="form-control" name="influence">
+                                        <option <%if(influence==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(influence==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(influence==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
+                            </form>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -462,14 +475,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('table').dataTable();
-        });
-    </script>
-
-<script src="/js/jquery.dataTables.min.js"></script>
 
 </body>
 

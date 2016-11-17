@@ -444,20 +444,31 @@
                                                     <td>低</td>
                                                     <td>高</td>
                                                     <td>100</td>
-                                                    <td> <a href="">修改</a> </td>
-                                                    <td> <a href="">删除</a> </td>
+                                                    <td> <a href="/modifyrisk_page?id=1">修改</a> </td>
+                                                    <td> <a href="/deleterisk_page?id=1">删除</a> </td>
                                                 </tr>
 
                                                 <%
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                                          out.println("<tr>");
-                                                        out.println("<td>"+ "编号"+"</td>");
-                                                        out.println("<td>"+ risk.setRiskBrief() +"</td>");
+
+                                                        int Id = risk.getId().intValue();
+                                                        out.println("<td>"+ Id +"</td>");
+
+                                                        out.println("<td>"+ risk.getRiskBrief() +"</td>");
                                                         out.println("<td>"+ risk.getRiskDetail() +"</td>");
-                                                        out.println("<td>"+ risk.getPossibility() +"</td>");
-                                                        out.println("<td>"+ risk.getInfluence() +"</td>");
+
+                                                        int possibilitiyint = risk.getPossibility().intValue();
+                                                        String possibility = risk.getLevel(possibilitiyint);
+                                                        out.println("<td>"+ possibility +"</td>");
+
+                                                        int influenceint = risk.getInfluence().intValue();
+                                                        String influence = risk.getLevel(influenceint);
+                                                        out.println("<td>"+ influence +"</td>");
+
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
-                                                        out.println("<td> <a href=\"\">修改</a> </td>");
+                                                        out.println("<td> <a href=\" /modifyrisk_page?id=" +Id+ "\">修改</a> </td>");
+                                                        out.println("<td> <a href=\"/deleterisk_page?id=" +Id+ " \">删除</a> </td>");
                                                         out.println("</tr>");
                                                     }
                                                 %>

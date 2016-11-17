@@ -409,8 +409,6 @@
                                     <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a href="/addrisk_op_page">添加具体风险</a>
                                         </li>
-                                        <li><a href="/addrisk_op_advance_page">导入具体风险</a>
-                                        </li>
                                         <!--
                                         <li class="divider"></li>
                                         <li><a href="#">Separated link</a>
