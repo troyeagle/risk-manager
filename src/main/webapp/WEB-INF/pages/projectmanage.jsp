@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="com.padeoe.pojo.Risk" %>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.Project" %>
 
 <head>
 
@@ -9,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险</title>
+    <title>风险管理系统-项目管理</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +27,9 @@
 
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -285,7 +290,7 @@
                             }
                         %>
                         <li>
-                            <a href="project_page">项目管理</a>
+                            <a href="projectmanage_page">项目管理</a>
                         </li>
                         <!--
                         <li>
@@ -301,7 +306,7 @@
                             <!-- /.nav-second-level
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -319,7 +324,7 @@
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="">Typography</a>
+                                    <a href="typography.html">Typography</a>
                                 </li>
                                 <li>
                                     <a href="icons.html"> Icons</a>
@@ -384,59 +389,88 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">添加风险</h1>
+                    <h1 class="page-header">风险库管理</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="col-lg-2">
-                        </div>
-                        <div class="col-lg-8">
-                            <br>
-                            <form role="form" action="/addRiskBL">
-                                <p style="color: red; text-align: center">${requestScope.error}</p>
-                                <div class="form-group">
-                                    <label>风险简述</label>
-                                    <input class="form-control" name="riskBrief" type="text">
-                                    <p class="help-block" >简洁描述风险，方便检索</p>
-                                </div>
 
-                                <div class="form-group">
-                                    <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="riskDetail"></textarea>
-                                    <p class="help-block" >详细描述风险，方便理解</p>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>阈值</label>
-                                    <input class="form-control" name="threshold" type="text">
-                                    <p class="help-block" >风险成为问题的阈值</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="possibility">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="influence">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
-                            </form>
-                        </div>
                         <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            项目表
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        操作
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="/addproject_page">添加项目</a>
+                                        </li>
+                                        <!--
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a>
+                                        </li>
+                                        -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                <thead>
+                                                <tr>
+                                                    <th>项目名称</th>
+                                                    <th>项目描述</th>
+                                                    <th>详细</th>
+                                                    <th>删除</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>堵门狗2</td>
+                                                    <td>超级3A级游戏大作</td>
+                                                    <td> <a href="/project?name=堵门狗2">详细</a> </td>
+                                                    <td> <a href="/deleteproject?name=堵门狗2">删除</a> </td>
+                                                </tr>
+
+                                                <%
+                                                    for (Project project : (List<Project>)request.getAttribute("list")) {
+                                                         out.println("<tr>");
+                                                        String name =  project.getName();
+                                                        out.println("<td>"+ name +"</td>");
+                                                        out.println("<td>"+ project.getDescription() +"</td>");
+                                                        out.println("<td>"+ project.getDescription() +"</td>");
+                                                        out.println("<td> <a href=\" /project?name=" +name+ "\">详细</a> </td>");
+                                                        out.println("<td> <a href=\"/deleteproject?name=" +name+ " \">删除</a> </td>");
+                                                        out.println("</tr>");
+                                                    }
+                                                %>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.panel-heading -->
+
                     </div>
                     <!-- /.panel -->
 
@@ -467,6 +501,15 @@
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
 
+    <!-- Page-Level Plugin Scripts - Tables -->
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/jquery.dataTables.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险</title>
+    <title>风险管理系统-增加项目</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -397,40 +397,17 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form" action="/addRiskBL">
+                            <form role="form" action="/addProjectBL">
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
+
                                 <div class="form-group">
-                                    <label>风险简述</label>
-                                    <input class="form-control" name="riskBrief" type="text">
-                                    <p class="help-block" >简洁描述风险，方便检索</p>
+                                    <label>项目名称</label>
+                                    <input class="form-control" name="name" type="text">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="riskDetail"></textarea>
-                                    <p class="help-block" >详细描述风险，方便理解</p>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>阈值</label>
-                                    <input class="form-control" name="threshold" type="text">
-                                    <p class="help-block" >风险成为问题的阈值</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="possibility">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Selects</label>
-                                    <select class="form-control" name="influence">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
-                                    </select>
+                                    <label>项目详述</label>
+                                    <textarea class="form-control" rows="3" name="description"></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
