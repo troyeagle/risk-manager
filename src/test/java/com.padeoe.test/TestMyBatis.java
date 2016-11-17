@@ -63,9 +63,10 @@ public class TestMyBatis {
     @Test
     public void test3(){
         Project project = new Project();
-        project.setName("p1");
+        project.setName("64646");
         project.setDescription("建一个超四流的系统");
         projectService.saveProject(project);
-        projectService.getProjectByName("p1");
+        projectService.getProjectByName("64646");
+        projectService.deleteProject("64646");
     }
 }

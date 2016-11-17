@@ -29,4 +29,9 @@ public class ProjectServiceImpl implements IProjectService {
     public Project getProjectByName(String name) {
         return projectDao.selectByPrimaryKey(name);
     }
+
+    @Override
+    public void deleteProject(String name) {
+        projectDao.deleteByPrimaryKey(name);
+    }
 }

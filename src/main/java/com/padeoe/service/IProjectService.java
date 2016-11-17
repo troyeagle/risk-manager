@@ -12,4 +12,5 @@ public interface IProjectService {
 
     public Project getProjectByName(String name);
 
+    public void deleteProject(String name);
 }
