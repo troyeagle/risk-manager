@@ -19,11 +19,9 @@ public class RiskServiceImpl implements IRiskService{
     @Resource
     private IRiskDao riskDao;
 
-    private static AtomicInteger id = new AtomicInteger();
-    private static Map<Integer, Risk> riskMap = new HashMap<>();
     @Override
     public Risk getRiskById(int userId) {
-        return riskMap.get(userId);
+        return riskDao.selectByPrimaryKey(userId);
     }
 
 

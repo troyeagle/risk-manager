@@ -6,6 +6,7 @@ import com.padeoe.service.IProjectService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * com.padeoe.service.impl
@@ -33,5 +34,10 @@ public class ProjectServiceImpl implements IProjectService {
     @Override
     public void deleteProject(String name) {
         projectDao.deleteByPrimaryKey(name);
+    }
+
+    @Override
+    public List<Project> getProjects() {
+        return projectDao.selectAll();
     }
 }
