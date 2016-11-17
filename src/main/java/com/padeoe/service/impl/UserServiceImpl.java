@@ -32,6 +32,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public void saveUser(User user){
+        if(user.getUsername()==null) throw new RuntimeException("用户名username不能为空");
         if(getUserByName(user.getUsername())!=null)
             throw new RuntimeException("用户名已存在");
         userDao.insert(user);

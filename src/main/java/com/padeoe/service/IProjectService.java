@@ -8,8 +8,8 @@ import com.padeoe.pojo.Project;
  * @author troy_diao on 2016/11/17
  */
 public interface IProjectService {
-    public int saveProject(Project project);
+    public void saveProject(Project project);
 
-    public Project getProjectById(int id);
+    public Project getProjectByName(String name);
 
 }
