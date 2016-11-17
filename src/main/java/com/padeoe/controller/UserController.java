@@ -49,12 +49,8 @@ public class UserController {
             return "login";
         }
         else{
-            User user=new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            List<User> users=userService.getUserByCondition(user);
-            if(users!=null&&users.size()==1){
-                user=users.get(0);
+            User user=userService.getUserByName(username);
+            if(user!=null&&user.getPassword().equals(password)){
                 session.setAttribute("user",user);
                 return "redirect:index_page";
             }
