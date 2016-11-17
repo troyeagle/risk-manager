@@ -1,46 +1,111 @@
 package com.padeoe.pojo;
 
+import java.util.Date;
 /**
  * RiskOperation定义了对一条风险的任何操作，譬如风险的识别，添加，转化成问题了，被委托给某人追踪，记录了这些操作发生的时间，操作人
  * @author padeoe
  * Date: 2016/11/16
  */
 public class RiskOperation {
-    /**
-     * 风险id，对应一个{@link Risk}对象
-     */
-    String riskId;
 
-    /**
-     * 风险的创建者
-     */
-    String creator;
+    private Integer id;
 
-    /**
-     * 该风险的追踪负责人，唯一对应了一个{@link User}对象
-     */
-    String username;
+    private Integer riskId;
 
-    /**
-     * 该风险隶属的项目名称，唯一对应了一个{@link Project}对象
-     */
-    String projectName;
+    private String creatorName;
 
-    /**
-     * 对风险的操作，包括添加，识别，转化成问题，改变追踪人
-     */
-    String operation;
+    private String tracerName;
 
-    /**
-     * 对该风险操作的时间
-     */
-    String date;
+    private String projectName;
 
-    public String getCreator() {
-        return creator;
+    private Integer state;
+
+    private Date updateTime;
+
+    private String description;
+
+    private Integer possibility;
+
+    private Integer influence;
+
+    public Integer getId() {
+        return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+    public Integer getRiskId() {
+        return riskId;
+    }
+
+    public void setRiskId(Integer riskId) {
+        this.riskId = riskId;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
+    }
+
+    public String getTracerName() {
+        return tracerName;
+    }
+
+    public void setTracerName(String tracerName) {
+        this.tracerName = tracerName == null ? null : tracerName.trim();
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName == null ? null : projectName.trim();
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public Integer getPossibility() {
+        return possibility;
+    }
+
+    public void setPossibility(Integer possibility) {
+        this.possibility = possibility;
+    }
+
+    public Integer getInfluence() {
+        return influence;
+    }
+
+    public void setInfluence(Integer influence) {
+        this.influence = influence;
+    }
+
 }

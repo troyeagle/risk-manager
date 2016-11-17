@@ -463,8 +463,8 @@
                                                         out.println("<td>"+ risk.getPossibility() +"</td>");
                                                         out.println("<td>"+ risk.getInfluence() +"</td>");
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getCreator() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getUsername() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getCreator_name() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getTracer_name() +"</td>");
                                                         out.println("<td> <a href=\"\">修改</a> </td>");
                                                         out.println("</tr>");
                                                         i++;

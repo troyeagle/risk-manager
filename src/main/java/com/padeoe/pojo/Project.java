@@ -7,7 +7,6 @@ package com.padeoe.pojo;
  */
 public class Project {
 
-    private Integer id;
     /**
      * 项目名称，是唯一区分项目的属性
      */
@@ -17,14 +16,6 @@ public class Project {
      * 项目描述
      */
     private String description;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
