@@ -441,6 +441,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <!--
                                                 <tr>
                                                     <td>1</td>
                                                     <td>服务器崩溃</td>
@@ -451,7 +452,7 @@
                                                     <td> <a href="/modifyrisk_page?id=1">修改</a> </td>
                                                     <td> <a href="/deleterisk_page?id=1">删除</a> </td>
                                                 </tr>
-
+                                                -->
                                                 <%
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                                          out.println("<tr>");
