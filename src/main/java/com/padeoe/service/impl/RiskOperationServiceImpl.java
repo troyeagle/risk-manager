@@ -51,4 +51,9 @@ public class RiskOperationServiceImpl implements IRiskOperationService{
     public List<RiskOperation> queryByCondition(RiskOperation condition) {
         return riskOperationDao.selectByCondition(condition);
     }
+
+	@Override
+	public void updateRiskOperation(RiskOperation riskOperation) {
+		riskOperationDao.updateByPrimaryKey(riskOperation);
+	}
 }

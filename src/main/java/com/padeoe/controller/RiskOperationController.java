@@ -3,6 +3,7 @@ package com.padeoe.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -42,6 +43,27 @@ public class RiskOperationController {
 		return name + "_" + index;
 	}
 	
+	private void primeRiskOperation(RiskOperation operation, Date updateTime,
+			String description, String tracerName, String possibilityString, 
+			String influenceString, String status) throws Exception {
+		operation.setUpdateTime(updateTime);
+		operation.setDescription(description);
+		operation.setTracerName(tracerName);
+		operation.setState(Integer.parseInt(status));
+
+		Integer possibility = riskPossibility.get(possibilityString);
+		if(possibility == null) throw new Exception("无法识别的可能性：" + possibilityString);
+		operation.setPossibility(possibility);
+
+		Integer influence = riskInfluence.get(influenceString);
+		if(influence == null) throw new Exception("无法识别的影响等级：" + influenceString);
+		operation.setInfluence(influence);
+	}
+	
+	private void notify(User operator, RiskOperation operation) {
+		// doNotify!
+	}
+	
 	/**
 	 * 插入风险条目流程
 	 * 1. 用户进入某一项目
@@ -70,39 +92,70 @@ public class RiskOperationController {
 				
 				//Shared amongst import.
 				RiskOperation operation = new RiskOperation();
-				operation.setUpdateTime(currentTime);
 				operation.setProjectName(project);
 				operation.setCreatorName(operator.getUsername());
-				operation.setState(1);	// 导入全部当成识别风险
+				operation.setRiskId(Integer.parseInt(
+						request.getParameter(formatItem("id", i))));
 				
-				// No check needed.
-				operation.setRiskId(Integer.parseInt(request.getParameter(formatItem("id", i))));
-				operation.setDescription(request.getParameter(formatItem("detail", i)));
-				operation.setTracerName(request.getParameter(formatItem("tracer", i) + i));
-				
-				// Check needed.
-				String possibilityString = request.getParameter(formatItem("possibility", i) + i);
-				Integer possibility = riskPossibility.get(possibilityString);
-				if(possibility == null) throw new Exception("无法识别的可能性：" + possibilityString);
-				operation.setPossibility(possibility);
-
+				String riskDetail = request.getParameter(formatItem("detail", i));
+				String tracerName = request.getParameter(formatItem("tracer", i));
+				String possibilityString = request.getParameter(formatItem("possibility", i));
 				String influenceString = request.getParameter(formatItem("influence", i));
-				Integer influence = riskInfluence.get(influenceString);
-				if(influence == null) throw new Exception("无法识别的影响等级：" + influenceString);
-				operation.setInfluence(influence);
+				
+				primeRiskOperation(operation, currentTime, riskDetail, tracerName, 
+						possibilityString, influenceString, "1");
 				
 				// Add to update queue.
 				operations.add(operation);
 			}
 			
-			for(RiskOperation op : operations)
+			for(RiskOperation op : operations) {
 				riskOpService.saveRiskOperation(op);
+				notify(operator, op);
+			}
 			
-			return "project_page";
+			return "project_page?name=" + project;
 		}
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 			return "addrisk_op";
+		}
+	}
+	
+	@RequestMapping("/modifyRiskOpBL")
+	public String modifyRiskOp(HttpServletRequest request, Model model, HttpSession session) {
+		User operator = (User) session.getAttribute("user");
+		if(operator == null) {
+			model.addAttribute("error", "进行操作前请先登陆！");
+			return "login";
+		}
+		Date currentTime = new Date();
+		
+		try {
+			RiskOperation victim = new RiskOperation();
+			victim.setId(Integer.parseInt(request.getParameter("id")));
+			List<RiskOperation> result = riskOpService.queryByCondition(victim);
+			if(result.size() != 1) throw new Exception("风险条目不存在！");
+			victim = result.get(0);
+
+			String riskDetail = request.getParameter("riskDetail");
+			String tracerName = request.getParameter("tracer");
+			String possibilityString = request.getParameter("possibility");
+			String influenceString = request.getParameter("influence");
+			String state = request.getParameter("state");
+			
+			primeRiskOperation(victim, currentTime, riskDetail, tracerName, 
+					possibilityString, influenceString, state);
+			
+			riskOpService.updateRiskOperation(victim);
+			if("true".equals(request.getParameter("Notification"))) 
+				notify(operator, victim);
+			
+			return "project_page?name=" + victim.getProjectName();
+		}
+		catch(Exception e) {
+			model.addAttribute("error", e.getMessage());
+			return "modifyrisk_op";
 		}
 	}
 }
