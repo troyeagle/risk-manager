@@ -392,14 +392,24 @@
                     <div class="panel panel-default">
 
                         <div class="col-lg-12">
-                            <form action=" ">
-                                <div class="col-lg-2">
-                                    <button type="submit" class="btn btn-default">提交查询时间</button>
+                            <form action="">
+                                <div class="col-lg-2 form-group" >
+                                    <button type="submit" class="btn btn-default">查询</button>
                                 </div>
-                                <div class="col-lg-4">
+
+                                <div class="col-lg-3 form-group">
+                                    <label>查找类型</label>
+                                    <select class="form-control" name="type">
+                                        <option>被识别的风险</option>
+                                        <option>转化为问题的风险</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 form-group">
                                     起始时间：<input type="datetime-local" name="startdate">
                                 </div>
-                                <div class="col-lg-4">
+
+                                <div class="col-lg-3 form-group">
                                     结束时间：<input type="datetime-local" name="enddate">
                                 </div>
                             </form>
@@ -411,10 +421,12 @@
                                 <tr>
                                     <th>风险编号</th>
                                     <th>风险简述</th>
+                                    <th>风险详述</th>
                                     <th>可能性</th>
                                     <th>影响程度</th>
                                     <th>阈值</th>
-                                    <th>修改</th>
+                                    <th>跟踪者</th>
+                                    <th>导入</th>
                                 </tr>
                                 </thead>
                                 <tbody>

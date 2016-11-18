@@ -444,7 +444,7 @@
                                                         String name =  project.getName();
                                                         out.println("<td>"+ name +"</td>");
                                                         out.println("<td>"+ project.getDescription() +"</td>");
-                                                        out.println("<td> <a href=\" /project?name=" +name+ "\">详细</a> </td>");
+                                                        out.println("<td> <a href=\" /project_page?name=" +name+ "\">详细</a> </td>");
                                                         out.println("</tr>");
                                                     }
                                                 %>
