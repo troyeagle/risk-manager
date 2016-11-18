@@ -257,7 +257,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<%//out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -424,12 +424,14 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <i class="fa fa-bell fa-fw"></i> <%= ((Project)request.getAttribute("project")).getName() %>
+                                        <%//= ((Project)request.getAttribute("project")).getName() %>
                                     </div>
                                     <!-- /.panel-heading -->
-                                    <%= ((Project)request.getAttribute("project")).getDescription() %>
+                                    <%//= ((Project)request.getAttribute("project")).getDescription() %>
                                     <!-- /.panel-body -->
                                 </div>
+
+                                <br>
 
                                 <div class="panel panel-default">
                                     <!-- /.panel-heading -->
@@ -454,7 +456,7 @@
                                                 <tbody>
 
                                                 <%
-
+                                                    /*
                                                     int i = 0;
                                                     List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
                                                     for (Risk risk : (List<Risk>)request.getAttribute("listr")) {
@@ -484,7 +486,7 @@
                                                         out.println("</tr>");
                                                         i++;
                                                     }
-
+                                                    */
                                                 %>
 
                                                 </tbody>
