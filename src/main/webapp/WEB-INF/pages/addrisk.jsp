@@ -417,7 +417,7 @@
                                     <p class="help-block" >风险成为问题的阈值</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Selects</label>
+                                    <label>项目优先级</label>
                                     <select class="form-control" name="possibility">
                                         <option>低</option>
                                         <option>中</option>
@@ -425,7 +425,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Selects</label>
+                                    <label>影响程度</label>
                                     <select class="form-control" name="influence">
                                         <option>低</option>
                                         <option>中</option>

@@ -401,7 +401,7 @@
 
                                 <div class="form-group">
                                     <label>项目ID</label>
-                                    <input class="form-control-static" name="id" type="text" value="<%out.println( risk.getId().intValue());%>">
+                                    <input class="form-control-static" readonly="readonly" name="id" type="text" value="<%out.println( risk.getId().intValue());%>">
                                 </div>
 
                                 <div class="form-group">

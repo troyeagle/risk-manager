@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.Risk" %>
 
 <head>
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险关系高级版</title>
+    <title>风险管理系统-导入风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -252,7 +253,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<%//out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -392,45 +393,103 @@
                     <div class="panel panel-default">
 
                         <div class="col-lg-12">
-                            <form action=" ">
-                                <div class="col-lg-2">
-                                    <button type="submit" class="btn btn-default">提交查询时间</button>
+                            <br>
+                            <form action="">
+                                <div class="col-lg-1 form-group" >
+                                    <button type="submit" class="btn btn-default">查询</button>
                                 </div>
-                                <div class="col-lg-4">
+
+                                <div class="col-lg-3 form-group">
+                                    <select class="form-control" name="type">
+                                        <option>被识别的风险</option>
+                                        <option>转化为问题的风险</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 form-group">
                                     起始时间：<input type="datetime-local" name="startdate">
                                 </div>
-                                <div class="col-lg-4">
+
+                                <div class="col-lg-3 form-group">
                                     结束时间：<input type="datetime-local" name="enddate">
                                 </div>
                             </form>
 
-
+                            <br>
                                 <br>
-                            <table>
+                            <table align="center">
                                 <thead>
                                 <tr>
-                                    <th>风险编号</th>
-                                    <th>风险简述</th>
-                                    <th>可能性</th>
-                                    <th>影响程度</th>
-                                    <th>阈值</th>
-                                    <th>修改</th>
+                                    <th  width="50">风险编号</th>
+                                    <th width="100">风险简述</th>
+                                    <th width="300">风险详述</th>
+                                    <th width="50">可能性 </th>
+                                    <th width="50">影响程度</th>
+                                    <th width="100">阈值</th>
+                                    <th width="100">跟踪者</th>
+                                    <th width="30">提示</th>
+                                    <th width="30">导入</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>服务器崩溃</td>
-                                    <td>低</td>
-                                    <td>高</td>
-                                    <td>100</td>
-                                    <td> <a href="">修改</a> </td>
-                                </tr>
+                                <%
+                                    for (Risk risk : (List<Risk>)request.getAttribute("list")) {
+                                        out.println("<tr>");
+
+                                        int Id = risk.getId().intValue();
+                                        out.println("<td>"+ Id +"</td>");
+
+                                        out.println("<td><input value=\""+ risk.getRiskBrief() +"\"></td>");
+                                        out.println("<td><input value=\""+ risk.getRiskDetail() +"\"></td>");1
+
+                                        int possibilitiyint = risk.getPossibility().intValue();
+                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
+                                        if(possibilitiyint==1){
+                                            out.println(" <option>低</option>");
+                                        }
+                                        else if(possibilitiyint==2){
+                                            out.println(" <option>中</option>");
+                                        }
+                                        else if(possibilitiyint==3){
+                                            out.println(" <option>高</option>");
+                                        }
+                                        out.println("</select>");
+
+                                        int influenceint = risk.getInfluence().intValue();
+                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
+                                        if(influenceint==1){
+                                            out.println(" <option>低</option>");
+                                        }
+                                        else if(influenceint==2){
+                                            out.println(" <option>中</option>");
+                                        }
+                                        else if(influenceint==3){
+                                            out.println(" <option>高</option>");
+                                        }
+                                        out.println("</select>");
+
+                                        out.println("<td>"+ risk.getThreshold() +"</td>");
+
+                                        out.println("<td><input value=\"\"></td>");
+
+                                        out.println("<td> <input name=\"inform\" type=\"checkbox\"/></td>");
+                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"/></td>");
+                                        out.println("</tr>");
+                                    }
+                                %>
+
                                 </tbody>
                             </table>
 
                             <br>
+                            <div class="col-lg-8 form-group">
+                            </div>
+                            <div class="col-lg-2 form-group">
 
+                            </div>
+                            <div class="col-lg-2 form-group">
+
+                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>

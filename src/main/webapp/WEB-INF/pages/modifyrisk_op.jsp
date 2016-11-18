@@ -1,8 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ page import="com.padeoe.pojo.Risk" %>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.Risk" %>
 <%@ page import="com.padeoe.pojo.RiskOperation" %>
-<%@ page import="com.padeoe.pojo.Project" %>
 
 <head>
 
@@ -12,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-风险管理</title>
+    <title>风险管理系统-修改风险条目</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,9 +27,6 @@
 
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
-
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -59,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index_page">项目风险管理项目页面</a>
+                <a class="navbar-brand" href="index_page">项目风险管理</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -257,7 +253,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<% //out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -287,7 +283,7 @@
                             <a href="riskmanage_page">风险管理</a>
                         </li>
                         <li>
-                            <a href="projectmanage_page">项目管理</a>
+                            <a href="project_page">项目管理</a>
                         </li>
                         <!--
                         <li>
@@ -303,7 +299,7 @@
                             <!-- /.nav-second-level
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -321,7 +317,7 @@
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="">Typography</a>
                                 </li>
                                 <li>
                                     <a href="icons.html"> Icons</a>
@@ -386,122 +382,92 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">项目 管理</h1>
+                    <h1 class="page-header">修改风险条目</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+
+            <%
+                Risk risk = (Risk)request.getAttribute("risk");
+                RiskOperation riskop = (RiskOperation)request.getAttribute("riskop");
+            %>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <%= ((Project)request.getAttribute("project")).getName() %>
+                        <div class="col-lg-2">
                         </div>
-                        <!-- /.panel-heading -->
-                        <b>详细描述：</b>><%= ((Project)request.getAttribute("project")).getDescription() %>
-                        <!-- /.panel-body -->
-                    </div>
+                        <div class="col-lg-8">
+                            <br>
+                            <form role="form" action="">
+                                <p style="color: red; text-align: center">${requestScope.error}</p>
 
-                    <br>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            风险条目表
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        操作
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/addrisk_op_page">导入具体风险条目</a>
-                                        </li>
-                                        <!--
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                        -->
-                                    </ul>
+                                <div class="form-group">
+                                    <label>风险条目ID</label>
+                                    <input class="form-control-static" readonly="readonly" name="id" type="text" value="<%out.println( riskop.getId().intValue());%>">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
 
-                                <div class="panel panel-default">
-                                    <!-- /.panel-heading -->
-                                    <div class="panel-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                                <thead>
-                                                <tr>
-                                                    <th>风险条目编号</th>
-                                                    <th>风险简述</th>
-                                                    <th>风险详述</th>
-                                                    <th>可能性</th>
-                                                    <th>影响程度</th>
-                                                    <th>阈值</th>
-                                                    <th>提交者</th>
-                                                    <th>跟踪者</th>
-                                                    <th>最新状态</th>
-                                                    <th>最新更新时间</th>
-                                                    <th>修改</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                <%
-                                                    int i = 0;
-                                                    List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
-                                                    for (Risk risk : (List<Risk>)request.getAttribute("listr")) {
-                                                         out.println("<tr>");
-                                                        int id = Listop.get(i).getId().intValue();
-                                                        out.println("<td>"+ id +"</td>");
-                                                        out.println("<td>"+ risk.getRiskBrief() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getDescription() +"</td>");
-
-                                                        int possibilitiyint =Listop.get(i).getPossibility();
-                                                        String possibility = risk.getLevel(possibilitiyint);
-                                                        out.println("<td>"+ possibility +"</td>");
-
-                                                        int influenceint =Listop.get(i).getInfluence() ;
-                                                        String influence = risk.getLevel(influenceint);
-                                                        out.println("<td>"+ influence +"</td>");
-
-                                                        out.println("<td>"+ risk.getThreshold() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getCreatorName() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getTracerName() +"</td>");
-
-                                                        int stateint = Listop.get(i).getState().intValue();
-                                                        out.println("<td>"+ stateint +"</td>");
-
-                                                        out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
-                                                        out.println("<td> <a href=\"/modifyrisk_page?id=" + id + "\">修改</a> </td>");
-                                                        out.println("</tr>");
-                                                        i++;
-                                                    }
-                                                %>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- /.table-responsive -->
-                                    </div>
-                                    <!-- /.panel-body -->
+                                <div class="form-group">
+                                    <label>风险简述</label>
+                                    <input class="form-control" name="riskBrief"  readonly="readonly" type="text" value="<%out.println( risk.getRiskBrief());%>">
                                 </div>
-                                <!-- /.panel -->
-                            </div>
-                            <!-- /.col-lg-12 -->
-                        </div>
-                        <!-- /.panel-heading -->
 
+                                <div class="form-group">
+                                    <label>风险详细描述</label>
+                                    <textarea class="form-control" rows="3" name="riskDetail"><%=riskop.getDescription()%></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>阈值</label>
+                                    <input class="form-control" name="threshold" type="text" value="<%=risk.getThreshold()%>">
+                                </div>
+
+                                <%
+                                    int state = riskop.getPossibility().intValue();
+                                %>
+
+                                <div class="form-group">
+                                    <label>可能性</label>
+                                    <select class="form-control" name="possibility">
+                                        <option <%if(state==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(state==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(state==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <%
+                                      int possibility = riskop.getPossibility().intValue();
+                                %>
+
+                                <div class="form-group">
+                                    <label>可能性</label>
+                                    <select class="form-control" name="possibility">
+                                        <option <%if(possibility==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(possibility==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(possibility==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <%
+
+                                    int influence = riskop.getInfluence().intValue();
+
+                                %>
+
+                                <div class="form-group">
+                                    <label>影响程度</label>
+                                    <select class="form-control" name="influence">
+                                        <option <%if(influence==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(influence==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(influence==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
+                            </form>
+                        </div>
+                        <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
 
@@ -532,15 +498,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
 
-    <!-- Page-Level Plugin Scripts - Tables -->
-    <script src="/js/dataTables.bootstrap.min.js"></script>
-    <script src="/js/jquery.dataTables.js"></script>
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').dataTable();
-        });
-    </script>
 </body>
 
 </html>
