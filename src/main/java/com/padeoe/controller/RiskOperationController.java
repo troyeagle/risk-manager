@@ -34,6 +34,10 @@ public class RiskOperationController {
 		riskInfluence.put("一般", 1);	riskInfluence.put("较大", 2);	riskInfluence.put("致命", 3);
 	}
 	
+	/* Routers */
+	public @RequestMapping("/addrisk_op") String routeAddRiskOp() 		{		return "addrisk_op";		}
+	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp() {		return "/modifyrisk_op";	}
+	
 	private String formatItem(String name, int index) {
 		return name + "_" + index;
 	}
