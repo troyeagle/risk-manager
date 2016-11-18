@@ -32,10 +32,10 @@ public class indexController {
         return "addrisk_op_advantage";
     }
 
-    @RequestMapping("/project_page")
+/*    @RequestMapping("/project_page")
     public String project(HttpServletRequest request, Model model) {
         return "project";
-    }
+    }*/
 
     @RequestMapping("/piecharttest_page")
     public String piecharttest_page(HttpServletRequest request, Model model) {
