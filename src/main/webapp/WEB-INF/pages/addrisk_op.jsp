@@ -422,17 +422,28 @@
                                 <tr>
                                     <th  width="50">风险编号</th>
                                     <th width="100">风险简述</th>
-                                    <th width="300">风险详述</th>
+                                    <th width="400">风险详述</th>
                                     <th width="50">可能性 </th>
                                     <th width="50">影响程度</th>
                                     <th width="100">阈值</th>
                                     <th width="100">跟踪者</th>
-                                    <th width="30">提示</th>
-                                    <th width="30">导入</th>
+                                    <th width="20">导入</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <tr>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td>风险编号</td>
+                                    <td><input name="lead" type="checkbox"></td>
+                                </tr>
                                 <%
+                                    /*
                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                         out.println("<tr>");
 
@@ -472,10 +483,10 @@
 
                                         out.println("<td><input value=\"\"></td>");
 
-                                        out.println("<td> <input name=\"inform\" type=\"checkbox\"/></td>");
-                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"/></td>");
+                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"></td>");
                                         out.println("</tr>");
                                     }
+                                    */
                                 %>
 
                                 </tbody>
