@@ -257,7 +257,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%//out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -398,9 +398,22 @@
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
+
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            风险表
+                            <%= ((Project)request.getAttribute("project")).getName() %>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <b>详细描述：</b>><%= ((Project)request.getAttribute("project")).getDescription() %>
+                        <!-- /.panel-body -->
+                    </div>
+
+                    <br>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            风险条目表
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -408,7 +421,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/addrisk_op_page">添加具体风险</a>
+                                        <li><a href="/addrisk_op_page">导入具体风险条目</a>
                                         </li>
                                         <!--
                                         <li class="divider"></li>
@@ -421,17 +434,6 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <%//= ((Project)request.getAttribute("project")).getName() %>
-                                    </div>
-                                    <!-- /.panel-heading -->
-                                    <%//= ((Project)request.getAttribute("project")).getDescription() %>
-                                    <!-- /.panel-body -->
-                                </div>
-
-                                <br>
 
                                 <div class="panel panel-default">
                                     <!-- /.panel-heading -->
@@ -456,7 +458,6 @@
                                                 <tbody>
 
                                                 <%
-                                                    /*
                                                     int i = 0;
                                                     List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
                                                     for (Risk risk : (List<Risk>)request.getAttribute("listr")) {
@@ -486,7 +487,6 @@
                                                         out.println("</tr>");
                                                         i++;
                                                     }
-                                                    */
                                                 %>
 
                                                 </tbody>
