@@ -427,7 +427,7 @@
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                 <tr>
-                                                    <th>风险编号</th>
+                                                    <th>风险条目编号</th>
                                                     <th>风险简述</th>
                                                     <th>风险详述</th>
                                                     <th>可能性</th>
@@ -435,41 +435,35 @@
                                                     <th>阈值</th>
                                                     <th>提交者</th>
                                                     <th>跟踪者</th>
+                                                    <th>最新状态</th>
+                                                    <th>最新更新时间</th>
                                                     <th>修改</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>服务器崩溃</td>
-                                                    <td>工作人员将服务器内所有硬盘偷走跑路</td>
-                                                    <td>低</td>
-                                                    <td>高</td>
-                                                    <td>100</td>
-                                                    <td>舒克</td>
-                                                    <td>贝吉塔</td>
-                                                    <td> <a href="">修改</a> </td>
-                                                </tr>
 
                                                 <%
-                                                    /*
+
                                                     int i = 0;
                                                     List<RiskOperation> Listop = (List<RiskOperation>)request.getAttribute("listop");
-                                                    for (Risk risk : (List<Risk>)request.getAttribute("list")) {
+                                                    for (Risk risk : (List<Risk>)request.getAttribute("listr")) {
                                                          out.println("<tr>");
-                                                        out.println("<td>"+ risk.getId()+"</td>");
+                                                        int id = Listop.get(i).getId().intValue();
+                                                        out.println("<td>"+ id +"</td>");
                                                         out.println("<td>"+ risk.getRiskBrief() +"</td>");
-                                                        out.println("<td>"+ risk.getRiskDetail() +"</td>");
-                                                        out.println("<td>"+ risk.getPossibility() +"</td>");
-                                                        out.println("<td>"+ risk.getInfluence() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getDescription() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getPossibility() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getInfluence() +"</td>");
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getCreator_name() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getTracer_name() +"</td>");
-                                                        out.println("<td> <a href=\"\">修改</a> </td>");
+                                                        out.println("<td>"+ Listop.get(i).getCreatorName() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getTracerName() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getState() +"</td>");
+                                                        out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
+                                                        out.println("<td> <a href=\"/modifyrisk_page?id=" + id + "\">修改</a> </td>");
                                                         out.println("</tr>");
                                                         i++;
                                                     }
-                                                   */
+
                                                 %>
 
                                                 </tbody>
