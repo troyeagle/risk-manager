@@ -2,6 +2,7 @@
 <%@ page import="com.padeoe.pojo.Risk" %>
 <%@ page import="com.padeoe.pojo.User" %>
 <%@ page import="com.padeoe.pojo.RiskOperation" %>
+<%@ page import="com.padeoe.pojo.Project" %>
 
 <head>
 
@@ -420,6 +421,16 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-bell fa-fw"></i> <%= ((Project)request.getAttribute("project")).getName() %>
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <%= ((Project)request.getAttribute("project")).getDescription() %>
+                                    <!-- /.panel-body -->
+                                </div>
+
                                 <div class="panel panel-default">
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
