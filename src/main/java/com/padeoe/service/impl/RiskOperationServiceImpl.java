@@ -35,7 +35,6 @@ public class RiskOperationServiceImpl implements IRiskOperationService{
     @Override
     public List<Risk> queryByState(int state) {
         return riskOperationDao.queryByState(state);
-
     }
 
     @Override
