@@ -123,4 +123,16 @@ public class Risk {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Risk{" +
+                "id=" + id +
+                ", riskBrief='" + riskBrief + '\'' +
+                ", riskDetail='" + riskDetail + '\'' +
+                ", possibility=" + possibility +
+                ", influence=" + influence +
+                ", threshold='" + threshold + '\'' +
+                ", count=" + count +
+                '}';
+    }
 }
