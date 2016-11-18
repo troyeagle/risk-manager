@@ -420,16 +420,25 @@
 
                                 <div class="form-group">
                                     <label>阈值</label>
-                                    <input class="form-control" name="threshold" type="text" value="<%=risk.getThreshold()%>">
+                                    <input class="form-control" name="threshold"  readonly="readonly"  type="text" value="<%=risk.getThreshold()%>">
                                 </div>
+
+                                <div class="form-group">
+                                    <label>是否提示追踪者</label>
+                                    <select class="form-control" name="Notification">
+                                        <option >是</option>
+                                        <option >否</option>
+                                    </select>
+                                </div>
+
 
                                 <%
                                     int state = riskop.getPossibility().intValue();
                                 %>
 
                                 <div class="form-group">
-                                    <label>可能性</label>
-                                    <select class="form-control" name="possibility">
+                                    <label>状态</label>
+                                    <select class="form-control" name="state">
                                         <option <%if(state==1){out.print("selected=\"selected\"");} %> >低</option>
                                         <option <%if(state==2){out.print("selected=\"selected\"");} %> >中</option>
                                         <option <%if(state==3){out.print("selected=\"selected\"");} %> >高</option>

@@ -402,13 +402,15 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <%= ((Project)request.getAttribute("project")).getName() %>
+                            <%String projectname = ((Project)request.getAttribute("project")).getName()
+                            out.print(projectname);
+                                session.setAttribute("projectname",projectname);
+                            %>
                         </div>
                         <!-- /.panel-heading -->
                         <b>详细描述：</b>><%= ((Project)request.getAttribute("project")).getDescription() %>
                         <!-- /.panel-body -->
                     </div>
-
                     <br>
 
                     <div class="panel panel-default">
