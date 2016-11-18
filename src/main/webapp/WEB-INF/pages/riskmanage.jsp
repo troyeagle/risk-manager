@@ -524,7 +524,9 @@
     <!-- Page-Level Plugin Scripts - Tables -->
     <script src="/js/dataTables.bootstrap.min.js"></script>
     <script src="/js/jquery.dataTables.js"></script>
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+    <!-- Page-Level Demo Scripts - Morris - Use for reference -->
+    <script src="js/demo/morris-demo.js"></script>
     <script>
         $(document).ready(function() {
             $('#dataTables-example').dataTable();
