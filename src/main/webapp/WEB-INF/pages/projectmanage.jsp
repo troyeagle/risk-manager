@@ -434,16 +434,9 @@
                                                     <th>项目名称</th>
                                                     <th>项目描述</th>
                                                     <th>详细</th>
-                                                    <th>删除</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>堵门狗2</td>
-                                                    <td>超级3A级游戏大作</td>
-                                                    <td> <a href="/project?name=堵门狗2">详细</a> </td>
-                                                    <td> <a href="/deleteproject?name=堵门狗2">删除</a> </td>
-                                                </tr>
 
                                                 <%
                                                     for (Project project : (List<Project>)request.getAttribute("list")) {
@@ -451,9 +444,7 @@
                                                         String name =  project.getName();
                                                         out.println("<td>"+ name +"</td>");
                                                         out.println("<td>"+ project.getDescription() +"</td>");
-                                                        out.println("<td>"+ project.getDescription() +"</td>");
                                                         out.println("<td> <a href=\" /project?name=" +name+ "\">详细</a> </td>");
-                                                        out.println("<td> <a href=\"/deleteproject?name=" +name+ " \">删除</a> </td>");
                                                         out.println("</tr>");
                                                     }
                                                 %>
