@@ -402,7 +402,7 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <%String projectname = ((Project)request.getAttribute("project")).getName()
+                            <%String projectname = ((Project)request.getAttribute("project")).getName();
                             out.print(projectname);
                                 session.setAttribute("projectname",projectname);
                             %>
