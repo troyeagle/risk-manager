@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-增加风险关系高级版</title>
+    <title>风险管理系统-导入风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -395,7 +395,7 @@
                         <div class="col-lg-12">
                             <br>
                             <form action="">
-                                <div class="col-lg-2 form-group" >
+                                <div class="col-lg-1 form-group" >
                                     <button type="submit" class="btn btn-default">查询</button>
                                 </div>
 
@@ -432,25 +432,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>风险编号</td>
-                                    <td><input value = "风险简述"></td>
-                                    <td>风险详述</td>
-                                    <td>可能性</td>
-                                    <td>
-                                        <select class="form-control" name="type">
-                                            <option>高</option>
-                                            <option>中</option>
-                                            <option>低</option>
-                                        </select>
-                                    </td>
-                                    <td>阈值</td>
-                                    <td>跟踪者</td>
-                                    <td>导入</td>
-                                    <td>导入</td>
-                                </tr>
                                 <%
-                                    /*
                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                         out.println("<tr>");
 
@@ -458,22 +440,42 @@
                                         out.println("<td>"+ Id +"</td>");
 
                                         out.println("<td><input value=\""+ risk.getRiskBrief() +"\"></td>");
-                                        out.println("<td>"+ risk.getRiskDetail() +"</td>");
+                                        out.println("<td><input value=\""+ risk.getRiskDetail() +"\"></td>");1
 
                                         int possibilitiyint = risk.getPossibility().intValue();
-                                        String possibility = risk.getLevel(possibilitiyint);
-                                        out.println("<td>"+ possibility +"</td>");
+                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
+                                        if(possibilitiyint==1){
+                                            out.println(" <option>低</option>");
+                                        }
+                                        else if(possibilitiyint==2){
+                                            out.println(" <option>中</option>");
+                                        }
+                                        else if(possibilitiyint==3){
+                                            out.println(" <option>高</option>");
+                                        }
+                                        out.println("</select>");
 
                                         int influenceint = risk.getInfluence().intValue();
-                                        String influence = risk.getLevel(influenceint);
-                                        out.println("<td>"+ influence +"</td>");
+                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
+                                        if(influenceint==1){
+                                            out.println(" <option>低</option>");
+                                        }
+                                        else if(influenceint==2){
+                                            out.println(" <option>中</option>");
+                                        }
+                                        else if(influenceint==3){
+                                            out.println(" <option>高</option>");
+                                        }
+                                        out.println("</select>");
 
                                         out.println("<td>"+ risk.getThreshold() +"</td>");
-                                        out.println("<td> <a href=\" /modifyrisk_page?id=" +Id+ "\">修改</a> </td>");
-                                        out.println("<td> <a href=\"/deleterisk_page?id=" +Id+ " \">删除</a> </td>");
+
+                                        out.println("<td><input value=\"\"></td>");
+
+                                        out.println("<td> <input name=\"inform\" type=\"checkbox\"/></td>");
+                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"/></td>");
                                         out.println("</tr>");
                                     }
-                                    */
                                 %>
 
                                 </tbody>
