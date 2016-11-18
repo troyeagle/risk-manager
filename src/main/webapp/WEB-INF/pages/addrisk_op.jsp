@@ -482,7 +482,14 @@
                             </table>
 
                             <br>
+                            <div class="col-lg-8 form-group">
+                            </div>
+                            <div class="col-lg-2 form-group">
 
+                            </div>
+                            <div class="col-lg-2 form-group">
+
+                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>

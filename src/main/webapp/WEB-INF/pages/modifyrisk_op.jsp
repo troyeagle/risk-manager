@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
 <%@ page import="com.padeoe.pojo.Risk" %>
+<%@ page import="com.padeoe.pojo.RiskOperation" %>
 
 <head>
 
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-修改风险</title>
+    <title>风险管理系统-修改风险条目</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -381,13 +382,16 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">修改风险</h1>
+                    <h1 class="page-header">修改风险条目</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
 
-            <%Risk risk = (Risk)request.getAttribute("risk");%>
+            <%
+                Risk risk = (Risk)request.getAttribute("risk");
+                RiskOperation riskop = (RiskOperation)request.getAttribute("riskop");
+            %>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -396,34 +400,44 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form" action="/modifyRiskBL">
+                            <form role="form" action="">
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
 
                                 <div class="form-group">
-                                    <label>项目ID</label>
-                                    <input class="form-control-static" readonly="readonly" name="id" type="text" value="<%out.println( risk.getId().intValue());%>">
+                                    <label>风险条目ID</label>
+                                    <input class="form-control-static" readonly="readonly" name="id" type="text" value="<%out.println( riskop.getId().intValue());%>">
                                 </div>
 
                                 <div class="form-group">
                                     <label>风险简述</label>
-                                    <input class="form-control" name="riskBrief" type="text" value="<%out.println( risk.getRiskBrief());%>">
-                                    <p class="help-block" >项目简述</p>
+                                    <input class="form-control" name="riskBrief"  readonly="readonly" type="text" value="<%out.println( risk.getRiskBrief());%>">
                                 </div>
 
                                 <div class="form-group">
                                     <label>风险详细描述</label>
-                                    <textarea class="form-control" rows="3" name="riskDetail"><%=risk.getRiskDetail()%></textarea>
-                                    <p class="help-block" >详细描述风险，方便理解</p>
+                                    <textarea class="form-control" rows="3" name="riskDetail"><%=riskop.getDescription()%></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label>阈值</label>
                                     <input class="form-control" name="threshold" type="text" value="<%=risk.getThreshold()%>">
-                                    <p class="help-block" >风险成为问题的阈值</p>
                                 </div>
 
                                 <%
-                                      int possibility = risk.getPossibility().intValue();
+                                    int state = riskop.getPossibility().intValue();
+                                %>
+
+                                <div class="form-group">
+                                    <label>可能性</label>
+                                    <select class="form-control" name="possibility">
+                                        <option <%if(state==1){out.print("selected=\"selected\"");} %> >低</option>
+                                        <option <%if(state==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(state==3){out.print("selected=\"selected\"");} %> >高</option>
+                                    </select>
+                                </div>
+
+                                <%
+                                      int possibility = riskop.getPossibility().intValue();
                                 %>
 
                                 <div class="form-group">
@@ -437,7 +451,7 @@
 
                                 <%
 
-                                    int influence = risk.getInfluence().intValue();
+                                    int influence = riskop.getInfluence().intValue();
 
                                 %>
 
