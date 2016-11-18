@@ -452,12 +452,22 @@
                                                         out.println("<td>"+ id +"</td>");
                                                         out.println("<td>"+ risk.getRiskBrief() +"</td>");
                                                         out.println("<td>"+ Listop.get(i).getDescription() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getPossibility() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getInfluence() +"</td>");
+
+                                                        int possibilitiyint =Listop.get(i).getPossibility();
+                                                        String possibility = risk.getLevel(possibilitiyint);
+                                                        out.println("<td>"+ possibility +"</td>");
+
+                                                        int influenceint =Listop.get(i).getInfluence() ;
+                                                        String influence = risk.getLevel(influenceint);
+                                                        out.println("<td>"+ influence +"</td>");
+
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");
                                                         out.println("<td>"+ Listop.get(i).getCreatorName() +"</td>");
                                                         out.println("<td>"+ Listop.get(i).getTracerName() +"</td>");
-                                                        out.println("<td>"+ Listop.get(i).getState() +"</td>");
+
+                                                        int stateint = Listop.get(i).getState().intValue();
+                                                        out.println("<td>"+ stateint +"</td>");
+
                                                         out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
                                                         out.println("<td> <a href=\"/modifyrisk_page?id=" + id + "\">修改</a> </td>");
                                                         out.println("</tr>");

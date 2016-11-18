@@ -430,36 +430,20 @@
                                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                 <thead>
                                                 <tr>
-                                                    <th>风险编号</th>
                                                     <th>风险简述</th>
                                                     <th>风险详述</th>
                                                     <th>可能性</th>
                                                     <th>影响程度</th>
                                                     <th>阈值</th>
-                                                    <th>修改</th>
-                                                    <th>删除</th>
+                                                    <th>跟踪者</th>
+                                                    <th>导入</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <!--
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>服务器崩溃</td>
-                                                    <td>工作人员将服务器内所有硬盘偷走跑路</td>
-                                                    <td>低</td>
-                                                    <td>高</td>
-                                                    <td>100</td>
-                                                    <td> <a href="/modifyrisk_page?id=1">修改</a> </td>
-                                                    <td> <a href="/deleterisk_page?id=1">删除</a> </td>
-                                                </tr>
-                                                -->
+
                                                 <%
                                                     for (Risk risk : (List<Risk>)request.getAttribute("list")) {
                                                          out.println("<tr>");
-
-                                                        int Id = risk.getId().intValue();
-                                                        out.println("<td>"+ Id +"</td>");
-
                                                         out.println("<td>"+ risk.getRiskBrief() +"</td>");
                                                         out.println("<td>"+ risk.getRiskDetail() +"</td>");
 
