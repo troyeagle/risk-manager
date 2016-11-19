@@ -401,6 +401,7 @@
 
                                 <div class="col-lg-3 form-group">
                                     <select class="form-control" name="type">
+                                        <option>全部</option>
                                         <option>被识别的风险</option>
                                         <option>转化为问题的风险</option>
                                     </select>
@@ -416,6 +417,9 @@
                             </form>
 
                             <br>
+                            <div align="center">
+                                <button id="lead">导入</button>
+                            </div>
                                 <br>
                             <table align="center">
                                 <thead>
@@ -434,12 +438,12 @@
 
                                 <tr>
                                     <td>风险编号</td>
-                                    <td>风险编号</td>
-                                    <td>风险编号</td>
-                                    <td>风险编号</td>
-                                    <td>风险编号</td>
-                                    <td>风险编号</td>
-                                    <td>风险编号</td>
+                                    <td>风险简述</td>
+                                    <td>风险详述</td>
+                                    <td>可能性</td>
+                                    <td>影响程度</td>
+                                    <td>阈值</td>
+                                    <td>跟踪者</td>
                                     <td><input name="lead" type="checkbox"></td>
                                 </tr>
                                 <%
@@ -493,14 +497,6 @@
                             </table>
 
                             <br>
-                            <div class="col-lg-8 form-group">
-                            </div>
-                            <div class="col-lg-2 form-group">
-
-                            </div>
-                            <div class="col-lg-2 form-group">
-
-                            </div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -536,6 +532,18 @@
     <script>
         $(document).ready(function() {
             $('table').dataTable();
+        });
+
+        $('#lead').click(function () {
+
+
+            var layer1 = $('tr :checkbox:checked').parent().parent();
+            for(var i = 0;i<layer1.length;i++){
+                var layer2=$(layer1[i]).find('td');
+                for(var j=0;j<layer2.length-1;j++){
+                    console.log($(layer2[j]).text());
+                }
+            }
         });
     </script>
 

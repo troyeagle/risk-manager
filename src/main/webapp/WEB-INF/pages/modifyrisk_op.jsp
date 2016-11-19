@@ -439,9 +439,10 @@
                                 <div class="form-group">
                                     <label>状态</label>
                                     <select class="form-control" name="state">
-                                        <option <%if(state==1){out.print("selected=\"selected\"");} %> >低</option>
-                                        <option <%if(state==2){out.print("selected=\"selected\"");} %> >中</option>
-                                        <option <%if(state==3){out.print("selected=\"selected\"");} %> >高</option>
+                                        <option <%if(state==1){out.print("selected=\"selected\"");} %> >被发现</option>
+                                        <option <%if(state==2){out.print("selected=\"selected\"");} %> >演变为问题</option>
+                                        <option <%if(state==3){out.print("selected=\"selected\"");} %> >解决中</option>
+                                        <option <%if(state==4){out.print("selected=\"selected\"");} %> >已解决</option>
                                     </select>
                                 </div>
 

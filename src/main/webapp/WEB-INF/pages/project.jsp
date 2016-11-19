@@ -482,7 +482,22 @@
                                                         out.println("<td>"+ Listop.get(i).getTracerName() +"</td>");
 
                                                         int stateint = Listop.get(i).getState().intValue();
-                                                        out.println("<td>"+ stateint +"</td>");
+                                                        String state = "";
+                                                        switch (stateint){
+                                                            case (1):
+                                                                state = "被发现";
+                                                                break;
+                                                            case(2):
+                                                                state = "演变为问题";
+                                                                break;
+                                                            case(3):
+                                                                state = "解决中";
+                                                                break;
+                                                            case(4):
+                                                                state = "已解决";
+                                                                break;
+                                                        }
+                                                        out.println("<td>"+ state +"</td>");
 
                                                         out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
                                                         out.println("<td> <a href=\"/modifyrisk_page?id=" + id + "\">修改</a> </td>");
