@@ -5,14 +5,11 @@ import com.padeoe.pojo.RiskSearchResult;
 import com.padeoe.pojo.User;
 import com.padeoe.service.INotificationService;
 import com.padeoe.service.ISearchService;
-import com.padeoe.service.IUserService;
-import com.padeoe.service.impl.NotificationServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import javax.naming.directory.SearchResult;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -53,7 +50,8 @@ public class indexController {
     public String notify_page(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
         int i =Integer.parseInt(id);
-        String notify =  NotificationService.openNotification(i);
+        Notification notification = NotificationService.openNotification(i);
+        String notify =  notification.getContent();
        model.addAttribute("notify", notify);
         return "notify";
     }
@@ -79,7 +77,8 @@ public class indexController {
         return "piechart";
     }
 
-    @RequestMapping("/piechartsearch")
+    @SuppressWarnings("deprecation")
+	@RequestMapping("/piechartsearch")
     public String piechartShow(HttpServletRequest request, Model model) {
         String startDate = request.getParameter("startdate");
         String enddate = request.getParameter("enddate");
