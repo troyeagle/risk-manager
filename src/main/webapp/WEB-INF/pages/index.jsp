@@ -407,7 +407,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">查看通知</span>
+                                <span class="pull-left">查看通知 </span>
                                 <span class="pull-right">=></span>
                                 <div class="clearfix"></div>
                             </div>

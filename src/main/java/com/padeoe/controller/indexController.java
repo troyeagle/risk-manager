@@ -51,9 +51,10 @@ public class indexController {
     @RequestMapping("/notify_page")
     public String notify_page(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
-
-       // model.addAttribute("notify", NotificationService.openNotification(Integer.getInteger(id)));
-        return "notify"+NotificationService;
+        int i =Integer.parseInt(id);
+        String notify =  NotificationService.openNotification(i);
+       model.addAttribute("notify", notify);
+        return "notify";
     }
 
     @RequestMapping("/addrisk_op_page")

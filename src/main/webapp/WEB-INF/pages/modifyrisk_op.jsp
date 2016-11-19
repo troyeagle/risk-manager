@@ -475,7 +475,7 @@
 
                                 <div class="form-group">
                                     <label>是否提示追踪者</label>
-                                    <input type="checkbox" name="Notification" value="true" />是
+                                    <input type="checkbox" name="Notification" value="true" checked="checked"/>
                                 </div>
 
                                 <div class="form-group">
