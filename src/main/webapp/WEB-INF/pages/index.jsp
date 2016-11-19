@@ -494,7 +494,7 @@
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            风险跟踪通知
+                                            跟踪风险通知
                                         </div>
 
                                         <%
