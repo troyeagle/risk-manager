@@ -499,24 +499,25 @@
 
                                         <%
                                             List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
-                                            for (Notification notify : notifylist) {
-                                                out.print("<div class=\"panel-body\">\n" +
-                                                        "                                            <div class=\"list-group\">\n" +
-                                                        "                                                <a href=\"notify_page?id=" +
-                                                        notify.getId()+
-                                                        "\" class=\"list-group-item\">\n" +
-                                                        notify.getTitle()+
-                                                                "                                                    <span class=\"pull-right text-muted small\">" +
-                                                        "<em>" +
-                                                        notify.getTime().toString() +
-                                                        "</em>\n" +
-                                                        "                                    </span>\n" +
-                                                        "                                                </a>\n" +
-                                                        "\n" +
-                                                        "                                            </div>\n" +
-                                                        "                                        </div>");
+                                            if(!notifylist.get(0).getFromUser().equals("")||notifylist.get(0).getFromUser()==null) {
+                                                for (Notification notify : notifylist) {
+                                                    out.print("<div class=\"panel-body\">\n" +
+                                                            "                                            <div class=\"list-group\">\n" +
+                                                            "                                                <a href=\"notify_page?id=" +
+                                                            notify.getId() +
+                                                            "\" class=\"list-group-item\">\n" +
+                                                            notify.getTitle() +
+                                                            "                                                    <span class=\"pull-right text-muted small\">" +
+                                                            "<em>" +
+                                                            notify.getTime().toString() +
+                                                            "</em>\n" +
+                                                            "                                    </span>\n" +
+                                                            "                                                </a>\n" +
+                                                            "\n" +
+                                                            "                                            </div>\n" +
+                                                            "                                        </div>");
+                                                }
                                             }
-
                                         %>
                                         <!-- /.panel-heading -->
 
