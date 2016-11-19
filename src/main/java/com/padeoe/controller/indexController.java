@@ -26,6 +26,7 @@ import java.util.List;
 public class indexController {
     @Resource
     private INotificationService NotificationService;
+    @Resource
     private ISearchService iSearchService;
 
     @RequestMapping("/")
@@ -99,8 +100,10 @@ public class indexController {
             model.addAttribute("error", "未知的图表类型");
             return "piechart_page";
         }
-        System.out.println(startDate);
-        System.out.println(enddate);
+        if(startDate.length()!=10||enddate.length()!=10){
+            model.addAttribute("error", "未指定日期");
+            return "piechart_page";
+        }
         Date start=new Date(Integer.parseInt(startDate.substring(0,4))-1900,Integer.parseInt(startDate.substring(5,7))-1,Integer.parseInt(startDate.substring(8,10)));
         Date end=new Date(Integer.parseInt(enddate.substring(0,4))-1900,Integer.parseInt(enddate.substring(5,7))-1,Integer.parseInt(enddate.substring(8,10)));
          List<RiskSearchResult> results=iSearchService.searchByCondition(type_int,null,start,end);
