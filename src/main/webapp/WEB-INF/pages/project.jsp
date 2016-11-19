@@ -477,11 +477,11 @@
                                                         out.println("<td>"+ Listop.get(i).getDescription() +"</td>");
 
                                                         int possibilitiyint =Listop.get(i).getPossibility();
-                                                        String possibility = risk.getLevel(possibilitiyint);
+                                                        String possibility = risk.getLevel_Possiblility(possibilitiyint);
                                                         out.println("<td>"+ possibility +"</td>");
 
                                                         int influenceint =Listop.get(i).getInfluence() ;
-                                                        String influence = risk.getLevel(influenceint);
+                                                        String influence = risk.getLevel_Influence(influenceint);
                                                         out.println("<td>"+ influence +"</td>");
 
                                                         out.println("<td>"+ risk.getThreshold() +"</td>");

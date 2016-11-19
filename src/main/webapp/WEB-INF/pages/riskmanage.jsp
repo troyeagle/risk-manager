@@ -467,11 +467,11 @@
                                                     out.println("<td>"+ risk.getRiskDetail() +"</td>");
 
                                                     int possibilitiyint = risk.getPossibility().intValue();
-                                                    String possibility = risk.getLevel(possibilitiyint);
+                                                    String possibility = risk.getLevel_Possiblility(possibilitiyint);
                                                     out.println("<td>"+ possibility +"</td>");
 
                                                     int influenceint = risk.getInfluence().intValue();
-                                                    String influence = risk.getLevel(influenceint);
+                                                    String influence = risk.getLevel_Influence(influenceint);
                                                     out.println("<td>"+ influence +"</td>");
 
                                                     out.println("<td>"+ risk.getThreshold() +"</td>");

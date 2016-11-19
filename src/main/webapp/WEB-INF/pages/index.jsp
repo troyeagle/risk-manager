@@ -407,7 +407,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">查看通知</span>
+                                <span class="pull-left">查看通知 </span>
                                 <span class="pull-right">=></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -500,9 +500,10 @@
                                         <%
                                             List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
                                                 for (Notification notify : notifylist) {
-                                                    if(notify.getFromUser()==null){
+                                                    if(notify.getFromUser()==null||notify.getTitle()==null||notify.getTitle().equals("")){
                                                         continue;
                                                     }
+
                                                     out.print("<div class=\"panel-body\">\n" +
                                                             "                                            <div class=\"list-group\">\n" +
                                                             "                                                <a href=\"notify_page?id=" +

@@ -423,16 +423,16 @@
                                     <label>项目优先级</label>
                                     <select class="form-control" name="possibility">
                                         <option>低</option>
-                                        <option>中</option>
+                                        <option>普通</option>
                                         <option>高</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>影响程度</label>
                                     <select class="form-control" name="influence">
-                                        <option>低</option>
-                                        <option>中</option>
-                                        <option>高</option>
+                                        <option>一般</option>
+                                        <option>较大</option>
+                                        <option>致命</option>
                                     </select>
                                 </div>
 
