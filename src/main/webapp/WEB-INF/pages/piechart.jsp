@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.RiskSearchResult" %>
 
 <head>
 
@@ -458,13 +459,25 @@
     <script src="/dist/js/sb-admin-2.js"></script>
 
 </body>
+
+
 <script>
     Morris.Donut({
         element: 'morris-donut-chart',
-        data: [{
-            label: "测试",
-            value: 12
-        }],
+        <%
+        List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
+        for(RiskSearchResult result: rsr){
+        out.print("   data: [{\n" +
+"            label: \"" +
+ result.getRiskBrief() +
+  "\",\n" +
+"            value: " +
+result.getCount() +
+  "\n" +
+"        }],");
+        }
+        %>
+
         resize: true
     });
 </script>
