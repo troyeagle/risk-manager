@@ -472,10 +472,9 @@
             <%
             List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
             for(RiskSearchResult result: rsr){
-            out.print("{\n" +
-    "            label: \"" + result.getRiskBrief() +"\"," +
-    "            value: " + result.getCount() +"\"" +
-    "        },");
+            out.print(
+                    "{label: \"" + result.getRiskBrief() +"\"," +
+                    " value: " + result.getCount() +"},");
             }
             %>
             ],
