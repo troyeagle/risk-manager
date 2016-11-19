@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.RiskSearchResult" %>
 
 <head>
 
@@ -396,25 +397,24 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
-                    <form action="">
+                    <form action="piechartsearch">
                         <div class="col-lg-1 form-group" >
                             <button type="submit" class="btn btn-default">查询</button>
                         </div>
 
                         <div class="col-lg-3 form-group">
                             <select class="form-control" name="type">
-                                <option>全部</option>
-                                <option>被识别的风险</option>
-                                <option>转化为问题的风险</option>
+                                <option value="shibie">被识别的风险</option>
+                                <option value="wenti">转化为问题的风险</option>
                             </select>
                         </div>
 
                         <div class="col-lg-3 form-group">
-                            起始时间：<input type="datetime-local" name="startdate">
+                            起始时间：<input type="date" name="startdate">
                         </div>
 
                         <div class="col-lg-3 form-group">
-                            结束时间：<input type="datetime-local" name="enddate">
+                            结束时间：<input type="date" name="enddate">
                         </div>
                     </form>
 
@@ -459,13 +459,25 @@
     <script src="/dist/js/sb-admin-2.js"></script>
 
 </body>
+
+
 <script>
     Morris.Donut({
         element: 'morris-donut-chart',
-        data: [{
-            label: "测试",
-            value: 12
-        }],
+        <%
+        List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
+        for(RiskSearchResult result: rsr){
+        out.print("   data: [{\n" +
+"            label: \"" +
+ result.getRiskBrief() +
+  "\",\n" +
+"            value: " +
+result.getCount() +
+  "\n" +
+"        }],");
+        }
+        %>
+
         resize: true
     });
 </script>
