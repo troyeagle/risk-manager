@@ -483,26 +483,6 @@
                     </div>
                     <!-- /.panel -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            项目表
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        操作
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">添加项目</a>
-                                        </li>
-                                        <!--
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                        -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
