@@ -396,7 +396,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <br>
-                    <form action="">
+                    <form action="piechartsearch">
                         <div class="col-lg-1 form-group" >
                             <button type="submit" class="btn btn-default">查询</button>
                         </div>
