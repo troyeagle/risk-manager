@@ -1,11 +1,14 @@
 package com.padeoe.controller;
 
 import com.padeoe.pojo.User;
+import com.padeoe.service.INotificationService;
+import com.padeoe.service.IUserService;
 import com.padeoe.service.impl.NotificationServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,20 +17,28 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class indexController {
+    @Resource
+    private INotificationService NotificationService;
+
     @RequestMapping("/")
     public String homepage(HttpServletRequest request, Model model) {
         return "login";
     }
 
+
     @RequestMapping("/index_page")
     public String index_page(HttpServletRequest request, Model model, HttpSession session) {
-
        String username =  ((User)session.getAttribute("user")).getUsername().toString();
-        NotificationServiceImpl ins = new NotificationServiceImpl();
-        model.addAttribute("notify",ins.listNotification(username));
+        model.addAttribute("notify",NotificationService.listNotification(username));
         return "index";
     }
 
+    @RequestMapping("/notify_page")
+    public String notify_page(HttpServletRequest request, Model model) {
+        String id =  request.getParameter("id");
+        model.addAttribute("notify",NotificationService.openNotification(Integer.getInteger(id)));
+        return "notify";
+    }
 
     @RequestMapping("/addrisk_op_page")
     public String addrisk_op(HttpServletRequest request, Model model) {

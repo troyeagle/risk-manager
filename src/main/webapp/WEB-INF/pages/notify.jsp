@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统</title>
+    <title>风险管理系统-增加风险</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +26,7 @@
 
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index_page">项目风险管理</a>
+                <a class="navbar-brand" href="index_page">项目风险管理 - 风险追踪信息</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -261,7 +262,7 @@
                        </li>
                        -->
                        <li class="divider"></li>
-                       <li><a href="logout"> 登出</a>
+                       <li><a href="/logout"> 登出</a>
                        </li>
                    </ul>
                    <!-- /.dropdown-user -->
@@ -283,9 +284,9 @@
                                 out.print("<a href=\"riskmanage_page\">风险管理</a>");
                                 out.print("</li>");
                             }
-                         %>
+                        %>
                         <li>
-                            <a href="projectmanage_page">项目管理</a>
+                            <a href="project_page">项目管理</a>
                         </li>
                         <!--
                         <li>
@@ -301,7 +302,7 @@
                             <!-- /.nav-second-level
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href=""><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -319,7 +320,7 @@
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="">Typography</a>
                                 </li>
                                 <li>
                                     <a href="icons.html"> Icons</a>
@@ -384,147 +385,27 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">最新风险通知</h1>
+                    <h1 class="page-header">追踪风险信息</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>通知</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看通知</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>轻微风险警报</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看轻微风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>适中风险警报</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看适中风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>严重风险警报！</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看严重风险警报</span>
-                                <span class="pull-right">=></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            风险跟踪通知
-                                        </div>
-
-                                        <%
-                                            List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
-                                            for (Notification notify : (List<Notification>)request.getAttribute("notifylist")) {
-                                                out.print("<div class=\"panel-body\">\n" +
-                                                        "                                            <div class=\"list-group\">\n" +
-                                                        "                                                <a href=\"notify_page?id=" +
-                                                        notify.getId()+
-                                                        "\" class=\"list-group-item\">\n" +
-                                                        notify.getTitle()+
-                                                                "                                                    <span class=\"pull-right text-muted small\">" +
-                                                        "<em>" +
-                                                        notify.getTime().toString() +
-                                                        "</em>\n" +
-                                                        "                                    </span>\n" +
-                                                        "                                                </a>\n" +
-                                                        "\n" +
-                                                        "                                            </div>\n" +
-                                                        "                                        </div>");
-                                            }
-
-                                        %>
-                                        <!-- /.panel-heading -->
-
-                                        <!-- /.panel-body -->
-                                    </div>
-                                    <!-- /.table-responsive -->
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-8">
+                            <br>
+                            <%
+                                String content = request.getAttribute("notify").toString();
+                            %>
+                                <div class="form-group">
+                                    <label>风险简述</label>
+                                    <%=content%>
                                 </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
+
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -532,7 +413,6 @@
 
                 </div>
                 <!-- /.col-lg-8 -->
-                <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
         </div>
@@ -557,9 +437,6 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
-
-    <!-- Page-Level Demo Scripts - Morris - Use for reference -->
-    <script src="js/demo/morris-demo.js"></script>
 
 </body>
 
