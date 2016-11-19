@@ -410,11 +410,11 @@
                         </div>
 
                         <div class="col-lg-3 form-group">
-                            起始时间：<input type="datetime-local" name="startdate">
+                            起始时间：<input type="date" name="startdate">
                         </div>
 
                         <div class="col-lg-3 form-group">
-                            结束时间：<input type="datetime-local" name="enddate">
+                            结束时间：<input type="date" name="enddate">
                         </div>
                     </form>
 
