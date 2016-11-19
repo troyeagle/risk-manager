@@ -279,11 +279,18 @@
                         <li>
                             <a href="index_page">主页</a>
                         </li>
+                        <%
+                            if(((User)session.getAttribute("user")).getAuthority()==0) {
+                                out.print("<li>");
+                                out.print("<a href=\"riskmanage_page\">风险管理</a>");
+                                out.print("</li>");
+                            }
+                        %>
                         <li>
-                            <a href="riskmanage_page">风险管理</a>
+                            <a href="projectmanage_page">项目管理</a>
                         </li>
                         <li>
-                            <a href="project_page">项目管理</a>
+                            <a href="piechart_page">统计图表</a>
                         </li>
                         <!--
                         <li>
@@ -418,30 +425,11 @@
                                     <textarea class="form-control" rows="3" name="riskDetail"><%=riskop.getDescription()%></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>追踪者</label>
-                                    <textarea class="form-control" rows="3" name="tracer"><%=riskop.getTracerName()%></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>提供给追踪者的信息</label>
-                                    <textarea class="form-control" rows="3" name="Notificationmessage"></textarea>
-                                    <p class="help-block" >不填写则默认为系统自动生成信息</p>
-                                </div>
 
                                 <div class="form-group">
                                     <label>阈值</label>
                                     <input class="form-control" name="threshold"  readonly="readonly"  type="text" value="<%=risk.getThreshold()%>">
                                 </div>
-
-                                <div class="form-group">
-                                    <label>是否提示追踪者</label>
-                                    <select class="form-control" name="Notification">
-                                        <option >是</option>
-                                        <option >否</option>
-                                    </select>
-                                </div>
-
 
                                 <%
                                     int state = riskop.getPossibility().intValue();
@@ -484,6 +472,28 @@
                                         <option <%if(influence==3){out.print("selected=\"selected\"");} %> >致命</option>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>是否提示追踪者</label>
+                                    <input type="checkbox" name="Notification" value="true" />是
+                                </div>
+
+                                <div class="form-group">
+                                    <label>追踪者</label>
+                                    <textarea class="form-control" rows="1" name="tracer"><%=riskop.getTracerName()%></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>提示标题</label>
+                                    <textarea class="form-control" rows="1" name="Notificationtitle"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>提供给追踪者的信息</label>
+                                    <textarea class="form-control" rows="3" name="Notificationmessage"></textarea>
+                                    <p class="help-block" >不填写则默认为系统自动生成信息</p>
+                                </div>
+
 
                                 <button type="submit" class="btn btn-default"><h5>提交表单</h5></button>
                             </form>

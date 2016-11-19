@@ -285,7 +285,10 @@
                             }
                         %>
                         <li>
-                            <a href="project_page">项目管理</a>
+                            <a href="projectmanage_page">项目管理</a>
+                        </li>
+                        <li>
+                            <a href="piechart_page">统计图表</a>
                         </li>
                         <!--
                         <li>

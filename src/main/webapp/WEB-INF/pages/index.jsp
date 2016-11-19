@@ -287,6 +287,9 @@
                         <li>
                             <a href="projectmanage_page">项目管理</a>
                         </li>
+                        <li>
+                            <a href="piechart_page">统计图表</a>
+                        </li>
                         <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

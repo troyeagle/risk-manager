@@ -279,11 +279,18 @@
                         <li>
                             <a href="index_page">主页</a>
                         </li>
-                        <li>
-                            <a href="riskmanage_page">风险管理</a>
-                        </li>
+                        <%
+                            if(((User)session.getAttribute("user")).getAuthority()==0) {
+                                out.print("<li>");
+                                out.print("<a href=\"riskmanage_page\">风险管理</a>");
+                                out.print("</li>");
+                            }
+                        %>
                         <li>
                             <a href="projectmanage_page">项目管理</a>
+                        </li>
+                        <li>
+                            <a href="piechart_page">统计图表</a>
                         </li>
                         <!--
                         <li>
