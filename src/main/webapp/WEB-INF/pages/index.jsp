@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
+<%@ page import="com.padeoe.pojo.Notification" %>
 
 <head>
 
@@ -492,44 +493,24 @@
                                         <div class="panel-heading">
                                             风险跟踪通知
                                         </div>
+
+                                        <%
+                                            List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
+                                            for (Notification notify : (List<Notification>)request.getAttribute("listr")) {
+                                            out.print();
+                                        %>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="list-group">
                                                 <a href="#" class="list-group-item">
-                                                    <i class="fa fa-money fa-fw"></i> 变更具体信息
+                                                    变更具体信息
                                                     <span class="pull-right text-muted small"><em>变更时间</em>
                                     </span>
                                                 </a>
 
                                             </div>
-                                            <!-- /.list-group -->
-                                           <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a>-->
                                         </div>
                                         <!-- /.panel-body -->
-                                    </div>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>项目编号</th>
-                                                    <th>项目名称</th>
-                                                    <th>项目描述</th>
-                                                    <th>追踪风险数量</th>
-                                                    <th>详细页面</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>windows 9</td>
-                                                    <td>制作超一流的系统，以及制作超二流的系统，还有制作超三流的系统</td>
-                                                    <td>12</td>
-                                                    <td> <a href="/project_page">详细</a> </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>

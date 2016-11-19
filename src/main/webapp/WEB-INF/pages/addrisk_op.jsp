@@ -429,7 +429,7 @@
                                 <thead>
                                 <tr>
                                     <th width="20">导入</th>
-                                    <th width="70">风险编号</th>
+                                     <th width="70">风险编号</th>
                                     <th width="200">风险简述</th>
                                     <th width="300">风险详述</th>
                                     <th width="50">可能性 </th>
