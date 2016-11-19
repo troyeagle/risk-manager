@@ -423,7 +423,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/addrisk_op?project=<%=projectname%>">导入具体风险条目</a>
+                                        <li><a href="/addrisk_op?name=<%=projectname%>">导入具体风险条目</a>
                                         </li>
                                         <!--
                                         <li class="divider"></li>
