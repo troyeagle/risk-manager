@@ -394,7 +394,7 @@
 
                         <div class="col-lg-12">
                             <br>
-                            <form action="">
+                            <form action="addrisk_op">
                                 <div class="col-lg-1 form-group" >
                                     <button type="submit" class="btn btn-default">查询</button>
                                 </div>
