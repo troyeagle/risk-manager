@@ -499,8 +499,10 @@
 
                                         <%
                                             List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
-                                            if(!notifylist.get(0).getFromUser().equals("")||notifylist.get(0).getFromUser()==null) {
                                                 for (Notification notify : notifylist) {
+                                                    if(notify.getFromUser()==null){
+                                                        continue;
+                                                    }
                                                     out.print("<div class=\"panel-body\">\n" +
                                                             "                                            <div class=\"list-group\">\n" +
                                                             "                                                <a href=\"notify_page?id=" +
@@ -517,7 +519,7 @@
                                                             "                                            </div>\n" +
                                                             "                                        </div>");
                                                 }
-                                            }
+
                                         %>
                                         <!-- /.panel-heading -->
 
