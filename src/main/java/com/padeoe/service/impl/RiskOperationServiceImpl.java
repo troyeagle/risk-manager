@@ -27,9 +27,7 @@ public class RiskOperationServiceImpl implements IRiskOperationService{
 
     @Override
     public List<RiskOperation> queryByProjectLatest(String projectName) {
-        RiskOperation query = new RiskOperation();
-        query.setProjectName(projectName);
-        return riskOperationDao.selectByConditionLatest(query);
+        return riskOperationDao.selectByProjectLatest(projectName);
     }
 
     @Override

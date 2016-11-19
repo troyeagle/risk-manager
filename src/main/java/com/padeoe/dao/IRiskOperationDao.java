@@ -11,6 +11,8 @@ public interface IRiskOperationDao {
     List<RiskOperation> selectByCondition(RiskOperation query);
 
     List<RiskOperation> selectByConditionLatest(RiskOperation query);
+    
+    List<RiskOperation> selectByProjectLatest(String projectName);
 
     List<Risk> queryByState(Integer state);
 
@@ -27,6 +29,4 @@ public interface IRiskOperationDao {
     int updateByPrimaryKeySelective(RiskOperation record);
 
     int updateByPrimaryKey(RiskOperation record);
-
-
 }
