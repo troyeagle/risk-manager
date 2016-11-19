@@ -34,12 +34,20 @@ public class RiskOperationController {
 	@Resource ISearchService searchService;
 	@Resource INotificationService notificationService;
 
-	private final Map<String, Integer> riskPossibility = new HashMap<>(); 
-	private final Map<String, Integer> riskInfluence = new HashMap<>(); 
-	private final Map<String, Integer> riskState = new HashMap<>(); {
-		riskPossibility.put("高", 3);	riskPossibility.put("普通", 2);	riskPossibility.put("低", 1);
-		riskInfluence.put("一般", 1);	riskInfluence.put("较大", 2);	riskInfluence.put("致命", 3);
-		riskState.put("被发现", 1);	riskState.put("演变为问题", 2);	riskState.put("解决中", 3);	riskState.put("已解决", 4);
+	private final Map<String, Integer> riskPossibility = new HashMap<>(); 	private final String[] riskPossibilityReverse;
+	private final Map<String, Integer> riskInfluence = new HashMap<>(); 	private final String[] riskInfluenceReverse;
+	private final Map<String, Integer> riskState = new HashMap<>(); 		private final String[] riskStateReverse; {
+		riskPossibilityReverse = new String[] {null, "低", "普通", "高"};
+		for(int i = 1; i < riskPossibilityReverse.length; i ++)
+			riskPossibility.put(riskPossibilityReverse[i], i);
+		
+		riskInfluenceReverse = new String[] {null, "一般", "较大", "致命"};
+		for(int i = 1; i < riskInfluenceReverse.length; i ++)
+			riskInfluence.put(riskInfluenceReverse[i], i);
+		
+		riskStateReverse = new String[] {null, "被发现", "演变为问题", "解决中", "已解决"};
+		for(int i = 1; i < riskStateReverse.length; i ++)
+			riskState.put(riskStateReverse[i], i);	
 	}
 	
 	/* Routers */
@@ -109,6 +117,26 @@ public class RiskOperationController {
 		return name + "_" + index;
 	}
 	
+	/** 
+	 * Clone some critical fields so that comparison could be done.
+	 */
+	private RiskOperation cloneCriticals(RiskOperation source) {
+		RiskOperation destination = new RiskOperation();
+		destination.setCreatorName(source.getCreatorName());
+		destination.setDescription(source.getDescription());
+		destination.setInfluence(source.getInfluence());
+		destination.setPossibility(source.getPossibility());
+		destination.setState(source.getState());
+		destination.setTracerName(source.getTracerName());
+		return destination;
+	}
+	
+	/**
+	 * Push attributes into another risk operation.
+	 * 
+	 * @throws Exception when some fields malformed.
+	 */
+	
 	private void primeRiskOperation(RiskOperation operation, Date updateTime,
 			String description, String tracerName, String possibilityString, 
 			String influenceString, String status) throws Exception {
@@ -129,7 +157,11 @@ public class RiskOperationController {
 			throw new Exception("无法识别的影响等级：" + influenceString);
 	}
 	
-	private void notify(Date sendTime, User operator, Integer formerStatus, 
+	/**
+	 * Notify after insertion of modification is done.
+	 */
+	
+	private void notify(Date sendTime, User operator, RiskOperation before, 
 			RiskOperation operation, String title, String content) {
 		if(operation.getTracerName() == null) return;
 		if(operation.getTracerName().length() == 0) return;
@@ -137,11 +169,37 @@ public class RiskOperationController {
 		Notification notification = new Notification();
 		notification.setFromUser(operator.getUsername());
 		notification.setToUser(operation.getTracerName());
-		if(title != null) notification.setTitle(title);
-		else notification.setTitle("风险消息");
+		if(title != null && title.length() > 0) notification.setTitle(title);
+		else {
+			if(before == null) notification.setTitle("风险" + riskStateReverse[1] + "消息");
+			else if(before.getState().compareTo(operation.getState()) != 0)
+				notification.setTitle("风险" + riskStateReverse[operation.getState()] + "消息");
+			else notification.setTitle("风险状态变更消息");
+		}
 		
-		if(content != null) notification.setContent(content);
-		else notification.setContent(operation.getDescription());
+		if(content != null && content.length() > 0) notification.setContent(content);
+		else {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(operation.getDescription()).append("\n\n\n");
+			stringBuilder.append("[系统消息]我们还发现了以下变化：\n");
+			
+			if(before.getInfluence().compareTo(operation.getInfluence()) != 0)
+				stringBuilder.append("风险影响度：")
+					.append(riskInfluenceReverse[before.getInfluence()]).append(" -> ")
+					.append(riskInfluenceReverse[operation.getInfluence()]).append('\n');
+			
+			if(before.getPossibility().compareTo(operation.getPossibility()) != 0)
+				stringBuilder.append("风险可能性：")
+					.append(riskPossibilityReverse[before.getPossibility()]).append(" -> ")
+					.append(riskPossibilityReverse[operation.getPossibility()]).append('\n');
+			
+			if(before.getTracerName().compareTo(operation.getTracerName()) != 0)
+				stringBuilder.append("跟踪者：")
+					.append(before.getTracerName()).append(" -> ")
+					.append(operation.getTracerName()).append('\n');
+					
+			notification.setContent(new String(stringBuilder));
+		}
 		
 		notification.setRiskOperationId(operation.getId());
 		notification.setTime(sendTime);
@@ -221,7 +279,7 @@ public class RiskOperationController {
 			RiskOperation victim = riskOpService.selectById(Integer.parseInt(id));
 			if(victim == null) throw new Exception("风险条目不存在！");
 			
-			Integer formerState = victim.getState();
+			RiskOperation formerState = cloneCriticals(victim);
 			String riskDetail = request.getParameter("riskDetail");
 			String tracerName = request.getParameter("tracer");
 			String possibilityString = request.getParameter("possibility");
@@ -243,6 +301,5 @@ public class RiskOperationController {
 			return "redirect:modifyrisk_op?id=" 
 					+ id + "&error=" + e.getMessage();
 		}
-	}	
-
+	}
 }
