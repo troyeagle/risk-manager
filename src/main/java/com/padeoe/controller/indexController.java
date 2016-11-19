@@ -85,7 +85,7 @@ public class indexController {
         String type = request.getParameter("type");
         if (type == null || startDate == null || enddate == null) {
             model.addAttribute("error", "参数错误");
-            return "piechart_page";
+            return "redirect:piechart_page";
         }
         int type_int;
         if (type.equals("shibie")) {
@@ -97,11 +97,11 @@ public class indexController {
         }
         else{
             model.addAttribute("error", "未知的图表类型");
-            return "piechart_page";
+            return "redirect:piechart_page";
         }
         if(startDate.length()!=10||enddate.length()!=10){
             model.addAttribute("error", "未指定日期");
-            return "piechart_page";
+            return "redirect:piechart_page";
         }
         Date start=new Date(Integer.parseInt(startDate.substring(0,4))-1900,Integer.parseInt(startDate.substring(5,7))-1,Integer.parseInt(startDate.substring(8,10)));
         Date end=new Date(Integer.parseInt(enddate.substring(0,4))-1900,Integer.parseInt(enddate.substring(5,7))-1,Integer.parseInt(enddate.substring(8,10)));
