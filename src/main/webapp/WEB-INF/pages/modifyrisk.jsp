@@ -430,7 +430,7 @@
                                     <label>可能性</label>
                                     <select class="form-control" name="possibility">
                                         <option <%if(possibility==1){out.print("selected=\"selected\"");} %> >低</option>
-                                        <option <%if(possibility==2){out.print("selected=\"selected\"");} %> >中</option>
+                                        <option <%if(possibility==2){out.print("selected=\"selected\"");} %> >普通</option>
                                         <option <%if(possibility==3){out.print("selected=\"selected\"");} %> >高</option>
                                     </select>
                                 </div>
@@ -444,9 +444,9 @@
                                 <div class="form-group">
                                     <label>影响程度</label>
                                     <select class="form-control" name="influence">
-                                        <option <%if(influence==1){out.print("selected=\"selected\"");} %> >低</option>
-                                        <option <%if(influence==2){out.print("selected=\"selected\"");} %> >中</option>
-                                        <option <%if(influence==3){out.print("selected=\"selected\"");} %> >高</option>
+                                        <option <%if(influence==1){out.print("selected=\"selected\"");} %> >一般</option>
+                                        <option <%if(influence==2){out.print("selected=\"selected\"");} %> >较大</option>
+                                        <option <%if(influence==3){out.print("selected=\"selected\"");} %> >致命</option>
                                     </select>
                                 </div>
 

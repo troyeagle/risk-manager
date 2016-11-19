@@ -1,10 +1,13 @@
 package com.padeoe.controller;
 
+import com.padeoe.pojo.User;
+import com.padeoe.service.impl.NotificationServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by zafara on 2016/11/14.
@@ -17,7 +20,11 @@ public class indexController {
     }
 
     @RequestMapping("/index_page")
-    public String index_page(HttpServletRequest request, Model model) {
+    public String index_page(HttpServletRequest request, Model model, HttpSession session) {
+
+       String username =  ((User)session.getAttribute("user")).getUsername().toString();
+        NotificationServiceImpl ins = new NotificationServiceImpl();
+        model.addAttribute("notify",ins.listNotification(username));
         return "index";
     }
 
