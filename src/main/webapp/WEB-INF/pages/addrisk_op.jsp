@@ -429,9 +429,9 @@
                                 <thead>
                                 <tr>
                                     <th width="20">导入</th>
-                                    <th width="50">风险编号</th>
-                                    <th width="100">风险简述</th>
-                                    <th width="200">风险详述</th>
+                                    <th width="70">风险编号</th>
+                                    <th width="200">风险简述</th>
+                                    <th width="300">风险详述</th>
                                     <th width="50">可能性 </th>
                                     <th width="50">影响程度</th>
                                     <th width="100">阈值</th>
@@ -539,6 +539,7 @@
 
 
             var layer1 = $('tr :checkbox:checked').parent().parent();
+            var totalRisk = layer1.length;
             for(var i = 0;i<layer1.length;i++){
                 var layer2=$(layer1[i]).find('td');
                 for(var j=0;j<layer2.length-1;j++){
@@ -551,13 +552,16 @@
                     influence[i]= layer2[4];
                 }
             }
+
             var obj={
                 'check[]': check,
                 'id[]': id,
                 'detail[]':detail,
                 'tracer[]':tracer,
                 'possibility[]':possibility,
-                'influence[]':influence
+                'influence[]':influence,
+                'totalRisk':totalRisk,
+                'project':'<%=request.getAttribute("name")%>'
             }
             $(obj).serialize();
         });

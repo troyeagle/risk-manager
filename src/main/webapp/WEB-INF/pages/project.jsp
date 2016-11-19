@@ -423,7 +423,7 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="/addrisk_op_page">导入具体风险条目</a>
+                                        <li><a href="/addrisk_op?name=<%=projectname%>">导入具体风险条目</a>
                                         </li>
                                         <!--
                                         <li class="divider"></li>
@@ -500,7 +500,7 @@
                                                         out.println("<td>"+ state +"</td>");
 
                                                         out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
-                                                        out.println("<td> <a href=\"/modifyrisk_page?id=" + id + "\">修改</a> </td>");
+                                                        out.println("<td> <a href=\"/modifyRiskOpBL?id=" + id + "\">修改</a> </td>");
                                                         out.println("</tr>");
                                                         i++;
                                                     }

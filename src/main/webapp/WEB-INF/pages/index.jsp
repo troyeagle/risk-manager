@@ -476,33 +476,13 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
 
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            项目表
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        操作
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">添加项目</a>
-                                        </li>
-                                        <!--
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                        -->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
@@ -510,19 +490,20 @@
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                                            风险跟踪通知
                                         </div>
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="list-group">
                                                 <a href="#" class="list-group-item">
-                                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+                                                    <i class="fa fa-money fa-fw"></i> 变更具体信息
+                                                    <span class="pull-right text-muted small"><em>变更时间</em>
                                     </span>
                                                 </a>
+
                                             </div>
                                             <!-- /.list-group -->
-                                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+                                           <!-- <a href="#" class="btn btn-default btn-block">View All Alerts</a>-->
                                         </div>
                                         <!-- /.panel-body -->
                                     </div>
@@ -553,9 +534,6 @@
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
                                 <!-- /.col-lg-8 (nested) -->
                             </div>
                             <!-- /.row -->
@@ -566,22 +544,6 @@
 
                 </div>
                 <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                           饼状图示例
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">查看详情</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-                </div>
                 <!-- /.col-lg-4 -->
             </div>
             <!-- /.row -->
