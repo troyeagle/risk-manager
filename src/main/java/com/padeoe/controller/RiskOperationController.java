@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.padeoe.pojo.Notification;
 import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.RiskOperation;
 import com.padeoe.pojo.User;
+import com.padeoe.service.INotificationService;
 import com.padeoe.service.IRiskOperationService;
 import com.padeoe.service.IRiskService;
 import com.padeoe.service.ISearchService;
@@ -31,6 +33,7 @@ public class RiskOperationController {
 	@Resource IRiskOperationService riskOpService;
 	@Resource IRiskService riskService;
 	@Resource ISearchService searchService;
+	@Resource INotificationService notificationService;
 
 	private final Map<String, Integer> riskPossibility = new HashMap<>(); 
 	private final Map<String, Integer> riskInfluence = new HashMap<>(); {
@@ -123,8 +126,24 @@ public class RiskOperationController {
 		operation.setInfluence(influence);
 	}
 	
-	private void notify(User operator, Integer formerStatus, RiskOperation operation) {
-		// doNotify!
+	private void notify(Date sendTime, User operator, Integer formerStatus, 
+			RiskOperation operation, String title, String content) {
+		if(operation.getTracerName() == null) return;
+		if(operation.getTracerName().length() == 0) return;
+		
+		Notification notification = new Notification();
+		notification.setFromUser(operator.getUsername());
+		notification.setToUser(operation.getTracerName());
+		if(title != null) notification.setTitle(title);
+		else notification.setTitle("风险消息");
+		
+		if(content != null) notification.setContent(content);
+		else notification.setContent(operation.getDescription());
+		
+		notification.setRiskOperationId(operation.getId());
+		notification.setTime(sendTime);
+		
+		notificationService.notify(notification);
 	}
 	
 	/**
@@ -174,7 +193,7 @@ public class RiskOperationController {
 			
 			for(RiskOperation op : operations) {
 				riskOpService.saveRiskOperation(op);
-				notify(operator, null, op);
+				notify(currentTime, operator, null, op, null, null);
 			}
 			
 			return "redirect:project_page?name=" + project;
@@ -193,10 +212,11 @@ public class RiskOperationController {
 			return "login";
 		}
 		Date currentTime = new Date();
+		String id = request.getParameter("id");
 		
 		try {
 			RiskOperation victim = new RiskOperation();
-			victim.setId(Integer.parseInt(request.getParameter("id")));
+			victim.setId(Integer.parseInt(id));
 			List<RiskOperation> result = riskOpService.queryByCondition(victim);
 			if(result.size() != 1) throw new Exception("风险条目不存在！");
 			victim = result.get(0);
@@ -213,13 +233,13 @@ public class RiskOperationController {
 			
 			riskOpService.saveRiskOperation(victim);
 			if("true".equals(request.getParameter("Notification"))) 
-				notify(operator, formerState, victim);
+				notify(currentTime, operator, formerState, victim, null, null);
 			
-			return "project_page?name=" + victim.getProjectName();
+			return "redirect:project_page?name=" + victim.getProjectName();
 		}
 		catch(Exception e) {
-			model.addAttribute("error", e.getMessage());
-			return "modifyrisk_op";
+			return "redirect:modifyrisk_op?id=" 
+					+ id + "&error=" + e.getMessage();
 		}
 	}
 	

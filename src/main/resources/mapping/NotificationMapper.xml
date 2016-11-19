@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.padeoe.dao.INotificationDao" >
+    <resultMap id="BaseResultMap" type="com.padeoe.pojo.Notification" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="_from" property="fromUser" jdbcType="VARCHAR" />
+        <result column="_to" property="toUser" jdbcType="VARCHAR" />
+        <result column="riskop_id" property="riskOperationId" jdbcType="INTEGER" />
+        <result column="time" property="time" jdbcType="TIMESTAMP" />
+        <result column="_read" property="read" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <resultMap id="ContentResultMap" type="com.padeoe.pojo.Notification" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >id, title, _from, _to, riskop_id, time, _read</sql>
+    <sql id="Content_Column_List" >id, content</sql>
+    
+    <select id="searchNotification" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.Notification" >
+        select <include refid="Base_Column_List" /> from notification_t
+        where _to = #{toUser,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getContent" resultMap="ContentResultMap" parameterType="java.lang.Integer" >
+        select <include refid="Content_Column_List" /> from notification_t
+        where id = #{id, jdbcType=INTEGER}
+    </select>
+    
+    <insert id="createNotification" parameterType="com.padeoe.pojo.Notification" useGeneratedKeys="true" keyProperty="id">
+        insert into notification_t (title, _from, _to, riskop_id, time, _read, content)
+        values (#{title, jdbcType=VARCHAR}, #{fromUser, jdbcType=VARCHAR}, #{toUser, jdbcType=VARCHAR},
+        #{riskOperationId, jdbcType=INTEGER}, #{time, jdbcType=TIMESTAMP},0, #{content, jdbcType=VARCHAR})
+    </insert>
+    
+    <update id="markRead" parameterType="java.lang.Integer">
+        update notification_t set _read=1 where id = #{id, jdbcType=INTEGER}
+    </update>
+</mapper>
