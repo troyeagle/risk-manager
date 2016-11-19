@@ -3,7 +3,6 @@ package com.padeoe.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -36,9 +35,11 @@ public class RiskOperationController {
 	@Resource INotificationService notificationService;
 
 	private final Map<String, Integer> riskPossibility = new HashMap<>(); 
-	private final Map<String, Integer> riskInfluence = new HashMap<>(); {
+	private final Map<String, Integer> riskInfluence = new HashMap<>(); 
+	private final Map<String, Integer> riskState = new HashMap<>(); {
 		riskPossibility.put("高", 3);	riskPossibility.put("普通", 2);	riskPossibility.put("低", 1);
 		riskInfluence.put("一般", 1);	riskInfluence.put("较大", 2);	riskInfluence.put("致命", 3);
+		riskState.put("被发现", 1);	riskState.put("演变为问题", 2);	riskState.put("解决中", 3);	riskState.put("已解决", 4);
 	}
 	
 	/* Routers */
@@ -93,9 +94,8 @@ public class RiskOperationController {
 	}
 	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp(HttpServletRequest request) {
 		// Risk Operation
-		RiskOperation riskOperation = new RiskOperation();
-		riskOperation.setId(Integer.parseInt(request.getParameter("id")));
-		riskOperation = riskOpService.queryByCondition(riskOperation).get(0);
+		RiskOperation riskOperation = riskOpService.selectById(
+				Integer.parseInt(request.getParameter("id")));
 		request.setAttribute("riskop", riskOperation);
 		
 		// Risk
@@ -115,15 +115,18 @@ public class RiskOperationController {
 		operation.setUpdateTime(updateTime);
 		operation.setDescription(description);
 		operation.setTracerName(tracerName);
-		operation.setState(Integer.parseInt(status));
+		
+		operation.setState(riskState.get(status));
+		if(operation.getState() == null) 
+			throw new Exception("无法识别的状态：" + status);
 
-		Integer possibility = riskPossibility.get(possibilityString);
-		if(possibility == null) throw new Exception("无法识别的可能性：" + possibilityString);
-		operation.setPossibility(possibility);
+		operation.setPossibility(riskPossibility.get(possibilityString));
+		if(operation.getPossibility() == null) 
+			throw new Exception("无法识别的可能性：" + possibilityString);
 
-		Integer influence = riskInfluence.get(influenceString);
-		if(influence == null) throw new Exception("无法识别的影响等级：" + influenceString);
-		operation.setInfluence(influence);
+		operation.setInfluence(riskInfluence.get(influenceString));
+		if(operation.getInfluence() == null) 
+			throw new Exception("无法识别的影响等级：" + influenceString);
 	}
 	
 	private void notify(Date sendTime, User operator, Integer formerStatus, 
@@ -185,7 +188,7 @@ public class RiskOperationController {
 				String influenceString = request.getParameter(formatItem("influence", i));
 				
 				primeRiskOperation(operation, currentTime, riskDetail, tracerName, 
-						possibilityString, influenceString, "1");
+						possibilityString, influenceString, "被发现");
 				
 				// Add to update queue.
 				operations.add(operation);
@@ -215,13 +218,10 @@ public class RiskOperationController {
 		String id = request.getParameter("id");
 		
 		try {
-			RiskOperation victim = new RiskOperation();
-			victim.setId(Integer.parseInt(id));
-			List<RiskOperation> result = riskOpService.queryByCondition(victim);
-			if(result.size() != 1) throw new Exception("风险条目不存在！");
-			victim = result.get(0);
+			RiskOperation victim = riskOpService.selectById(Integer.parseInt(id));
+			if(victim == null) throw new Exception("风险条目不存在！");
+			
 			Integer formerState = victim.getState();
-
 			String riskDetail = request.getParameter("riskDetail");
 			String tracerName = request.getParameter("tracer");
 			String possibilityString = request.getParameter("possibility");
@@ -233,7 +233,9 @@ public class RiskOperationController {
 			
 			riskOpService.saveRiskOperation(victim);
 			if("true".equals(request.getParameter("Notification"))) 
-				notify(currentTime, operator, formerState, victim, null, null);
+				notify(currentTime, operator, formerState, victim, 
+						request.getParameter("Notificationtitle"), 
+						request.getParameter("Notificationmessage"));
 			
 			return "redirect:project_page?name=" + victim.getProjectName();
 		}
@@ -241,7 +243,6 @@ public class RiskOperationController {
 			return "redirect:modifyrisk_op?id=" 
 					+ id + "&error=" + e.getMessage();
 		}
-	}
-	
-	
+	}	
+
 }

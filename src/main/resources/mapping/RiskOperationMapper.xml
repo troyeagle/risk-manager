@@ -168,9 +168,6 @@
   <insert id="insertSelective" parameterType="com.padeoe.pojo.RiskOperation" useGeneratedKeys="true" keyProperty="id">
     insert into risk_operation_t
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="riskId != null">
         risk_id,
       </if>
@@ -200,9 +197,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="riskId != null">
         #{riskId,jdbcType=INTEGER},
       </if>

@@ -38,4 +38,6 @@ public interface IRiskOperationService {
      * 参数选填，包装为一个{@link RiskOperation}实体
      */
     public List<RiskOperation> queryByCondition(RiskOperation condition);
+    
+    public RiskOperation selectById(Integer id);
 }
