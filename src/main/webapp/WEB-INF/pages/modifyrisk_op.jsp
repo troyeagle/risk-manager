@@ -419,6 +419,12 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>提供给追踪者的信息</label>
+                                    <textarea class="form-control" rows="3" name="Notificationmessage"></textarea>
+                                    <p class="help-block" >不填写则默认为系统自动生成信息</p>
+                                </div>
+
+                                <div class="form-group">
                                     <label>阈值</label>
                                     <input class="form-control" name="threshold"  readonly="readonly"  type="text" value="<%=risk.getThreshold()%>">
                                 </div>
