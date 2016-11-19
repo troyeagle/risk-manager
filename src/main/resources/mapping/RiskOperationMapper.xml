@@ -103,7 +103,7 @@
         influence = #{influence,jdbcType=INTEGER}
       </if>
     </where> order by update_time desc) as A
-    group by A.risk_id,A.project_id
+    group by A.risk_id,A.project_name
 
   </select>
 

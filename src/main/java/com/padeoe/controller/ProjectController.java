@@ -4,6 +4,7 @@ import com.padeoe.pojo.Project;
 import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.RiskOperation;
 import com.padeoe.service.IProjectService;
+import com.padeoe.service.IRiskOperationService;
 import com.padeoe.service.IRiskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,13 @@ import java.util.*;
  */
 @Controller
 public class ProjectController {
+    @Resource
+    private IRiskOperationService iRiskOperationService;
+
     private static Map<String, List<RiskOperation>> allProjectDetail = new HashMap<>();
 
     static {
-        RiskOperation riskOperation=new RiskOperation();
+        RiskOperation riskOperation = new RiskOperation();
         riskOperation.setProjectName("eee");
         riskOperation.setPossibility(1);
         riskOperation.setId(233);
@@ -30,10 +34,11 @@ public class ProjectController {
         riskOperation.setInfluence(1);
         riskOperation.setTracerName("张三");
         riskOperation.setRiskId(new Integer(32));
-        List<RiskOperation> riskOpList=new ArrayList<>();
+        List<RiskOperation> riskOpList = new ArrayList<>();
         riskOpList.add(riskOperation);
-        allProjectDetail.put("eee",riskOpList);
+        allProjectDetail.put("eee", riskOpList);
     }
+
     @Resource
     private IProjectService iProjectService;
     @Resource
@@ -99,16 +104,23 @@ public class ProjectController {
         }
     }
 
+    /**
+     * 显示项目下所有的risk_op
+     *
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping("/project_page")
     public String projectDetail(HttpServletRequest request, Model model) {
         String projectName = request.getParameter("name");
         if (projectName != null) {
-            List<RiskOperation> riskOperationList = allProjectDetail.get(projectName);
-            if(riskOperationList==null) {
+            // List<RiskOperation> riskOperationList = allProjectDetail.get(projectName);
+            List<RiskOperation> riskOperationList = iRiskOperationService.queryByProjectLatest(projectName);
+            if (riskOperationList == null) {
                 model.addAttribute("listop", new ArrayList<RiskOperation>());
                 model.addAttribute("listr", new ArrayList<Risk>());
-            }
-            else {
+            } else {
                 model.addAttribute("listop", riskOperationList);
                 model.addAttribute("listr", getRiskList(riskOperationList));
             }
@@ -123,7 +135,7 @@ public class ProjectController {
 
     @RequestMapping("/addriskop")
     public String addRiskOperationtoProject(HttpServletRequest request, Model model) {
-     //   RiskOperation riskOperation=request.getParameter("riskoperation");
+        //   RiskOperation riskOperation=request.getParameter("riskoperation");
         return "";
     }
 
