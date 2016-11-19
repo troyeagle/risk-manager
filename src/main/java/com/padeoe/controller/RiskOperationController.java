@@ -40,7 +40,7 @@ public class RiskOperationController {
 	
 	/* Routers */
 	@SuppressWarnings("deprecation")
-	public @RequestMapping("/addrisk_op") String routeAddRiskOp(HttpServletRequest request, Model model) {
+	public @RequestMapping("/addrisk_op") String routeAddRiskOp(HttpServletRequest request) {
 		// Error
 		String error = request.getParameter("error");
 		
@@ -88,7 +88,19 @@ public class RiskOperationController {
 		
 		return "addrisk_op";
 	}
-	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp() {		return "modifyrisk_op";		}
+	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp(HttpServletRequest request) {
+		// Risk Operation
+		RiskOperation riskOperation = new RiskOperation();
+		riskOperation.setId(Integer.parseInt(request.getParameter("id")));
+		riskOperation = riskOpService.queryByConditionLatest(riskOperation).get(0);
+		request.setAttribute("riskop", riskOperation);
+		
+		// Risk
+		Risk risk = riskService.getRiskById(riskOperation.getRiskId());
+		request.setAttribute("risk", risk);
+		
+		return "modifyrisk_op";	
+	}
 	
 	private String formatItem(String name, int index) {
 		return name + "_" + index;
