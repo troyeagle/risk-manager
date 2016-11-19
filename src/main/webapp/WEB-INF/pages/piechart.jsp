@@ -466,16 +466,14 @@
         element: 'morris-donut-chart',
         <%
         List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
+        out.print("   data: [");
         for(RiskSearchResult result: rsr){
-        out.print("   data: [{\n" +
-"            label: \"" +
- result.getRiskBrief() +
-  "\",\n" +
-"            value: " +
-result.getCount() +
-  "\n" +
-"        },]");
+        out.print("{\n" +
+"            label: \"" + result.getRiskBrief() +"\"," +
+"            value: " + result.getCount() +"\"" +
+"        },");
         }
+        out.print("]");
         %>
 
         resize: true

@@ -405,12 +405,12 @@
                                 Notification notify = (Notification)request.getAttribute("notify");
                             %>
                                 <div class="form-group">
-                                    <label><%=notify.getTitle()%></label>
+                                    <label>通知名称：<%=notify.getTitle()%></label>
                                     <br/>
                                     <div class="form-group">
-                                        <label><%=notify.getTime()%></label>
+                                        <label>更新时间：<%=notify.getTime()%></label>
                                         <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly"><%=notify.getContent()%></textarea>
-                                        <p class="help-block" ><%=notify.getFromUser()%></p>
+                                        <p class="help-block" >提交者：<%=notify.getFromUser()%></p>
                                     </div>
 
                                 </div>
