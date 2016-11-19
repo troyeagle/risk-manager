@@ -53,7 +53,7 @@ public class indexController {
         String id = request.getParameter("id");
 
        // model.addAttribute("notify", NotificationService.openNotification(Integer.getInteger(id)));
-        return "notify"+"id";
+        return "notify"+id;
     }
 
     @RequestMapping("/addrisk_op_page")
