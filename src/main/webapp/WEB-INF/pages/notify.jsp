@@ -405,7 +405,8 @@
                                 String content = request.getAttribute("notify").toString();
                             %>
                                 <div class="form-group">
-                                    <label>风险简述</label>
+                                    <label>追踪信息:</label>
+                                    <br/>
                                     <%=content%>
                                 </div>
 
