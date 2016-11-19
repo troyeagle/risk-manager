@@ -95,7 +95,7 @@ public class RiskOperationController {
 		// Risk Operation
 		RiskOperation riskOperation = new RiskOperation();
 		riskOperation.setId(Integer.parseInt(request.getParameter("id")));
-		riskOperation = riskOpService.queryByConditionLatest(riskOperation).get(0);
+		riskOperation = riskOpService.queryByCondition(riskOperation).get(0);
 		request.setAttribute("riskop", riskOperation);
 		
 		// Risk
