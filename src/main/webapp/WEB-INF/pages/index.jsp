@@ -494,28 +494,31 @@
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            风险跟踪通知
+                                            跟踪风险通知
                                         </div>
 
                                         <%
                                             List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
-                                            for (Notification notify : notifylist) {
-                                                out.print("<div class=\"panel-body\">\n" +
-                                                        "                                            <div class=\"list-group\">\n" +
-                                                        "                                                <a href=\"notify_page?id=" +
-                                                        notify.getId()+
-                                                        "\" class=\"list-group-item\">\n" +
-                                                        notify.getTitle()+
-                                                                "                                                    <span class=\"pull-right text-muted small\">" +
-                                                        "<em>" +
-                                                        notify.getTime().toString() +
-                                                        "</em>\n" +
-                                                        "                                    </span>\n" +
-                                                        "                                                </a>\n" +
-                                                        "\n" +
-                                                        "                                            </div>\n" +
-                                                        "                                        </div>");
-                                            }
+                                                for (Notification notify : notifylist) {
+                                                    if(notify.getFromUser()==null){
+                                                        continue;
+                                                    }
+                                                    out.print("<div class=\"panel-body\">\n" +
+                                                            "                                            <div class=\"list-group\">\n" +
+                                                            "                                                <a href=\"notify_page?id=" +
+                                                            notify.getId() +
+                                                            "\" class=\"list-group-item\">\n" +
+                                                            notify.getTitle() +
+                                                            "                                                    <span class=\"pull-right text-muted small\">" +
+                                                            "<em>" +
+                                                            notify.getTime().toString() +
+                                                            "</em>\n" +
+                                                            "                                    </span>\n" +
+                                                            "                                                </a>\n" +
+                                                            "\n" +
+                                                            "                                            </div>\n" +
+                                                            "                                        </div>");
+                                                }
 
                                         %>
                                         <!-- /.panel-heading -->

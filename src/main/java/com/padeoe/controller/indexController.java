@@ -26,7 +26,6 @@ import java.util.List;
 public class indexController {
     @Resource
     private INotificationService NotificationService;
-    @Resource
     private ISearchService iSearchService;
 
     @RequestMapping("/")
@@ -52,8 +51,9 @@ public class indexController {
     @RequestMapping("/notify_page")
     public String notify_page(HttpServletRequest request, Model model) {
         String id = request.getParameter("id");
-        model.addAttribute("notify", NotificationService.openNotification(Integer.getInteger(id)));
-        return "notify";
+
+       // model.addAttribute("notify", NotificationService.openNotification(Integer.getInteger(id)));
+        return "notify"+NotificationService;
     }
 
     @RequestMapping("/addrisk_op_page")
