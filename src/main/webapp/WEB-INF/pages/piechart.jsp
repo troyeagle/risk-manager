@@ -418,11 +418,11 @@
                         </div>
                     </form>
 
-                    <br>
+                    </br>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            饼状图示例
+                        <div class="panel-heading" >
+
                         </div>
                         <div class="panel-body">
                             <div id="morris-donut-chart"></div>
@@ -463,14 +463,8 @@
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
-            label: "Download Sales",
+            label: "测试",
             value: 12
-        }, {
-            label: "In-Store Sales",
-            value: 30
-        }, {
-            label: "Mail-Order Sales",
-            value: 20
         }],
         resize: true
     });

@@ -507,7 +507,7 @@
                                                         out.println("<td>"+ state +"</td>");
 
                                                         out.println("<td>"+ Listop.get(i).getUpdateTime() +"</td>");
-                                                        out.println("<td> <a href=\"/modifyRiskOpBL?id=" + id + "\">修改</a> </td>");
+                                                        out.println("<td> <a href=\"/modifyrisk_op?id=" + id + "\">修改</a> </td>");
                                                         out.println("</tr>");
                                                         i++;
                                                     }
