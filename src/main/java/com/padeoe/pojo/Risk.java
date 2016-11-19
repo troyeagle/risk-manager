@@ -98,11 +98,11 @@ public class Risk {
         this.count = count;
     }
 
-    public static Integer getLevel(String input){
+    public static Integer getLevel_Possiblility(String input){
         switch (input){
             case "高":
                 return 3;
-            case "中":
+            case "普通":
                 return 2;
             case "低":
                 return 1;
@@ -110,14 +110,43 @@ public class Risk {
                 return null;
         }
     }
-    public static String getLevel(Integer input){
+
+    public static Integer getLevel_Influence(String input){
+        switch (input){
+            case "致命":
+                return 3;
+            case "较大":
+                return 2;
+            case "一般":
+                return 1;
+            default:
+                return null;
+        }
+    }
+
+
+
+    public static String getLevel_Possiblility(Integer input){
         switch (input){
             case 3:
                 return "高";
             case 2:
-                return "中";
+                return "普通";
             case 1:
                 return "低";
+            default:
+                return null;
+        }
+    }
+
+    public static String getLevel_Influence(Integer input){
+        switch (input){
+            case 3:
+                return "致命";
+            case 2:
+                return "较大";
+            case 1:
+                return "一般";
             default:
                 return null;
         }

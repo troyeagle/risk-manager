@@ -66,19 +66,19 @@ public class RiskController {
             model.addAttribute("error", "触发阈值未填写");
             return "addrisk";
         }
-        if (!(influence.equals("高") || influence.equals("中") || influence.equals("低"))) {
+        if (!(influence.equals("致命") || influence.equals("较大") || influence.equals("一般"))) {
             model.addAttribute("error", "影响等级填写错误");
             return "addrisk";
         }
-        if (!(possibility.equals("高") || possibility.equals("中") || possibility.equals("低"))) {
+        if (!(possibility.equals("高") || possibility.equals("普通") || possibility.equals("低"))) {
             model.addAttribute("error", "可能性填写错误");
             return "addrisk";
         }
-        risk.setPossibility(Risk.getLevel(possibility));
+        risk.setPossibility(Risk.getLevel_Possiblility(possibility));
         risk.setRiskDetail(riskDetail);
         risk.setRiskBrief(riskBrief);
         risk.setThreshold(threshold);
-        risk.setInfluence(Risk.getLevel(influence));
+        risk.setInfluence(Risk.getLevel_Influence(influence));
         List<Risk> risks = iRiskService.searchRisk(risk);
         if (risks != null && risks.size() != 0) {
             model.addAttribute("error", "完全相同的风险已经添加过了");
@@ -190,21 +190,21 @@ public class RiskController {
             model.addAttribute("risk",result);
             return "modifyrisk";
         }
-        if (!(influence.equals("高") || influence.equals("中") || influence.equals("低"))) {
+        if (!(influence.equals("致命") || influence.equals("较大") || influence.equals("一般"))) {
             model.addAttribute("error", "影响等级填写错误");
             model.addAttribute("risk",result);
             return "modifyrisk";
         }
-        if (!(possibility.equals("高") || possibility.equals("中") || possibility.equals("低"))) {
+        if (!(possibility.equals("高") || possibility.equals("普通") || possibility.equals("低"))) {
             model.addAttribute("error", "可能性填写错误");
             model.addAttribute("risk",result);
             return "modifyrisk";
         }
-        risk.setPossibility(Risk.getLevel(possibility));
+        risk.setPossibility(Risk.getLevel_Possiblility(possibility));
         risk.setRiskDetail(riskDetail);
         risk.setRiskBrief(riskBrief);
         risk.setThreshold(threshold);
-        risk.setInfluence(Risk.getLevel(influence));
+        risk.setInfluence(Risk.getLevel_Influence(influence));
         System.out.println("最新的risk "+risk);
         iRiskService.updateRisk(risk);
         return "redirect:riskmanage_page";
