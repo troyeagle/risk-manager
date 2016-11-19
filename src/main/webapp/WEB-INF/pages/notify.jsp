@@ -402,15 +402,15 @@
                         <div class="col-lg-8">
                             <br>
                             <%
-                                String content = request.getAttribute("notify").toString();
+                                Notification notify = (Notification)request.getAttribute("notify");
                             %>
                                 <div class="form-group">
-                                    <label>追踪信息:</label>
+                                    <label>通知名称：<%=notify.getTitle()%></label>
                                     <br/>
                                     <div class="form-group">
-                                        <label>标题</label>
-                                        <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly"><%=content%></textarea>
-                                        <p class="help-block" >提交人</p>
+                                        <label>更新时间：<%=notify.getTime()%></label>
+                                        <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly"><%=notify.getContent()%></textarea>
+                                        <p class="help-block" >提交者：<%=notify.getFromUser()%></p>
                                     </div>
 
                                 </div>

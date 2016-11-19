@@ -52,7 +52,7 @@ public class indexController {
         int i =Integer.parseInt(id);
         Notification notification = NotificationService.openNotification(i);
         String notify =  notification.getContent();
-       model.addAttribute("notify", notify);
+       model.addAttribute("notify", notification);
         return "notify";
     }
 

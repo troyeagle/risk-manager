@@ -464,20 +464,21 @@
 <script>
     Morris.Donut({
         element: 'morris-donut-chart',
-        <%
-        List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
-        for(RiskSearchResult result: rsr){
-        out.print("   data: [{\n" +
-"            label: \"" +
- result.getRiskBrief() +
-  "\",\n" +
-"            value: " +
-result.getCount() +
-  "\n" +
-"        },]");
-        }
-        %>
-
+        data: [
+            {
+                label: "Download Sales",
+                value: 12
+            },
+            <%
+            List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
+            for(RiskSearchResult result: rsr){
+            out.print("{\n" +
+    "            label: \"" + result.getRiskBrief() +"\"," +
+    "            value: " + result.getCount() +"\"" +
+    "        },");
+            }
+            %>
+            ],
         resize: true
     });
 </script>
