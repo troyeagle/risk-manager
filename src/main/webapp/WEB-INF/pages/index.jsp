@@ -499,7 +499,7 @@
 
                                         <%
                                             List<Notification> notifylist = (List<Notification>)request.getAttribute("notify");
-                                            for (Notification notify : (List<Notification>)request.getAttribute("notifylist")) {
+                                            for (Notification notify : notifylist) {
                                                 out.print("<div class=\"panel-body\">\n" +
                                                         "                                            <div class=\"list-group\">\n" +
                                                         "                                                <a href=\"notify_page?id=" +
