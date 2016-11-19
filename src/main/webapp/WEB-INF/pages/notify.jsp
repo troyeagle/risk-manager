@@ -407,7 +407,12 @@
                                 <div class="form-group">
                                     <label>追踪信息:</label>
                                     <br/>
-                                    <%=content%>
+                                    <div class="form-group">
+                                        <label>标题</label>
+                                        <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly"><%=content%></textarea>
+                                        <p class="help-block" >提交人</p>
+                                    </div>
+
                                 </div>
 
                         </div>
