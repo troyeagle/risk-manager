@@ -41,4 +41,9 @@ public class indexController {
     public String piecharttest_page(HttpServletRequest request, Model model) {
         return "piecharttest";
     }
+
+    @RequestMapping("/piechart_page")
+    public String piechart_page(HttpServletRequest request, Model model) {
+        return "piechart";
+    }
 }

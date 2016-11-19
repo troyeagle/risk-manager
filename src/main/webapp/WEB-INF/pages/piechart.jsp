@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.padeoe.pojo.User" %>
-<%@ page import="com.padeoe.pojo.Risk" %>
 
 <head>
 
@@ -10,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>风险管理系统-导入风险</title>
+    <title>风险管理系统-统计图标</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +26,6 @@
     <!-- Custom Fonts -->
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -253,7 +251,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<%//out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<%out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -279,11 +277,15 @@
                         <li>
                             <a href="index_page">主页</a>
                         </li>
+                        <%
+                            if(((User)session.getAttribute("user")).getAuthority()==0) {
+                                out.print("<li>");
+                                out.print("<a href=\"riskmanage_page\">风险管理</a>");
+                                out.print("</li>");
+                            }
+                        %>
                         <li>
-                            <a href="riskmanage_page">风险管理</a>
-                        </li>
-                        <li>
-                            <a href="projectmanage_page">项目管理</a>
+                            <a href="project_page">项目管理</a>
                         </li>
                         <!--
                         <li>
@@ -382,7 +384,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">添加风险</h1>
+                    <h1 class="page-header">统计图表</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -390,113 +392,37 @@
 
             <div class="row">
                 <div class="col-lg-12">
+                    <br>
+                    <form action="">
+                        <div class="col-lg-1 form-group" >
+                            <button type="submit" class="btn btn-default">查询</button>
+                        </div>
+
+                        <div class="col-lg-3 form-group">
+                            <select class="form-control" name="type">
+                                <option>全部</option>
+                                <option>被识别的风险</option>
+                                <option>转化为问题的风险</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-3 form-group">
+                            起始时间：<input type="datetime-local" name="startdate">
+                        </div>
+
+                        <div class="col-lg-3 form-group">
+                            结束时间：<input type="datetime-local" name="enddate">
+                        </div>
+                    </form>
+
+                    <br>
+
                     <div class="panel panel-default">
-
-                        <div class="col-lg-12">
-                            <br>
-                            <form action="">
-                                <div class="col-lg-1 form-group" >
-                                    <button type="submit" class="btn btn-default">查询</button>
-                                </div>
-
-                                <div class="col-lg-3 form-group">
-                                    <select class="form-control" name="type">
-                                        <option>全部</option>
-                                        <option>被识别的风险</option>
-                                        <option>转化为问题的风险</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-lg-3 form-group">
-                                    起始时间：<input type="datetime-local" name="startdate">
-                                </div>
-
-                                <div class="col-lg-3 form-group">
-                                    结束时间：<input type="datetime-local" name="enddate">
-                                </div>
-                            </form>
-
-                            <br>
-                            <div align="center">
-                                <button id="lead">导入</button>
-                            </div>
-                                <br>
-                            <table align="center">
-                                <thead>
-                                <tr>
-                                    <th  width="50">风险编号</th>
-                                    <th width="100">风险简述</th>
-                                    <th width="400">风险详述</th>
-                                    <th width="50">可能性 </th>
-                                    <th width="50">影响程度</th>
-                                    <th width="100">阈值</th>
-                                    <th width="100">跟踪者</th>
-                                    <th width="20">导入</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr>
-                                    <td>风险编号</td>
-                                    <td>风险简述</td>
-                                    <td>风险详述</td>
-                                    <td>可能性</td>
-                                    <td>影响程度</td>
-                                    <td>阈值</td>
-                                    <td>跟踪者</td>
-                                    <td><input name="lead" type="checkbox"></td>
-                                </tr>
-                                <%
-                                    /*
-                                    for (Risk risk : (List<Risk>)request.getAttribute("list")) {
-                                        out.println("<tr>");
-
-                                        int Id = risk.getId().intValue();
-                                        out.println("<td>"+ Id +"</td>");
-
-                                        out.println("<td><input value=\""+ risk.getRiskBrief() +"\"></td>");
-                                        out.println("<td><input value=\""+ risk.getRiskDetail() +"\"></td>");1
-
-                                        int possibilitiyint = risk.getPossibility().intValue();
-                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
-                                        if(possibilitiyint==1){
-                                            out.println(" <option>低</option>");
-                                        }
-                                        else if(possibilitiyint==2){
-                                            out.println(" <option>中</option>");
-                                        }
-                                        else if(possibilitiyint==3){
-                                            out.println(" <option>高</option>");
-                                        }
-                                        out.println("</select>");
-
-                                        int influenceint = risk.getInfluence().intValue();
-                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
-                                        if(influenceint==1){
-                                            out.println(" <option>低</option>");
-                                        }
-                                        else if(influenceint==2){
-                                            out.println(" <option>中</option>");
-                                        }
-                                        else if(influenceint==3){
-                                            out.println(" <option>高</option>");
-                                        }
-                                        out.println("</select>");
-
-                                        out.println("<td>"+ risk.getThreshold() +"</td>");
-
-                                        out.println("<td><input value=\"\"></td>");
-
-                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"></td>");
-                                        out.println("</tr>");
-                                    }
-                                    */
-                                %>
-
-                                </tbody>
-                            </table>
-
-                            <br>
+                        <div class="panel-heading">
+                            饼状图示例
+                        </div>
+                        <div class="panel-body">
+                            <div id="morris-donut-chart"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -529,41 +455,21 @@
     <!-- Custom Theme JavaScript -->
     <script src="/dist/js/sb-admin-2.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('table').dataTable();
-        });
-
-        $('#lead').click(function () {
-
-
-            var layer1 = $('tr :checkbox:checked').parent().parent();
-            for(var i = 0;i<layer1.length;i++){
-                var layer2=$(layer1[i]).find('td');
-                for(var j=0;j<layer2.length-1;j++){
-                    console.log($(layer2[j]).text());
-                    check[i] = true;
-                    id[i] = layer2[0];
-                    detail[i] = layer2[2];
-                    tracer[i] = layer2[6];
-                    possibility[i] = layer2[3];
-                    influence[i]= layer2[4];
-                }
-            }
-            var obj={
-                'check[]': check,
-                'id[]': id,
-                'detail[]':detail,
-                'tracer[]':tracer,
-                'possibility[]':possibility,
-                'influence[]':influence
-            }
-            $(obj).serialize();
-        });
-    </script>
-
-<script src="/js/jquery.dataTables.min.js"></script>
-
 </body>
-
+<script>
+    Morris.Donut({
+        element: 'morris-donut-chart',
+        data: [{
+            label: "Download Sales",
+            value: 12
+        }, {
+            label: "In-Store Sales",
+            value: 30
+        }, {
+            label: "Mail-Order Sales",
+            value: 20
+        }],
+        resize: true
+    });
+</script>
 </html>

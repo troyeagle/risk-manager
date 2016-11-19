@@ -253,7 +253,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="index_page">
-                        用户：<% //out.print(((User)session.getAttribute("user")).getUsername());%>
+                        用户：<% out.print(((User)session.getAttribute("user")).getUsername());%>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <!--
@@ -400,7 +400,7 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <form role="form" action="">
+                            <form role="form" action="modifyRiskOpBL">
                                 <p style="color: red; text-align: center">${requestScope.error}</p>
 
                                 <div class="form-group">
