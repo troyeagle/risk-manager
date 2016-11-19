@@ -27,10 +27,10 @@ public class NotificationServiceImpl implements INotificationService {
 	}
 
 	@Override
-	public String openNotification(int notificationId) {
+	public Notification openNotification(int notificationId) {
 		notificationDao.markRead(notificationId);
 		List<Notification> result = notificationDao.getContent(notificationId);
 		if(result.isEmpty()) return null;
-		return result.get(0).getContent();
+		return result.get(0);
 	}
 }

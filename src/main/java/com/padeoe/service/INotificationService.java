@@ -9,5 +9,5 @@ public interface INotificationService {
 	
 	public List<Notification> listNotification(String username);
 	
-	public String openNotification(int notificationId);
+	public Notification openNotification(int notificationId);
 }
