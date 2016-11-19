@@ -403,9 +403,8 @@
 
                         <div class="col-lg-3 form-group">
                             <select class="form-control" name="type">
-                                <option>全部</option>
-                                <option>被识别的风险</option>
-                                <option>转化为问题的风险</option>
+                                <option value="shibie">被识别的风险</option>
+                                <option value="wenti">转化为问题的风险</option>
                             </select>
                         </div>
 
