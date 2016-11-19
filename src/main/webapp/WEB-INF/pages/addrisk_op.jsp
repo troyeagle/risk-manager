@@ -395,6 +395,7 @@
                         <div class="col-lg-12">
                             <br>
                             <form action="addrisk_op">
+	                            <input type="hidden" name="name" value="<%= request.getAttribute("name") %>"/>
                                 <div class="col-lg-1 form-group" >
                                     <button type="submit" class="btn btn-default">查询</button>
                                 </div>
@@ -417,26 +418,30 @@
                             </form>
 
                             <br>
+                            <form action="/insertRiskOpBL" method="POST">
                             <div align="center">
-                                <button id="lead">导入</button>
+                            	<% String error = (String)request.getAttribute("error"); %>
+                            	<%if(error != null) { %> <a color="red"><%= error %></a> <% } %>
+                                <button type="submit" id="lead">导入</button>
                             </div>
                                 <br>
                             <table align="center">
                                 <thead>
                                 <tr>
-                                    <th  width="50">风险编号</th>
+                                    <th width="20">导入</th>
+                                    <th width="50">风险编号</th>
                                     <th width="100">风险简述</th>
-                                    <th width="400">风险详述</th>
+                                    <th width="200">风险详述</th>
                                     <th width="50">可能性 </th>
                                     <th width="50">影响程度</th>
                                     <th width="100">阈值</th>
                                     <th width="100">跟踪者</th>
-                                    <th width="20">导入</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                <tr>
+                                <!--<tr>
+                                    <td><input name="lead" type="checkbox"></td>
                                     <td>风险编号</td>
                                     <td>风险简述</td>
                                     <td>风险详述</td>
@@ -444,58 +449,54 @@
                                     <td>影响程度</td>
                                     <td>阈值</td>
                                     <td>跟踪者</td>
-                                    <td><input name="lead" type="checkbox"></td>
-                                </tr>
-                                <%
-                                    /*
-                                    for (Risk risk : (List<Risk>)request.getAttribute("list")) {
+
+                                </tr>-->
+                                <% List<Risk> list = (List<Risk>)request.getAttribute("list"); %>
+                                <input type="hidden" name="totalRisk" value="<%= list.size() %>"/>
+                                <input type="hidden" name="project" value="<%= request.getAttribute("name") %>"/>
+                                <%	
+                                    for (int i = 0; i < list.size(); i ++) {
+                                    	Risk risk = list.get(i);
                                         out.println("<tr>");
+                                        
+                                        // Risk Checkbox
+                                        out.println("<td><input name=\"check_" + i + "\" type=\"checkbox\"></td>");
+                                        int id = risk.getId().intValue();
+                                        out.println(String.format("<td><input name=\"id_%d\" type=\"hidden\" value=\"%d\"/>%d", i, id, id));
+                                        
+                                        // Risk Brief & Detail
+                                        out.println(String.format("<td>%s</td>", risk.getRiskBrief()));
+                                        out.println(String.format("<td><input name=\"detail_%d\"value=\"%s\"></td>", i, risk.getRiskDetail()));
 
-                                        int Id = risk.getId().intValue();
-                                        out.println("<td>"+ Id +"</td>");
-
-                                        out.println("<td><input value=\""+ risk.getRiskBrief() +"\"></td>");
-                                        out.println("<td><input value=\""+ risk.getRiskDetail() +"\"></td>");1
-
+										// Possibility
                                         int possibilitiyint = risk.getPossibility().intValue();
-                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
-                                        if(possibilitiyint==1){
-                                            out.println(" <option>低</option>");
-                                        }
-                                        else if(possibilitiyint==2){
-                                            out.println(" <option>中</option>");
-                                        }
-                                        else if(possibilitiyint==3){
-                                            out.println(" <option>高</option>");
-                                        }
-                                        out.println("</select>");
+                                        out.println("<td><select class=\"form-control\" name=\"possibility_" + i + "\">\n");
+                                        out.println(possibilitiyint == 1? "<option selected=\"true\">低</option>" : "<option>低</option>");
+                                    	out.println(possibilitiyint == 2? "<option selected=\"true\">普通</option>" : "<option>普通</option>");
+                                        out.println(possibilitiyint == 3? "<option selected=\"true\">高</option>" : "<option>高</option>");
+                                        out.println("</select></td>");
 
+										// Influence
                                         int influenceint = risk.getInfluence().intValue();
-                                        out.println("           <select class=\"form-control\" name=\"type\">\n");
-                                        if(influenceint==1){
-                                            out.println(" <option>低</option>");
-                                        }
-                                        else if(influenceint==2){
-                                            out.println(" <option>中</option>");
-                                        }
-                                        else if(influenceint==3){
-                                            out.println(" <option>高</option>");
-                                        }
-                                        out.println("</select>");
+                                        out.println("<td><select class=\"form-control\" name=\"influence_" + i + "\">\n");
+                                        out.println(influenceint == 1? "<option selected=\"true\">一般</option>" : "<option>一般</option>");
+                                    	out.println(influenceint == 2? "<option selected=\"true\">较大</option>" : "<option>较大</option>");
+                                        out.println(influenceint == 3? "<option selected=\"true\">致命</option>" : "<option>致命</option>");
+                                        out.println("</select></td>");
 
+										// Threshold
                                         out.println("<td>"+ risk.getThreshold() +"</td>");
+                                        
+										// Tracer
+                                        out.println("<td><input name=\"tracer_" + i + "\"value=\"\"></td>");
 
-                                        out.println("<td><input value=\"\"></td>");
-
-                                        out.println("<td> <input name=\"lead\" type=\"checkbox\"></td>");
                                         out.println("</tr>");
                                     }
-                                    */
                                 %>
 
                                 </tbody>
                             </table>
-
+							</form>
                             <br>
                         </div>
                         <!-- /.panel-body -->

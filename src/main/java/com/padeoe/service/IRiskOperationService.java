@@ -12,8 +12,6 @@ public interface IRiskOperationService {
 
     public int saveRiskOperation(RiskOperation riskOperation);
 
-    public void updateRiskOperation(RiskOperation riskOperation);
-    
     /**
      * 查询一个项目的所有风险条目的最新状态
      */

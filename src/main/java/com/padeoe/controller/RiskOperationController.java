@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.padeoe.pojo.Risk;
 import com.padeoe.pojo.RiskOperation;
 import com.padeoe.pojo.User;
 import com.padeoe.service.IRiskOperationService;
 import com.padeoe.service.IRiskService;
+import com.padeoe.service.ISearchService;
 
 /**
  * 用于风险条目的增删改
@@ -28,6 +30,7 @@ import com.padeoe.service.IRiskService;
 public class RiskOperationController {
 	@Resource IRiskOperationService riskOpService;
 	@Resource IRiskService riskService;
+	@Resource ISearchService searchService;
 
 	private final Map<String, Integer> riskPossibility = new HashMap<>(); 
 	private final Map<String, Integer> riskInfluence = new HashMap<>(); {
@@ -36,8 +39,56 @@ public class RiskOperationController {
 	}
 	
 	/* Routers */
-	public @RequestMapping("/addrisk_op") String routeAddRiskOp() 		{		return "addrisk_op";		}
-	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp() {		return "/modifyrisk_op";	}
+	@SuppressWarnings("deprecation")
+	public @RequestMapping("/addrisk_op") String routeAddRiskOp(HttpServletRequest request, Model model) {
+		// Error
+		String error = request.getParameter("error");
+		
+		// Project
+		String project = request.getParameter("name");
+		
+		// Type
+		String type = request.getParameter("type");
+		if(type == null) type = "";
+		
+		// Start date.
+		String startdate = request.getParameter("startdate");
+		Date startDateObj = null;
+		if(startdate != null && startdate.length() > 0) 
+			startDateObj = new Date(startdate);
+		
+		// End date.
+		String enddate = request.getParameter("enddate");
+		Date endDateObj = null;
+		if(enddate != null && enddate.length() > 0)
+			endDateObj = new Date(enddate);
+		
+		// Search
+		ArrayList<Risk> list;
+		switch(type) {
+			case "被识别的风险":
+				list = new ArrayList<Risk>(
+						searchService.searchByCondition(0, project, startDateObj, endDateObj));
+			break;
+			case "转化为问题的风险":
+				list = new ArrayList<Risk>(
+						searchService.searchByCondition(0, project, startDateObj, endDateObj));
+			break;
+			default: 
+				list = new ArrayList<Risk>(searchService.selectExcludeProject(project));
+			break;
+		}
+		
+		request.setAttribute("name", project);
+		request.setAttribute("list", list);
+		request.setAttribute("type", type);
+		request.setAttribute("startdate", startdate);
+		request.setAttribute("enddate", enddate);
+		request.setAttribute("error", error);
+		
+		return "addrisk_op";
+	}
+	public @RequestMapping("/modifyrisk_op") String routeModifyRiskOp() {		return "modifyrisk_op";		}
 	
 	private String formatItem(String name, int index) {
 		return name + "_" + index;
@@ -60,7 +111,7 @@ public class RiskOperationController {
 		operation.setInfluence(influence);
 	}
 	
-	private void notify(User operator, RiskOperation operation) {
+	private void notify(User operator, Integer formerStatus, RiskOperation operation) {
 		// doNotify!
 	}
 	
@@ -88,7 +139,7 @@ public class RiskOperationController {
 		try {
 			ArrayList<RiskOperation> operations = new ArrayList<>();
 			for(int i = 0; i < totalRisk; i ++) {
-				if(!request.getParameter(formatItem("check", i)).equals("true")) continue;
+				if(!"on".equals(request.getParameter(formatItem("check", i)))) continue;
 				
 				//Shared amongst import.
 				RiskOperation operation = new RiskOperation();
@@ -111,14 +162,14 @@ public class RiskOperationController {
 			
 			for(RiskOperation op : operations) {
 				riskOpService.saveRiskOperation(op);
-				notify(operator, op);
+				notify(operator, null, op);
 			}
 			
-			return "project_page?name=" + project;
+			return "redirect:project_page?name=" + project;
 		}
 		catch(Exception e) {
-			model.addAttribute("error", e.getMessage());
-			return "addrisk_op";
+			return "redirect:addrisk_op?name=" + project 
+					+ "&error=" + e.getMessage();
 		}
 	}
 	
@@ -137,6 +188,7 @@ public class RiskOperationController {
 			List<RiskOperation> result = riskOpService.queryByCondition(victim);
 			if(result.size() != 1) throw new Exception("风险条目不存在！");
 			victim = result.get(0);
+			Integer formerState = victim.getState();
 
 			String riskDetail = request.getParameter("riskDetail");
 			String tracerName = request.getParameter("tracer");
@@ -147,9 +199,9 @@ public class RiskOperationController {
 			primeRiskOperation(victim, currentTime, riskDetail, tracerName, 
 					possibilityString, influenceString, state);
 			
-			riskOpService.updateRiskOperation(victim);
+			riskOpService.saveRiskOperation(victim);
 			if("true".equals(request.getParameter("Notification"))) 
-				notify(operator, victim);
+				notify(operator, formerState, victim);
 			
 			return "project_page?name=" + victim.getProjectName();
 		}
@@ -158,4 +210,6 @@ public class RiskOperationController {
 			return "modifyrisk_op";
 		}
 	}
+	
+	
 }
