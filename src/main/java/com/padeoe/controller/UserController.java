@@ -20,9 +20,9 @@ public class UserController {
     private IUserService userService;
 
     public static final int MAX_USERNAME_LENGTH = 15;
-    public static final int MIN_USERNAME_LENGTH = 6;
+    public static final int MIN_USERNAME_LENGTH = 5;
     public static final int MAX_PASSWORD_LENGTH = 24;
-    public static final int MIN_PASSWORD_LENGTH = 6;
+    public static final int MIN_PASSWORD_LENGTH = 5;
 
     @RequestMapping("/showUser")
     public String toIndex(HttpServletRequest request, Model model) {
