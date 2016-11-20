@@ -4,6 +4,7 @@ package com.padeoe.service;
 import com.padeoe.pojo.Risk;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IRiskService {
     public Risk getRiskById(int riskId);
@@ -25,4 +26,6 @@ public interface IRiskService {
      * @return
      */
     public List<Risk> searchRisk(Risk risk);
+    
+    public Set<Integer> getNonremovableRisks();
 }

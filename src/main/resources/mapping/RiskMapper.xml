@@ -18,6 +18,10 @@
         from risk_t
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectNonremovable" resultMap="BaseResultMap">
+    	select risk_id id from risk_operation_t;
+    </select>
+    
     <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.Risk" >
         select
         <include refid="Base_Column_List" />

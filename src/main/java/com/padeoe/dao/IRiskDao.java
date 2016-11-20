@@ -26,4 +26,5 @@ public interface IRiskDao {
 
     int updateByPrimaryKey(Risk record);
 
+    List<Risk> selectNonremovable();
 }

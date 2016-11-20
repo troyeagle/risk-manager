@@ -6,10 +6,9 @@ import com.padeoe.service.IRiskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by zafara on 2016/11/14.
@@ -48,5 +47,11 @@ public class RiskServiceImpl implements IRiskService{
     }
 
 
-
+	@Override
+	public Set<Integer> getNonremovableRisks() {
+		Set<Integer> result = new TreeSet<Integer>();
+		for(Risk risk : riskDao.selectNonremovable())
+			result.add(risk.getId());
+		return result;
+	}
 }
