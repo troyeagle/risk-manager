@@ -1,5 +1,6 @@
 package com.padeoe.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -67,14 +68,14 @@ public class RiskOperationController {
 		String startdate = request.getParameter("startdate");
 		Date startDateObj = null;
 		if(startdate != null && startdate.length() > 0) 
-			startDateObj = new Date(startdate);
+			startDateObj = new Date(Integer.parseInt(startdate.substring(0,4))-1900,Integer.parseInt(startdate.substring(5,7))-1,Integer.parseInt(startdate.substring(8,10)));
 		
 		// End date.
 		String enddate = request.getParameter("enddate");
 		Date endDateObj = null;
 		if(enddate != null && enddate.length() > 0)
-			endDateObj = new Date(enddate);
-		
+			endDateObj = new Date(Integer.parseInt(enddate.substring(0,4))-1900,Integer.parseInt(enddate.substring(5,7))-1,Integer.parseInt(enddate.substring(8,10)));
+
 		// Search
 		ArrayList<Risk> list;
 		switch(type) {
@@ -256,12 +257,13 @@ public class RiskOperationController {
 				riskOpService.saveRiskOperation(op);
 				notify(currentTime, operator, null, op, null, null);
 			}
-			
-			return "redirect:project_page?name=" + project;
+			model.addAttribute("name",project);
+			return "redirect:project_page";
 		}
 		catch(Exception e) {
-			return "redirect:addrisk_op?name=" + project 
-					+ "&error=" + e.getMessage();
+			model.addAttribute("name",project);
+			model.addAttribute("error",e.getMessage());
+			return "redirect:addrisk_op";
 		}
 	}
 	
@@ -294,8 +296,8 @@ public class RiskOperationController {
 				notify(currentTime, operator, formerState, victim, 
 						request.getParameter("Notificationtitle"), 
 						request.getParameter("Notificationmessage"));
-			
-			return "redirect:project_page?name=" + victim.getProjectName();
+			model.addAttribute("name",victim.getProjectName());
+			return "redirect:project_page";
 		}
 		catch(Exception e) {
 			return "redirect:modifyrisk_op?id=" 

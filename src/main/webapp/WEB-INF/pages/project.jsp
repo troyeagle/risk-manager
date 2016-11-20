@@ -415,7 +415,7 @@
                             %>
                         </div>
                         <!-- /.panel-heading -->
-                        <b>详细描述：</b>><%= ((Project)request.getAttribute("project")).getDescription() %>
+                        <b>详细描述：</b><%= (((Project)request.getAttribute("project"))).getDescription() %>
                         <!-- /.panel-body -->
                     </div>
                     <br>

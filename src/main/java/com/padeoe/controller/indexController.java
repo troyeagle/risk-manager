@@ -34,6 +34,9 @@ public class indexController {
 
     @RequestMapping("/index_page")
     public String index_page(HttpServletRequest request, Model model, HttpSession session) {
+        if(session==null||((User) session.getAttribute("user"))==null){
+            return "redirect:login_page";
+        }
         String username = ((User) session.getAttribute("user")).getUsername().toString();
         List<Notification> notifications = NotificationService.listNotification(username);
         if (notifications == null) {

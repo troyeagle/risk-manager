@@ -416,11 +416,11 @@
                                 </div>
 
                                 <div class="col-lg-3 form-group">
-                                    起始时间：<input type="datetime-local" name="startdate">
+                                    起始时间：<input type="date" name="startdate">
                                 </div>
 
                                 <div class="col-lg-3 form-group">
-                                    结束时间：<input type="datetime-local" name="enddate">
+                                    结束时间：<input type="date" name="enddate">
                                 </div>
                             </form>
 
@@ -440,7 +440,7 @@
                                     <th width="200">风险简述</th>
                                     <th width="300">风险详述</th>
                                     <th width="50">可能性 </th>
-                                    <th width="50">影响程度</th>
+                                    <th width="100">影响程度</th>
                                     <th width="100">阈值</th>
                                     <th width="100">跟踪者</th>
                                 </tr>
