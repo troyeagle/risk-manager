@@ -391,7 +391,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+            <!--
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
@@ -478,7 +478,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
+             -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
