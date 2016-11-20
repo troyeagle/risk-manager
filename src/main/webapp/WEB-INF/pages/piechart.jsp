@@ -465,10 +465,6 @@
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [
-            {
-                label: "Download Sales",
-                value: 12
-            },
             <%
             List<RiskSearchResult> rsr = (List<RiskSearchResult>)request.getAttribute("rsr");
             for(RiskSearchResult result: rsr){
