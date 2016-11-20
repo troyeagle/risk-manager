@@ -126,6 +126,7 @@ public class ProjectController {
             }
             Project project = new Project();
             project.setName(projectName);
+            project.setDescription(iProjectService.getProjectByName(projectName).getDescription());
             model.addAttribute("project", project);
             return "project";
         } else {
