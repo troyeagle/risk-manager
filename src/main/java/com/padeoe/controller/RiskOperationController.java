@@ -1,5 +1,6 @@
 package com.padeoe.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -256,12 +257,13 @@ public class RiskOperationController {
 				riskOpService.saveRiskOperation(op);
 				notify(currentTime, operator, null, op, null, null);
 			}
-			
-			return "redirect:project_page?name=" + project;
+			model.addAttribute("name",project);
+			return "redirect:project_page";
 		}
 		catch(Exception e) {
-			return "redirect:addrisk_op?name=" + project 
-					+ "&error=" + e.getMessage();
+			model.addAttribute("name",project);
+			model.addAttribute("error",e.getMessage());
+			return "redirect:addrisk_op";
 		}
 	}
 	
@@ -294,8 +296,8 @@ public class RiskOperationController {
 				notify(currentTime, operator, formerState, victim, 
 						request.getParameter("Notificationtitle"), 
 						request.getParameter("Notificationmessage"));
-			
-			return "redirect:project_page?name=" + victim.getProjectName();
+			model.addAttribute("name",victim.getProjectName());
+			return "redirect:project_page";
 		}
 		catch(Exception e) {
 			return "redirect:modifyrisk_op?id=" 
