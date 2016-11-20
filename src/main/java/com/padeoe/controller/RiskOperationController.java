@@ -80,11 +80,11 @@ public class RiskOperationController {
 		switch(type) {
 			case "被识别的风险":
 				list = new ArrayList<Risk>(
-						searchService.searchByCondition(0, project, startDateObj, endDateObj));
+						searchService.searchByCondition(1, project, startDateObj, endDateObj));
 			break;
 			case "转化为问题的风险":
 				list = new ArrayList<Risk>(
-						searchService.searchByCondition(0, project, startDateObj, endDateObj));
+						searchService.searchByCondition(2, project, startDateObj, endDateObj));
 			break;
 			default: 
 				list = new ArrayList<Risk>(searchService.selectExcludeProject(project));
