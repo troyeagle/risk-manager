@@ -503,24 +503,21 @@
                                                     if(notify.getFromUser()==null||notify.getTitle()==null||notify.getTitle().equals("")){
                                                         continue;
                                                     }
-
-                                                    out.print("<div class=\"panel-body\">\n" +
-                                                            "                                            <div class=\"list-group\">\n" +
-                                                            "                                                <a href=\"notify_page?id=" +
-                                                            notify.getId() +
-                                                            "\" class=\"list-group-item\">\n" +
-                                                            notify.getTitle() +
-                                                            "                                                    <span class=\"pull-right text-muted small\">" +
-                                                            "<em>" +
-                                                            notify.getTime().toString() +
-                                                            "</em>\n" +
-                                                            "                                    </span>\n" +
-                                                            "                                                </a>\n" +
-                                                            "\n" +
-                                                            "                                            </div>\n" +
-                                                            "                                        </div>");
+										%>
+                                        <div class="panel-body" style="padding: 7px 15px 7px 15px;">                                        
+                                            <div class="list-group" style="margin-bottom: 0;">
+                                                <a href="notify_page?id=<%=notify.getId()%>" class="list-group-item">
+                                            	<%if(notify.getRead() == 0) {%> <b color="black"> <%}%>
+                                                    	<%= notify.getTitle() %>
+                                                    <span class="pull-right text-muted small">
+                                                        <em> <%= notify.getTime() %></em>
+				                                    </span>
+			                                    <%if(notify.getRead() == 0) {%> </b> <%}%>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <%
                                                 }
-
                                         %>
                                         <!-- /.panel-heading -->
 

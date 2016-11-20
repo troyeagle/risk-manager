@@ -385,10 +385,11 @@
             <!-- /.navbar-static-side -->
         </nav>
 
+		<% Notification notify = (Notification)request.getAttribute("notify"); %>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">追踪风险信息</h1>
+                    <h1 class="page-header"><%=notify.getTitle()%></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -401,16 +402,13 @@
                         </div>
                         <div class="col-lg-8">
                             <br>
-                            <%
-                                Notification notify = (Notification)request.getAttribute("notify");
-                            %>
+                            
                                 <div class="form-group">
-                                    <label>通知名称：<%=notify.getTitle()%></label>
-                                    <br/>
                                     <div class="form-group">
-                                        <label>更新时间：<%=notify.getTime()%></label>
-                                        <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly"><%=notify.getContent()%></textarea>
-                                        <p class="help-block" >提交者：<%=notify.getFromUser()%></p>
+                                        <label>更新时间：<%=notify.getTime()%></label><br/>
+                                        <label>提交者：<%=notify.getFromUser()%></label><br/>
+                                        <label>风险页面：<a href="modifyrisk_op?id=<%=notify.getRiskOperationId() %>">查看</a></label><br/>
+                                        <textarea class="form-control" rows="3" name="riskDetail" readonly="readonly" style="height: 600px;"><%=notify.getContent()%></textarea>
                                     </div>
 
                                 </div>

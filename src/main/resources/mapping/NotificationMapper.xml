@@ -27,7 +27,7 @@
     
     <select id="searchNotification" resultMap="BaseResultMap" parameterType="com.padeoe.pojo.Notification" >
         select <include refid="Base_Column_List" /> from notification_t
-        where _to = #{toUser,jdbcType=VARCHAR}
+        where _to = #{toUser,jdbcType=VARCHAR} order by time desc
     </select>
     
     <select id="getContent" resultMap="ContentResultMap" parameterType="java.lang.Integer" >
