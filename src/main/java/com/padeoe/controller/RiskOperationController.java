@@ -67,14 +67,14 @@ public class RiskOperationController {
 		String startdate = request.getParameter("startdate");
 		Date startDateObj = null;
 		if(startdate != null && startdate.length() > 0) 
-			startDateObj = new Date(startdate);
+			startDateObj = new Date(Integer.parseInt(startdate.substring(0,4))-1900,Integer.parseInt(startdate.substring(5,7))-1,Integer.parseInt(startdate.substring(8,10)));
 		
 		// End date.
 		String enddate = request.getParameter("enddate");
 		Date endDateObj = null;
 		if(enddate != null && enddate.length() > 0)
-			endDateObj = new Date(enddate);
-		
+			endDateObj = new Date(Integer.parseInt(enddate.substring(0,4))-1900,Integer.parseInt(enddate.substring(5,7))-1,Integer.parseInt(enddate.substring(8,10)));
+
 		// Search
 		ArrayList<Risk> list;
 		switch(type) {
