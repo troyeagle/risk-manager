@@ -8,7 +8,7 @@
 	    <result column="threshold" property="threshold" jdbcType="VARCHAR" />
 	    <result column="risk_brief" property="riskBrief" jdbcType="VARCHAR" />
 	    <result column="risk_detail" property="riskDetail" jdbcType="VARCHAR" />
-	    <result column="count" property="count" jdbcType="INTEGER" />
+	    <result column="_count" property="count" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List" >
 	    risk_t.id, risk_t.possibility, risk_t.influence, risk_t.threshold, risk_t.risk_brief, risk_t.risk_detail, riskStat._count
