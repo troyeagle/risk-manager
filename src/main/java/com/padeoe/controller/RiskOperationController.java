@@ -181,24 +181,27 @@ public class RiskOperationController {
 		if(content != null && content.length() > 0) notification.setContent(content);
 		else {
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append(operation.getDescription()).append("\n\n\n");
-			stringBuilder.append("[系统消息]我们还发现了以下变化：\n");
+			stringBuilder.append(operation.getDescription());
+
+			if(before != null) {
+				stringBuilder.append("\n\n\n");
+				stringBuilder.append("[系统消息]我们还发现了以下变化：\n");
 			
-			if(before.getInfluence().compareTo(operation.getInfluence()) != 0)
-				stringBuilder.append("风险影响度：")
-					.append(riskInfluenceReverse[before.getInfluence()]).append(" -> ")
-					.append(riskInfluenceReverse[operation.getInfluence()]).append('\n');
+				if(before.getInfluence().compareTo(operation.getInfluence()) != 0)
+					stringBuilder.append("风险影响度：")
+						.append(riskInfluenceReverse[before.getInfluence()]).append(" -> ")
+						.append(riskInfluenceReverse[operation.getInfluence()]).append('\n');
+
+				if(before.getPossibility().compareTo(operation.getPossibility()) != 0)
+					stringBuilder.append("风险可能性：")
+						.append(riskPossibilityReverse[before.getPossibility()]).append(" -> ")
+						.append(riskPossibilityReverse[operation.getPossibility()]).append('\n');
 			
-			if(before.getPossibility().compareTo(operation.getPossibility()) != 0)
-				stringBuilder.append("风险可能性：")
-					.append(riskPossibilityReverse[before.getPossibility()]).append(" -> ")
-					.append(riskPossibilityReverse[operation.getPossibility()]).append('\n');
-			
-			if(before.getTracerName().compareTo(operation.getTracerName()) != 0)
-				stringBuilder.append("跟踪者：")
-					.append(before.getTracerName()).append(" -> ")
-					.append(operation.getTracerName()).append('\n');
-					
+				if(before.getTracerName().compareTo(operation.getTracerName()) != 0)
+					stringBuilder.append("跟踪者：")
+						.append(before.getTracerName()).append(" -> ")
+						.append(operation.getTracerName()).append('\n');
+			}
 			notification.setContent(new String(stringBuilder));
 		}
 		
